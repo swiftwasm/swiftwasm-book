@@ -6,6 +6,10 @@ SwiftWasm is an open source project to support WebAssembly target for Swift.
 
 The goal of this project is fully support of WebAssembly target for Swift and to be merged into upstream repository https://github.com/apple/swift.
 
+## Forum posts
+
+- [Design of this project](https://forums.swift.org/t/wasm-support/16087/14)
+- [Swift Package Manager Support](https://forums.swift.org/t/webassembly-swiftpm/34343)
 
 ## [How to develop](./DevelopmentGuide.md)
 
