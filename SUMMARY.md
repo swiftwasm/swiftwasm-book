@@ -1,4 +1,10 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Introduction](README.md)
+* [Getting Started](GettingStarted.md)
+
+## Development
+
+* [Development Guide](DevelopmentGuide.md)
+* [CI](CI.md)
 
