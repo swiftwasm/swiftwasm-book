@@ -25,7 +25,7 @@ $ echo 'print("Hello, world!")' > hello.swift
 $ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
 $ swiftc \
     -target wasm32-unknown-wasi \
-    -sdk $TOOLCHAIN_PATH/usr/share/wasi-sysroot \
+    -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
     hello.swift -o hello.wasm
 # Run the produced binary with wasmtime (or other WebAssembly runtime)
 $ wasmtime hello.wasm
