@@ -2,9 +2,9 @@
 
 Welcome to the SwiftWasm Documentation!
 
-SwiftWasm is an open source project to support WebAssembly target for Swift.
+SwiftWasm is an open source project to support the WebAssembly target for Swift.
 
-The goal of this project is fully support of WebAssembly target for Swift and to be merged into upstream repository https://github.com/apple/swift.
+The goal of this project is to fully support the WebAssembly target for Swift and to be merged into upstream repository https://github.com/apple/swift.
 
 ## Forum posts
 
@@ -16,7 +16,6 @@ The goal of this project is fully support of WebAssembly target for Swift and to
 
 ## Repositories
 
-
 ### [swiftwasm/swift](https://github.com/swiftwasm/swift)
 
 The main repository of this project. Forked from [apple/swift](https://github.com/swiftwasm/swift). We are tracking upstream changes using [pull](https://github.com/wei/pull)
@@ -24,7 +23,9 @@ The main repository of this project. Forked from [apple/swift](https://github.co
 #### Branching scheme
 
 - `swiftwasm` is the main develop branch
-- `master` is mirror of `master` branch of `apple/master`. This branch is necessary to avoid [some issues](https://github.com/swiftwasm/swift/pull/36)
+- `master` is a mirror of the `master` branch of the upstream `apple/master` repository. This branch is necessary to avoid [some issues](https://github.com/swiftwasm/swift/pull/36)
+- `swiftwasm-release/5.3` is the branch where 5.3 release of SwiftWasm is prepared.
+- `release/5.3` is a mirror of the upstream `release/5.3` branch.
 
 ### [swiftwas/llvm-project](https://github.com/swiftwasm/llvm-project)
 
