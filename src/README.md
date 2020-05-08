@@ -27,7 +27,7 @@ The main repository of this project. Forked from [apple/swift](https://github.co
 - `swiftwasm-release/5.3` is the branch where 5.3 release of SwiftWasm is prepared.
 - `release/5.3` is a mirror of the upstream `release/5.3` branch.
 
-### [swiftwas/llvm-project](https://github.com/swiftwasm/llvm-project)
+### [swiftwasm/llvm-project](https://github.com/swiftwasm/llvm-project)
 
 Forked from [apple/llvm-project](https://github.com/apple/llvm-project).
 
