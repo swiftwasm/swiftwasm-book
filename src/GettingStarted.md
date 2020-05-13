@@ -27,8 +27,12 @@ $ swiftc \
     -target wasm32-unknown-wasi \
     -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
     hello.swift -o hello.wasm
-# Run the produced binary with wasmtime (or other WebAssembly runtime)
-$ wasmtime hello.wasm
+```
+
+You can the run the produced binary with [wasmer](https://wasmer.io/) (or other WebAssembly runtime):
+
+```sh
+$ wasmer hello.wasm
 ```
 
 The produced binary depends on WASI which is an interface of system call for WebAssembly.
@@ -43,7 +47,7 @@ You can also use SwiftPM for managing packages in the same way as other platform
 $ swiftenv local wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a
 $ swift package init --type executable
 $ swift build --triple wasm32-unknown-wasi
-$ wasmtime ./.build/debug/hello-swiftwasm
+$ wasmer ./.build/debug/hello-swiftwasm
 Hello, world!
 ```
 
