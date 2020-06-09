@@ -10,9 +10,10 @@ The toolchains can be installed via [`swiftenv`](https://github.com/kylef/swifte
 e.g.
 ```sh
 
-$ swiftenv install https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a-osx.tar.gz
+$ swiftenv install \
+  https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-06-07-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-06-07-a-osx.tar.gz
 $ swift --version
-Swift version 5.2-dev (LLVM 7fc8796bc1, Swift 5be35e7aee)
+Swift version 5.3-dev (LLVM 7fc8796bc1, Swift 5be35e7aee)
 Target: x86_64-apple-darwin19.3.0
 ```
 
@@ -44,7 +45,7 @@ So you need to use WASI supported runtime and when you run the binary on browser
 You can also use SwiftPM for managing packages in the same way as other platforms.
 
 ```sh
-$ swiftenv local wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a
+$ swiftenv local wasm-DEVELOPMENT-SNAPSHOT-2020-06-07-a
 $ swift package init --type executable
 $ swift build --triple wasm32-unknown-wasi
 $ wasmer ./.build/debug/hello-swiftwasm
