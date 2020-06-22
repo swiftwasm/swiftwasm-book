@@ -194,6 +194,34 @@ Hello, world!
 <p>You can use any JavaScript API from Swift using this library.</p>
 <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
 <h1><a class="header" href="#development-guide" id="development-guide">Development Guide</a></h1>
+<h2><a class="header" href="#forum-posts" id="forum-posts">Forum posts</a></h2>
+<ul>
+<li><a href="https://forums.swift.org/t/wasm-support/16087/14">Design of this project</a></li>
+<li><a href="https://forums.swift.org/t/webassembly-swiftpm/34343">Swift Package Manager Support</a></li>
+</ul>
+<h2><a class="header" href="#repositories" id="repositories">Repositories</a></h2>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta" id="a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta"><a href="https://github.com/swiftwasm/swift">swiftwasm/swift</a></a></h3>
+<p>The main repository of this project. Forked from <a href="https://github.com/swiftwasm/swift">apple/swift</a>. We are tracking upstream changes using <a href="https://github.com/wei/pull">pull</a></p>
+<h4><a class="header" href="#branching-scheme" id="branching-scheme">Branching scheme</a></h4>
+<ul>
+<li><code>swiftwasm</code> is the main develop branch</li>
+<li><code>master</code> is a mirror of the <code>master</code> branch of the upstream <code>apple/master</code> repository. This branch is necessary to avoid <a href="https://github.com/swiftwasm/swift/pull/36">some issues</a></li>
+<li><code>swiftwasm-release/5.3</code> is the branch where 5.3 release of SwiftWasm is prepared.</li>
+<li><code>release/5.3</code> is a mirror of the upstream <code>release/5.3</code> branch.</li>
+</ul>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta" id="a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta"><a href="https://github.com/swiftwasm/llvm-project">swiftwasm/llvm-project</a></a></h3>
+<p>Forked from <a href="https://github.com/apple/llvm-project">apple/llvm-project</a>.</p>
+<p><code>swiftwasm</code> branch is based on <code>swift/master</code> branch of <code>apple/llvm-project</code>.</p>
+<p>Please see <a href="https://github.com/apple/llvm-project/blob/apple/master/apple-docs/AppleBranchingScheme.md">AppleBranchingScheme.md</a></p>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia" id="a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia"><a href="https://github.com/swiftwasm/icu4c-wasi">swiftwasm/icu4c-wasi</a></a></h3>
+<p>Build script and patches for building ICU project for WebAssembly</p>
+<p>We are sending patches to upstream repository.</p>
+<ul>
+<li>https://github.com/unicode-org/icu/pull/990</li>
+</ul>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca" id="a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca"><a href="https://github.com/swiftwasm/wasi-sdk">swiftwasm/wasi-sdk</a> and <a href="https://github.com/swiftwasm/wasi-libc">swiftwasm/wasi-libc</a></a></h3>
+<p>Forked from <a href="https://github.com/WebAssembly/wasi-sdk">WebAssembly/wasi-sdk</a> and <a href="https://github.com/WebAssembly/wasi-libc">WebAssembly/wasi-libc</a>.</p>
+<p>We fork them to build <code>wasi-sysroot</code> with pthread header. There aren't so many diff from upstream.</p>
 <h2><a class="header" href="#how-to-build" id="how-to-build">How to build</a></h2>
 <p>First, checkout the project source code.</p>
 <pre><code class="language-sh">$ mkdir swiftwasm-source
