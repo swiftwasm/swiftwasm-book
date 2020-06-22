@@ -155,8 +155,8 @@
 <p>SwiftWasm is an open source project to support the WebAssembly target for Swift.</p>
 <p>The goal of this project is to fully support the WebAssembly target for Swift and to be merged into 
 <a href="https://github.com/apple/swift">the upstream repository</a>.</p>
-<h1><a class="header" href="#getting-started-with-nightly-toolchain" id="getting-started-with-nightly-toolchain">Getting Started (with Nightly Toolchain)</a></h1>
-<h2><a class="header" href="#installation" id="installation">Installation</a></h2>
+<h2><a class="header" href="#getting-started-with-nightly-toolchain" id="getting-started-with-nightly-toolchain">Getting Started (with Nightly Toolchain)</a></h2>
+<h3><a class="header" href="#installation" id="installation">Installation</a></h3>
 <p>You can install latest toolchain of SwiftWasm from <a href="https://github.com/swiftwasm/swift/releases">Release Page</a></p>
 <p>The toolchains can be installed via <a href="https://github.com/kylef/swiftenv"><code>swiftenv</code></a> like official nightly toolchain.</p>
 <p>e.g.</p>
@@ -167,7 +167,7 @@ $ swift --version
 Swift version 5.3-dev (LLVM 7fc8796bc1, Swift 5be35e7aee)
 Target: x86_64-apple-darwin19.3.0
 </code></pre>
-<h2><a class="header" href="#hello-world" id="hello-world">Hello, World!</a></h2>
+<h3><a class="header" href="#hello-world" id="hello-world">Hello, World!</a></h3>
 <pre><code class="language-sh">$ echo 'print(&quot;Hello, world!&quot;)' &gt; hello.swift
 # Compile Swift code into WebAssembly with WASI
 $ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
@@ -181,7 +181,7 @@ $ swiftc \
 </code></pre>
 <p>The produced binary depends on WASI which is an interface of system call for WebAssembly.
 So you need to use WASI supported runtime and when you run the binary on browser, you need WASI polyfill library like <a href="https://github.com/wasmerio/wasmer-js/tree/master/packages/wasi">@wasmer/wasi</a>.</p>
-<h2><a class="header" href="#swift-package-manager" id="swift-package-manager">Swift Package Manager</a></h2>
+<h3><a class="header" href="#swift-package-manager" id="swift-package-manager">Swift Package Manager</a></h3>
 <p>You can also use SwiftPM for managing packages in the same way as other platforms.</p>
 <pre><code class="language-sh">$ swiftenv local wasm-DEVELOPMENT-SNAPSHOT-2020-06-07-a
 $ swift package init --type executable
@@ -189,7 +189,7 @@ $ swift build --triple wasm32-unknown-wasi
 $ wasmer ./.build/debug/hello-swiftwasm
 Hello, world!
 </code></pre>
-<h2><a class="header" href="#javascript-binding" id="javascript-binding">JavaScript Binding</a></h2>
+<h3><a class="header" href="#javascript-bindings" id="javascript-bindings">JavaScript Bindings</a></h3>
 <p><a href="https://github.com/kateinoigakukun/JavaScriptKit">JavaScriptKit</a> is Swift framework to interact with JavaScript through WebAssembly.</p>
 <p>You can use any JavaScript API from Swift using this library.</p>
 <h1><a class="header" href="#getting-started-with-nightly-toolchain-1" id="getting-started-with-nightly-toolchain-1">Getting Started (with Nightly Toolchain)</a></h1>
@@ -226,7 +226,7 @@ $ swift build --triple wasm32-unknown-wasi
 $ wasmer ./.build/debug/hello-swiftwasm
 Hello, world!
 </code></pre>
-<h2><a class="header" href="#javascript-binding-1" id="javascript-binding-1">JavaScript Binding</a></h2>
+<h2><a class="header" href="#javascript-binding" id="javascript-binding">JavaScript Binding</a></h2>
 <p><a href="https://github.com/kateinoigakukun/JavaScriptKit">JavaScriptKit</a> is Swift framework to interact with JavaScript through WebAssembly.</p>
 <p>You can use any JavaScript API from Swift using this library.</p>
 <h1><a class="header" href="#development-guide" id="development-guide">Development Guide</a></h1>
