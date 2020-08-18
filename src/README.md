@@ -15,13 +15,13 @@ You can install latest toolchain of SwiftWasm from [Release Page](https://github
 
 The toolchains can be installed via [`swiftenv`](https://github.com/kylef/swiftenv) like official nightly toolchain.
 
-e.g.
+Here's an example `swiftenv` invocation for installing the latest stable SwiftWasm toolchain on macOS Catalina:
 ```sh
 
 $ swiftenv install \
-  https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-06-07-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-06-07-a-osx.tar.gz
+  https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.3-SNAPSHOT-2020-08-15-a/swift-wasm-5.3-SNAPSHOT-2020-08-15-a-osx.tar.gz
 $ swift --version
-Swift version 5.3-dev (LLVM 7fc8796bc1, Swift 5be35e7aee)
+Swift version 5.3-dev (LLVM ba56ef042e, Swift 5855a96018)
 Target: x86_64-apple-darwin19.3.0
 ```
 
