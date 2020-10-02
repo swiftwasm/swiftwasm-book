@@ -4,3 +4,7 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Swift and WebAssembly"
+
+
+[output.html]
+cname = "book.swiftwasm.org"
