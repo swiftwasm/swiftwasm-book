@@ -19,7 +19,7 @@ Here's an example `swiftenv` invocation for installing the latest stable SwiftWa
 ```sh
 
 $ swiftenv install \
-  https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.3-SNAPSHOT-2020-08-15-a/swift-wasm-5.3-SNAPSHOT-2020-08-15-a-osx.tar.gz
+  https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.3-SNAPSHOT-2020-09-28-a/swift-wasm-5.3-SNAPSHOT-2020-09-28-a-osx.tar.gz
 $ swift --version
 Swift version 5.3-dev (LLVM ba56ef042e, Swift 5855a96018)
 Target: x86_64-apple-darwin19.3.0
@@ -51,7 +51,7 @@ So you need to use WASI supported runtime and when you run the binary on browser
 You can also use SwiftPM for managing packages in the same way as other platforms.
 
 ```sh
-$ swiftenv local wasm-DEVELOPMENT-SNAPSHOT-2020-06-07-a
+$ swiftenv local swift-wasm-5.3-SNAPSHOT-2020-09-28-a
 $ swift package init --type executable
 $ swift build --triple wasm32-unknown-wasi
 $ wasmer ./.build/debug/hello-swiftwasm
@@ -60,6 +60,6 @@ Hello, world!
 
 ### JavaScript Bindings
 
-[JavaScriptKit](https://github.com/kateinoigakukun/JavaScriptKit) is Swift framework to interact with JavaScript through WebAssembly.
+[JavaScriptKit](https://github.com/swiftwasm/JavaScriptKit) is Swift framework to interact with JavaScript through WebAssembly.
 
 You can use any JavaScript API from Swift using this library.
