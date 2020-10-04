@@ -5,7 +5,7 @@
     - [Setup](getting-started/setup.md)
     - [Hello, World](getting-started/hello-world.md)
     - [Use Swift Package](getting-started/swift-package.md)
-    - [Create Web App](getting-started/create-web-app.md)
+    - [Creating a browser app](getting-started/browser-app.md)
     - [JavaScript Interoperation](getting-started/javascript-interop.md)
 - [Examples](examples/index.md)
     - [Importing function](examples/importing-function.md)
