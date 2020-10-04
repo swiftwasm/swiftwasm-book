@@ -8,8 +8,8 @@ you to share most if not all code between SwiftWasm and other platforms.
 ## Requirements
 
 Tokamak relies on [the `carton` development tool](https://carton.dev) for development and testing.
-While you can build Tokamak apps without `carton`, it requires a lot of manual steps that are
-automated with `carton`.
+While you can build Tokamak apps without `carton`, that would require a lot of manual steps that are
+already automated with `carton`.
 
 ### System Requirements
 
