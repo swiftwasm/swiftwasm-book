@@ -3,7 +3,7 @@
 We use GitHub Actions to build and run tests continuously.
 (But jobs without cache takes 2~3 hours to be completed)
 
-Currently (2020/10/4), we only run stdlib tests on Linux CI because the job exection time and storage reached the limit of GitHub Actions.
+Currently (2020/10/4), we only run stdlib tests on Linux CI because the job execution time and storage reached GitHub Actions limits.
 
 References:
 
