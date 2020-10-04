@@ -3,10 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
+        <title>Creating a browser app - Swift and WebAssembly</title>
         
-        
-        <base href="/">
         
 
 
@@ -20,26 +18,26 @@
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="favicon.svg">
+        <link rel="icon" href="../favicon.svg">
         
         
-        <link rel="shortcut icon" href="favicon.png">
+        <link rel="shortcut icon" href="../favicon.png">
         
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -49,7 +47,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -95,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="DevelopmentGuide.html">Development Guide</a></li><li class="chapter-item expanded affix "><a href="CI.html">CI</a></li><li class="chapter-item expanded affix "><a href="getting-started/browser-app.html">Creating a browser app</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../DevelopmentGuide.html">Development Guide</a></li><li class="chapter-item expanded affix "><a href="../CI.html">CI</a></li><li class="chapter-item expanded affix "><a href="../getting-started/browser-app.html" class="active">Creating a browser app</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -130,7 +128,7 @@
                     <h1 class="menu-title">Swift and WebAssembly</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         
@@ -161,13 +159,70 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#document-not-found-404" id="document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1><a class="header" href="#creating-a-browser-app" id="creating-a-browser-app">Creating a Browser App</a></h1>
+<p>Currently, <a href="https://tokamak.dev">the Tokamak UI framework</a> is one of the easiest ways to build a
+browser app with SwiftWasm. It tries to be compatible with <a href="https://developer.apple.com/xcode/swiftui/">the SwiftUI
+API</a> as much as possible, which potentially allows
+you to share most if not all code between SwiftWasm and other platforms.</p>
+<h2><a class="header" href="#requirements" id="requirements">Requirements</a></h2>
+<p>Tokamak relies on <a href="https://carton.dev">the <code>carton</code> development tool</a> for development and testing.
+While you can build Tokamak apps without <code>carton</code>, it requires a lot of manual steps that are
+automated with <code>carton</code>.</p>
+<h3><a class="header" href="#system-requirements" id="system-requirements">System Requirements</a></h3>
+<ul>
+<li>macOS 10.15 and Xcode 11.4 or later.</li>
+<li><a href="https://swift.org/download/">Swift 5.2 or later</a> and Ubuntu 18.04 for Linux users.</li>
+</ul>
+<h3><a class="header" href="#installation" id="installation">Installation</a></h3>
+<p>On macOS <code>carton</code> can be installed with <a href="https://brew.sh/">Homebrew</a>. Make sure you have Homebrew
+installed and then run:</p>
+<pre><code class="language-sh">brew install swiftwasm/tap/carton
+</code></pre>
+<p>You'll have to build <code>carton</code> from sources on Linux. Clone the repository and run
+<code>swift build -c release</code>, the <code>carton</code> binary will be located in the <code>.build/release</code>
+directory after that.
+Assuming you already have Homebrew installed, you can create a new Tokamak
+app by following these steps:</p>
+<ol>
+<li>Install <code>carton</code>:</li>
+</ol>
+<pre><code>brew install swiftwasm/tap/carton
+</code></pre>
+<p>If you had <code>carton</code> installed before this, make sure you have version 0.6.0 or greater:</p>
+<pre><code>carton --version
+</code></pre>
+<ol start="2">
+<li>Create a directory for your project and make it current:</li>
+</ol>
+<pre><code>mkdir TokamakApp &amp;&amp; cd TokamakApp
+</code></pre>
+<ol start="3">
+<li>Initialize the project from a template with <code>carton</code>:</li>
+</ol>
+<pre><code>carton init --template tokamak
+</code></pre>
+<ol start="4">
+<li>Build the project and start the development server, <code>carton dev</code> can be kept running
+during development:</li>
+</ol>
+<pre><code>carton dev
+</code></pre>
+<ol start="5">
+<li>Open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a> in your browser to see the app
+running. You can edit the app source code in your favorite editor and save it, <code>carton</code>
+will immediately rebuild the app and reload all browser tabs that have the app open.</li>
+</ol>
+<p>You can also clone <a href="https://github.com/TokamakUI/Tokamak">the Tokamak repository</a> and run <code>carton dev</code> in its root directory. This will build the demo app that shows almost all of the currently
+implemented APIs.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../CI.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
                         
 
                         
@@ -178,6 +233,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../CI.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
                 
 
                 
@@ -200,14 +259,14 @@
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
