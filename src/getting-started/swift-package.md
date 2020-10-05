@@ -1,4 +1,4 @@
-# Build Swift PM package into WebAssembly
+# Compile a SwiftPM package to WebAssembly
 
 You can also use SwiftPM for managing packages in the same way as other platforms.
 
@@ -20,7 +20,7 @@ Creating Tests/helloTests/helloTests.swift
 Creating Tests/helloTests/XCTestManifests.swift
 ```
 
-## 2. Build the Project into WebAssembly binary
+## 2. Build the Project into a WebAssembly binary
 
 You need to pass `--triple` option, which indicates that you are building for the target.
 
@@ -30,7 +30,7 @@ $ swift build --triple wasm32-unknown-wasi
 
 ## 3. Run the produced binary
 
-As well as [previous section](./hello-world.md), you can run the produced binary with WebAssembly runtime.
+Just as in the [previous section](./hello-world.md), you can run the produced binary with the `wasmer` WebAssembly runtime.
 
 ```sh
 $ wasmer ./.build/debug/hello-swiftwasm
