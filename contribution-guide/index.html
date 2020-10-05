@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Creating a browser app - Swift and WebAssembly</title>
+        <title>Contribution Guide - Swift and WebAssembly</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html" class="active"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.5.</strong> JavaScript Interoperation</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example Projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build toolchain</a></li><li class="chapter-item expanded "><a href="../contribution-guide/continuous-integration.html"><strong aria-hidden="true">4.2.</strong> Continuous Integration</a></li><li class="chapter-item expanded "><a href="../contribution-guide/tips.html"><strong aria-hidden="true">4.3.</strong> Tips</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.5.</strong> JavaScript Interoperation</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example Projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html" class="active"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build toolchain</a></li><li class="chapter-item expanded "><a href="../contribution-guide/continuous-integration.html"><strong aria-hidden="true">4.2.</strong> Continuous Integration</a></li><li class="chapter-item expanded "><a href="../contribution-guide/tips.html"><strong aria-hidden="true">4.3.</strong> Tips</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,74 +159,48 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#creating-a-browser-app" id="creating-a-browser-app">Creating a Browser App</a></h1>
-<p>Currently, <a href="https://tokamak.dev">the Tokamak UI framework</a> is one of the easiest ways to build a
-browser app with SwiftWasm. It tries to be compatible with <a href="https://developer.apple.com/xcode/swiftui/">the SwiftUI
-API</a> as much as possible, which potentially allows
-you to share most if not all code between SwiftWasm and other platforms.</p>
-<h2><a class="header" href="#requirements" id="requirements">Requirements</a></h2>
-<p>Tokamak relies on <a href="https://carton.dev">the <code>carton</code> development tool</a> for development and testing.
-While you can build Tokamak apps without <code>carton</code>, that would require a lot of manual steps that are
-already automated with <code>carton</code>.</p>
-<h3><a class="header" href="#system-requirements" id="system-requirements">System Requirements</a></h3>
+                        <h1><a class="header" href="#contribution-guide" id="contribution-guide">Contribution Guide</a></h1>
+<h2><a class="header" href="#forum-posts" id="forum-posts">Forum posts</a></h2>
 <ul>
-<li>macOS 10.15 and Xcode 11.4 or later.</li>
-<li><a href="https://swift.org/download/">Swift 5.2 or later</a> and Ubuntu 18.04 for Linux users.</li>
+<li><a href="https://forums.swift.org/t/wasm-support/16087/14">Design of this project</a></li>
+<li><a href="https://forums.swift.org/t/webassembly-swiftpm/34343">Swift Package Manager Support</a></li>
 </ul>
-<h3><a class="header" href="#installation" id="installation">Installation</a></h3>
-<p>On macOS <code>carton</code> can be installed with <a href="https://brew.sh/">Homebrew</a>. Make sure you have Homebrew
-installed and then run:</p>
-<pre><code class="language-sh">brew install swiftwasm/tap/carton
-</code></pre>
-<p>You'll have to build <code>carton</code> from sources on Linux. Clone the repository and run
-<code>swift build -c release</code>, the <code>carton</code> binary will be located in the <code>.build/release</code>
-directory after that.
-Assuming you already have Homebrew installed, you can create a new Tokamak
-app by following these steps:</p>
-<ol>
-<li>Install <code>carton</code>:</li>
-</ol>
-<pre><code>brew install swiftwasm/tap/carton
-</code></pre>
-<p>If you had <code>carton</code> installed before this, make sure you have version 0.6.1 or greater:</p>
-<pre><code>carton --version
-</code></pre>
-<ol start="2">
-<li>Create a directory for your project and make it current:</li>
-</ol>
-<pre><code>mkdir TokamakApp &amp;&amp; cd TokamakApp
-</code></pre>
-<ol start="3">
-<li>Initialize the project from a template with <code>carton</code>:</li>
-</ol>
-<pre><code>carton init --template tokamak
-</code></pre>
-<ol start="4">
-<li>Build the project and start the development server, <code>carton dev</code> can be kept running
-during development:</li>
-</ol>
-<pre><code>carton dev
-</code></pre>
-<ol start="5">
-<li>Open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a> in your browser to see the app
-running. You can edit the app source code in your favorite editor and save it, <code>carton</code>
-will immediately rebuild the app and reload all browser tabs that have the app open.</li>
-</ol>
-<p>You can also clone <a href="https://github.com/TokamakUI/Tokamak">the Tokamak repository</a> and run <code>carton dev</code> in its root directory. This will build the demo app that shows almost all of the currently
-implemented APIs.</p>
+<h2><a class="header" href="#repositories" id="repositories">Repositories</a></h2>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta" id="a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta"><a href="https://github.com/swiftwasm/swift">swiftwasm/swift</a></a></h3>
+<p>The main repository of this project. Forked from <a href="https://github.com/swiftwasm/swift">apple/swift</a>. We are tracking upstream changes using <a href="https://github.com/wei/pull">pull</a></p>
+<h4><a class="header" href="#branching-scheme" id="branching-scheme">Branching scheme</a></h4>
+<ul>
+<li><code>swiftwasm</code> is the main develop branch</li>
+<li><code>master</code> is a mirror of the <code>master</code> branch of the upstream <code>apple/master</code> repository. This branch is necessary to avoid <a href="https://github.com/swiftwasm/swift/pull/36">some issues</a></li>
+<li><code>swiftwasm-release/5.3</code> is the branch where 5.3 release of SwiftWasm is prepared.</li>
+<li><code>release/5.3</code> is a mirror of the upstream <code>release/5.3</code> branch.</li>
+</ul>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta" id="a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta"><a href="https://github.com/swiftwasm/llvm-project">swiftwasm/llvm-project</a></a></h3>
+<p>Forked from <a href="https://github.com/apple/llvm-project">apple/llvm-project</a>.</p>
+<p><code>swiftwasm</code> branch is based on <code>swift/master</code> branch of <code>apple/llvm-project</code>.</p>
+<p>Please see <a href="https://github.com/apple/llvm-project/blob/apple/master/apple-docs/AppleBranchingScheme.md">AppleBranchingScheme.md</a></p>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia" id="a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia"><a href="https://github.com/swiftwasm/icu4c-wasi">swiftwasm/icu4c-wasi</a></a></h3>
+<p>Build script and patches for building ICU project for WebAssembly</p>
+<p>We are sending patches to upstream repository.</p>
+<ul>
+<li>https://github.com/unicode-org/icu/pull/990</li>
+</ul>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca" id="a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca"><a href="https://github.com/swiftwasm/wasi-sdk">swiftwasm/wasi-sdk</a> and <a href="https://github.com/swiftwasm/wasi-libc">swiftwasm/wasi-libc</a></a></h3>
+<p>Forked from <a href="https://github.com/WebAssembly/wasi-sdk">WebAssembly/wasi-sdk</a> and <a href="https://github.com/WebAssembly/wasi-libc">WebAssembly/wasi-libc</a>.</p>
+<p>We fork them to build <code>wasi-sysroot</code> with pthread header. There aren't so many diff from upstream.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../getting-started/swift-package.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../examples/example-projects.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../getting-started/javascript-interop.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../contribution-guide/how-to-build-toolchain.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -238,13 +212,13 @@ implemented APIs.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../getting-started/swift-package.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../examples/example-projects.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../getting-started/javascript-interop.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../contribution-guide/how-to-build-toolchain.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="DevelopmentGuide.html">Development Guide</a></li><li class="chapter-item expanded affix "><a href="CI.html">CI</a></li><li class="chapter-item expanded affix "><a href="getting-started/browser-app.html">Creating a browser app</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.5.</strong> JavaScript Interoperation</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example Projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build toolchain</a></li><li class="chapter-item expanded "><a href="contribution-guide/continuous-integration.html"><strong aria-hidden="true">4.2.</strong> Continuous Integration</a></li><li class="chapter-item expanded "><a href="contribution-guide/tips.html"><strong aria-hidden="true">4.3.</strong> Tips</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,112 +163,75 @@
                     <main>
                         <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
 <p>Welcome to the SwiftWasm Documentation!</p>
-<p>SwiftWasm is an open source project to support the WebAssembly target for Swift.</p>
-<p>The goal of this project is to fully support the WebAssembly target for Swift and to be merged into 
-<a href="https://github.com/apple/swift">the upstream repository</a>.</p>
-<h2><a class="header" href="#getting-started-with-nightly-toolchain" id="getting-started-with-nightly-toolchain">Getting Started (with Nightly Toolchain)</a></h2>
-<h3><a class="header" href="#installation" id="installation">Installation</a></h3>
+<p><a href="https://github.com/swiftwasm">SwiftWasm is an open source project to support the WebAssembly target for Swift.</a></p>
+<p>The goal of this project is to fully support the WebAssembly target for <a href="https://swift.org">Swift</a> and to be merged into <a href="https://github.com/apple/swift">the upstream repository</a>.</p>
+<p>WebAssembly is described on its <a href="https://webassembly.org/">home page</a> as:</p>
+<blockquote>
+<p>WebAssembly (abbreviated as Wasm) is a binary instruction format for a stack-based virtual machine. Wasm is designed as a portable compilation target for programming languages, enabling deployment on the web for client and server applications.</p>
+</blockquote>
+<p>We use LLVM as a compiler backend to produce WebAssembly binaries. Our resulting binaries also depend on <a href="https://wasi.dev">WASI</a>, which is a modular system interface for WebAssembly. WASI is mainly required to compile Swift Standard Library.</p>
+<h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+<p>This is a getting started guide section to use SwiftWasm.</p>
+<p>You can learn about:</p>
+<ul>
+<li>How to set up a Swift toolchain for compiling to WebAssembly</li>
+<li>How to compile a simple Swift code and Swift Package into WebAssembly</li>
+<li>How to interoperate with JavaScript</li>
+</ul>
+<h1><a class="header" href="#installation" id="installation">Installation</a></h1>
 <p>You can install latest toolchain of SwiftWasm from <a href="https://github.com/swiftwasm/swift/releases">Release Page</a></p>
-<p>The toolchains can be installed via <a href="https://github.com/kylef/swiftenv"><code>swiftenv</code></a> like official nightly toolchain.</p>
+<p>The toolchains can be installed via <a href="https://github.com/kylef/swiftenv"><code>swiftenv</code></a> like <a href="https://swift.org/download/#snapshots">official nightly snapshot</a>.</p>
 <p>Here's an example <code>swiftenv</code> invocation for installing the latest stable SwiftWasm toolchain on macOS Catalina:</p>
 <pre><code class="language-sh">
 $ swiftenv install \
-  https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.3-SNAPSHOT-2020-09-28-a/swift-wasm-5.3-SNAPSHOT-2020-09-28-a-osx.tar.gz
+  https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.3-SNAPSHOT-2020-10-02-a/swift-wasm-5.3-SNAPSHOT-2020-10-02-a-osx.tar.gz
 $ swift --version
 Swift version 5.3-dev (LLVM ba56ef042e, Swift 5855a96018)
 Target: x86_64-apple-darwin19.3.0
 </code></pre>
-<h3><a class="header" href="#hello-world" id="hello-world">Hello, World!</a></h3>
+<h1><a class="header" href="#hello-world" id="hello-world">Hello, World!</a></h1>
+<p>This section will show you how to compile a simple Swift code into WebAssembly and run the produced binary on WASI supported WebAssembly runtime.</p>
+<h2><a class="header" href="#1-create-a-swift-file" id="1-create-a-swift-file">1. Create a Swift file</a></h2>
 <pre><code class="language-sh">$ echo 'print(&quot;Hello, world!&quot;)' &gt; hello.swift
-# Compile Swift code into WebAssembly with WASI
-$ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
+</code></pre>
+<h2><a class="header" href="#2-compile-swift-code-into-webassembly-with-wasi" id="2-compile-swift-code-into-webassembly-with-wasi">2. Compile Swift code into WebAssembly with WASI</a></h2>
+<pre><code>$ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
 $ swiftc \
     -target wasm32-unknown-wasi \
     -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
     hello.swift -o hello.wasm
 </code></pre>
+<h2><a class="header" href="#3-run-the-produced-binary-on-webassembly-runtime" id="3-run-the-produced-binary-on-webassembly-runtime">3. Run the produced binary on WebAssembly runtime</a></h2>
 <p>You can the run the produced binary with <a href="https://wasmer.io/">wasmer</a> (or other WebAssembly runtime):</p>
 <pre><code class="language-sh">$ wasmer hello.wasm
 </code></pre>
 <p>The produced binary depends on WASI which is an interface of system call for WebAssembly.
 So you need to use WASI supported runtime and when you run the binary on browser, you need WASI polyfill library like <a href="https://github.com/wasmerio/wasmer-js/tree/master/packages/wasi">@wasmer/wasi</a>.</p>
-<h3><a class="header" href="#swift-package-manager" id="swift-package-manager">Swift Package Manager</a></h3>
+<h1><a class="header" href="#compile-a-swiftpm-package-to-webassembly" id="compile-a-swiftpm-package-to-webassembly">Compile a SwiftPM package to WebAssembly</a></h1>
 <p>You can also use SwiftPM for managing packages in the same way as other platforms.</p>
-<pre><code class="language-sh">$ swiftenv local swift-wasm-5.3-SNAPSHOT-2020-09-28-a
-$ swift package init --type executable
-$ swift build --triple wasm32-unknown-wasi
-$ wasmer ./.build/debug/hello-swiftwasm
+<h2><a class="header" href="#1-create-a-package-from-template" id="1-create-a-package-from-template">1. Create a package from template</a></h2>
+<pre><code class="language-sh">$ swift package init --type executable
+Creating executable package: hello
+Creating Package.swift
+Creating README.md
+Creating .gitignore
+Creating Sources/
+Creating Sources/hello/main.swift
+Creating Tests/
+Creating Tests/LinuxMain.swift
+Creating Tests/helloTests/
+Creating Tests/helloTests/helloTests.swift
+Creating Tests/helloTests/XCTestManifests.swift
+</code></pre>
+<h2><a class="header" href="#2-build-the-project-into-a-webassembly-binary" id="2-build-the-project-into-a-webassembly-binary">2. Build the Project into a WebAssembly binary</a></h2>
+<p>You need to pass <code>--triple</code> option, which indicates that you are building for the target.</p>
+<pre><code class="language-sh">$ swift build --triple wasm32-unknown-wasi
+</code></pre>
+<h2><a class="header" href="#3-run-the-produced-binary" id="3-run-the-produced-binary">3. Run the produced binary</a></h2>
+<p>Just as in the <a href="getting-started/./hello-world.html">previous section</a>, you can run the produced binary with the <code>wasmer</code> WebAssembly runtime.</p>
+<pre><code class="language-sh">$ wasmer ./.build/debug/hello-swiftwasm
 Hello, world!
 </code></pre>
-<h3><a class="header" href="#javascript-bindings" id="javascript-bindings">JavaScript Bindings</a></h3>
-<p><a href="https://github.com/swiftwasm/JavaScriptKit">JavaScriptKit</a> is Swift framework to interact with JavaScript through WebAssembly.</p>
-<p>You can use any JavaScript API from Swift using this library.</p>
-<h1><a class="header" href="#development-guide" id="development-guide">Development Guide</a></h1>
-<h2><a class="header" href="#forum-posts" id="forum-posts">Forum posts</a></h2>
-<ul>
-<li><a href="https://forums.swift.org/t/wasm-support/16087/14">Design of this project</a></li>
-<li><a href="https://forums.swift.org/t/webassembly-swiftpm/34343">Swift Package Manager Support</a></li>
-</ul>
-<h2><a class="header" href="#repositories" id="repositories">Repositories</a></h2>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta" id="a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta"><a href="https://github.com/swiftwasm/swift">swiftwasm/swift</a></a></h3>
-<p>The main repository of this project. Forked from <a href="https://github.com/swiftwasm/swift">apple/swift</a>. We are tracking upstream changes using <a href="https://github.com/wei/pull">pull</a></p>
-<h4><a class="header" href="#branching-scheme" id="branching-scheme">Branching scheme</a></h4>
-<ul>
-<li><code>swiftwasm</code> is the main develop branch</li>
-<li><code>master</code> is a mirror of the <code>master</code> branch of the upstream <code>apple/master</code> repository. This branch is necessary to avoid <a href="https://github.com/swiftwasm/swift/pull/36">some issues</a></li>
-<li><code>swiftwasm-release/5.3</code> is the branch where 5.3 release of SwiftWasm is prepared.</li>
-<li><code>release/5.3</code> is a mirror of the upstream <code>release/5.3</code> branch.</li>
-</ul>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta" id="a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta"><a href="https://github.com/swiftwasm/llvm-project">swiftwasm/llvm-project</a></a></h3>
-<p>Forked from <a href="https://github.com/apple/llvm-project">apple/llvm-project</a>.</p>
-<p><code>swiftwasm</code> branch is based on <code>swift/master</code> branch of <code>apple/llvm-project</code>.</p>
-<p>Please see <a href="https://github.com/apple/llvm-project/blob/apple/master/apple-docs/AppleBranchingScheme.md">AppleBranchingScheme.md</a></p>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia" id="a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia"><a href="https://github.com/swiftwasm/icu4c-wasi">swiftwasm/icu4c-wasi</a></a></h3>
-<p>Build script and patches for building ICU project for WebAssembly</p>
-<p>We are sending patches to upstream repository.</p>
-<ul>
-<li>https://github.com/unicode-org/icu/pull/990</li>
-</ul>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca" id="a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca"><a href="https://github.com/swiftwasm/wasi-sdk">swiftwasm/wasi-sdk</a> and <a href="https://github.com/swiftwasm/wasi-libc">swiftwasm/wasi-libc</a></a></h3>
-<p>Forked from <a href="https://github.com/WebAssembly/wasi-sdk">WebAssembly/wasi-sdk</a> and <a href="https://github.com/WebAssembly/wasi-libc">WebAssembly/wasi-libc</a>.</p>
-<p>We fork them to build <code>wasi-sysroot</code> with pthread header. There aren't so many diff from upstream.</p>
-<h2><a class="header" href="#how-to-build" id="how-to-build">How to build</a></h2>
-<p>First, checkout the project source code.</p>
-<pre><code class="language-sh">$ mkdir swiftwasm-source
-$ cd swiftwasm-source
-$ git clone https://github.com/swiftwasm/swift.git
-$ ./swift/utils/update-checkout --scheme wasm --clone
-</code></pre>
-<p>Before building Swift, please install required dependencies.</p>
-<pre><code class="language-sh"># On macOS
-$ ./utils/webassembly/macos/install-dependencies.sh
-# On Linux
-$ ./utils/webassembly/linux/install-dependencies.sh
-</code></pre>
-<p>We support both Linux and macOS to build Swift.
-These script wraps <code>./utils/build-script</code> to simplify build options.
-You can pass additional build-script options through these scripts.</p>
-<pre><code class="language-sh"># On macOS
-$ ./utils/webassembly/build-mac.sh -R
-# On Linux
-$ ./utils/webassembly/build-linux.sh -R
-</code></pre>
-<p>If you want to get more information about build system, please feel free to ask @kateinoigakukun on Twitter.</p>
-<h2><a class="header" href="#development-tips" id="development-tips">Development Tips</a></h2>
-<h3><a class="header" href="#cache" id="cache">Cache</a></h3>
-<p>Compilation time of LLVM project is very long, so we recommend to cache the artifact using <code>sccache</code></p>
-<p><a href="https://github.com/apple/swift/blob/master/docs/DevelopmentTips.md#use-sccache-to-cache-build-artifacts">Use sccache to cache build artifacts</a></p>
-<h3><a class="header" href="#debugging" id="debugging">Debugging</a></h3>
-<p>When you want to debug a WebAssembly binary, <a href="https://github.com/kateinoigakukun/wasminspect">wasminspect</a> is very helpful to investigate.</p>
-<h1><a class="header" href="#continuous-integration" id="continuous-integration">Continuous Integration</a></h1>
-<p>We use GitHub Actions to build and run tests continuously.
-(But jobs without cache takes 3~4 hours to be completed)</p>
-<p>Currently (2020/03/12), running test on Linux is disabled because the job exection time and storage reached the limit of GitHub Actions.</p>
-<p>References</p>
-<ul>
-<li><a href="https://github.com/swiftwasm/swift/pull/160#issuecomment-586537014">https://github.com/swiftwasm/swift/pull/160#issuecomment-586537014</a></li>
-<li><a href="https://github.com/swiftwasm/swift/pull/232">https://github.com/swiftwasm/swift/pull/232</a></li>
-</ul>
 <h1><a class="header" href="#creating-a-browser-app" id="creating-a-browser-app">Creating a Browser App</a></h1>
 <p>Currently, <a href="https://tokamak.dev">the Tokamak UI framework</a> is one of the easiest ways to build a
 browser app with SwiftWasm. It tries to be compatible with <a href="https://developer.apple.com/xcode/swiftui/">the SwiftUI
@@ -324,6 +287,227 @@ will immediately rebuild the app and reload all browser tabs that have the app o
 </ol>
 <p>You can also clone <a href="https://github.com/TokamakUI/Tokamak">the Tokamak repository</a> and run <code>carton dev</code> in its root directory. This will build the demo app that shows almost all of the currently
 implemented APIs.</p>
+<h1><a class="header" href="#javascript-interoperation" id="javascript-interoperation">JavaScript Interoperation</a></h1>
+<p><a href="https://github.com/swiftwasm/JavaScriptKit">JavaScriptKit</a> is a Swift framework to interact with JavaScript through WebAssembly.</p>
+<p>You can use any JavaScript API from Swift using this library.</p>
+<pre><code class="language-swift">import JavaScriptKit
+
+let document = JSObject.global.document.object!
+
+let divElement = document.createElement!(&quot;div&quot;).object!
+divElement.innerText = &quot;Hello, world&quot;
+let body = document.body.object!
+_ = body.appendChild!(divElement)
+</code></pre>
+<p>JavaScriptKit consists of NPM runtime library package and SwiftPM package for Swift side API.</p>
+<h1><a class="header" href="#examples" id="examples">Examples</a></h1>
+<p>This section shows you example usage of our toolchain.</p>
+<h1><a class="header" href="#importing-function-from-host-environment" id="importing-function-from-host-environment">Importing function from host environment</a></h1>
+<p>You can import a function from host environment using special attribute and linker option.</p>
+<pre><code class="language-swift">@_silgen_name(&quot;add&quot;)
+func add(_: Int, _: Int) -&gt; Int
+
+print(&quot;2 + 3 = \(add(2, 3))&quot;)
+</code></pre>
+<p>You need to compile the Swift code with linker option <code>--allow-undefined</code>.</p>
+<pre><code class="language-bash">$ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
+$ swiftc \
+    -target wasm32-unknown-wasi \
+    -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
+    lib.swift -o lib.wasm \
+    -Xlinker --allow-undefined
+</code></pre>
+<p>Then, you can inject a host function into the produced WebAssembly binary.</p>
+<p>Note that we use <code>env</code> as default import module name. We will add a way to specify module name to import in the near future.</p>
+<pre><code class="language-javascript">const WASI = require(&quot;@wasmer/wasi&quot;).WASI;
+const WasmFs = require(&quot;@wasmer/wasmfs&quot;).WasmFs;
+
+const promisify = require(&quot;util&quot;).promisify;
+const fs = require(&quot;fs&quot;);
+const readFile = promisify(fs.readFile);
+
+const main = async () =&gt; {
+  const wasmFs = new WasmFs();
+  // Output stdout and stderr to console
+  const originalWriteSync = wasmFs.fs.writeSync;
+  wasmFs.fs.writeSync = (fd, buffer, offset, length, position) =&gt; {
+    const text = new TextDecoder(&quot;utf-8&quot;).decode(buffer);
+    switch (fd) {
+      case 1:
+        console.log(text);
+        break;
+      case 2:
+        console.error(text);
+        break;
+    }
+    return originalWriteSync(fd, buffer, offset, length, position);
+  };
+
+  // Instantiate a new WASI Instance
+  let wasi = new WASI({
+    args: [],
+    env: {},
+    bindings: {
+      ...WASI.defaultBindings,
+      fs: wasmFs.fs,
+    },
+  });
+
+  const wasmBinary = await readFile(&quot;lib.wasm&quot;);
+
+  // Instantiate the WebAssembly file
+  let { instance } = await WebAssembly.instantiate(wasmBinary, {
+    wasi_snapshot_preview1: wasi.wasiImport,
+    env: {
+      add: (lhs, rhs) =&gt; (lhs + rhs),
+    }
+  });
+
+  wasi.start(instance);
+};
+
+main()
+</code></pre>
+<p>If you use SwiftPM package, you can omit linker flag using clang's <code>__atribute__</code>. Please see <a href="https://github.com/swiftwasm/JavaScriptKit/pull/91/files">swiftwasm/JavaScriptKit#91</a> for more detail info</p>
+<h1><a class="header" href="#exporting-function-for-host-environment" id="exporting-function-for-host-environment">Exporting function for host environment</a></h1>
+<p>You can expose a Swift function for host environment using special attribute and linker option.</p>
+<pre><code class="language-swift">@_cdecl(&quot;add&quot;)
+func add(_ lhs: Int, _ rhs: Int) -&gt; Int {
+    return lhs + rhs
+}
+</code></pre>
+<p>You need to compile the Swift code with linker option <code>--export</code>.</p>
+<pre><code class="language-bash">$ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
+$ swiftc \
+    -target wasm32-unknown-wasi \
+    -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
+    lib.swift -o lib.wasm \
+    -Xlinker --export=add
+</code></pre>
+<p>Then, you can use the exported function from host environment.</p>
+<pre><code class="language-javascript">const WASI = require(&quot;@wasmer/wasi&quot;).WASI;
+const WasmFs = require(&quot;@wasmer/wasmfs&quot;).WasmFs;
+
+const promisify = require(&quot;util&quot;).promisify;
+const fs = require(&quot;fs&quot;);
+const readFile = promisify(fs.readFile);
+
+const main = async () =&gt; {
+  // Instantiate a new WASI Instance
+  const wasmFs = new WasmFs();
+  let wasi = new WASI({
+    args: [],
+    env: {},
+    bindings: {
+      ...WASI.defaultBindings,
+      fs: wasmFs.fs,
+    },
+  });
+
+  const wasmBinary = await readFile(&quot;lib.wasm&quot;);
+
+  // Instantiate the WebAssembly file
+  let { instance } = await WebAssembly.instantiate(wasmBinary, {
+    wasi_snapshot_preview1: wasi.wasiImport,
+  });
+  // Get the exported function
+  const addFn = instance.exports.add;
+  console.log(&quot;2 + 3 = &quot; + addFn(2, 3))
+
+};
+
+main()
+</code></pre>
+<p>If you use SwiftPM package, you can omit linker flag using clang's <code>__atribute__</code>. Please see <a href="https://github.com/swiftwasm/JavaScriptKit/pull/91/files">swiftwasm/JavaScriptKit#91</a> for more detail info</p>
+<h2><a class="header" href="#example-projects" id="example-projects">Example Projects</a></h2>
+<p>You can learn more practical usage of our toolchain in <a href="https://github.com/swiftwasm/awesome-swiftwasm">swiftwasm/awesome-swiftwasm</a></p>
+<h1><a class="header" href="#contribution-guide" id="contribution-guide">Contribution Guide</a></h1>
+<h2><a class="header" href="#forum-posts" id="forum-posts">Forum posts</a></h2>
+<ul>
+<li><a href="https://forums.swift.org/t/wasm-support/16087/14">Design of this project</a></li>
+<li><a href="https://forums.swift.org/t/webassembly-swiftpm/34343">Swift Package Manager Support</a></li>
+</ul>
+<h2><a class="header" href="#repositories" id="repositories">Repositories</a></h2>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta" id="a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta"><a href="https://github.com/swiftwasm/swift">swiftwasm/swift</a></a></h3>
+<p>The main repository of this project. Forked from <a href="https://github.com/swiftwasm/swift">apple/swift</a>. We are tracking upstream changes using <a href="https://github.com/wei/pull">pull</a></p>
+<h4><a class="header" href="#branching-scheme" id="branching-scheme">Branching scheme</a></h4>
+<ul>
+<li><code>swiftwasm</code> is the main develop branch</li>
+<li><code>master</code> is a mirror of the <code>master</code> branch of the upstream <code>apple/master</code> repository. This branch is necessary to avoid <a href="https://github.com/swiftwasm/swift/pull/36">some issues</a></li>
+<li><code>swiftwasm-release/5.3</code> is the branch where 5.3 release of SwiftWasm is prepared.</li>
+<li><code>release/5.3</code> is a mirror of the upstream <code>release/5.3</code> branch.</li>
+</ul>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta" id="a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta"><a href="https://github.com/swiftwasm/llvm-project">swiftwasm/llvm-project</a></a></h3>
+<p>Forked from <a href="https://github.com/apple/llvm-project">apple/llvm-project</a>.</p>
+<p><code>swiftwasm</code> branch is based on <code>swift/master</code> branch of <code>apple/llvm-project</code>.</p>
+<p>Please see <a href="https://github.com/apple/llvm-project/blob/apple/master/apple-docs/AppleBranchingScheme.md">AppleBranchingScheme.md</a></p>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia" id="a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia"><a href="https://github.com/swiftwasm/icu4c-wasi">swiftwasm/icu4c-wasi</a></a></h3>
+<p>Build script and patches for building ICU project for WebAssembly</p>
+<p>We are sending patches to upstream repository.</p>
+<ul>
+<li>https://github.com/unicode-org/icu/pull/990</li>
+</ul>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca" id="a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca"><a href="https://github.com/swiftwasm/wasi-sdk">swiftwasm/wasi-sdk</a> and <a href="https://github.com/swiftwasm/wasi-libc">swiftwasm/wasi-libc</a></a></h3>
+<p>Forked from <a href="https://github.com/WebAssembly/wasi-sdk">WebAssembly/wasi-sdk</a> and <a href="https://github.com/WebAssembly/wasi-libc">WebAssembly/wasi-libc</a>.</p>
+<p>We fork them to build <code>wasi-sysroot</code> with pthread header. There aren't so many diff from upstream.</p>
+<h1><a class="header" href="#how-to-build-toolchain" id="how-to-build-toolchain">How to build toolchain</a></h1>
+<h2><a class="header" href="#1-checkout-the-project-source-code" id="1-checkout-the-project-source-code">1. Checkout the project source code.</a></h2>
+<pre><code class="language-sh">$ mkdir swiftwasm-source
+$ cd swiftwasm-source
+$ git clone https://github.com/swiftwasm/swift.git
+$ ./swift/utils/update-checkout --scheme wasm --clone
+</code></pre>
+<h2><a class="header" href="#2-install-required-dependencies" id="2-install-required-dependencies">2. Install required dependencies</a></h2>
+<p>Before building Swift, please install required dependencies.</p>
+<pre><code class="language-sh"># On macOS
+$ brew install cmake ninja llvm sccache wasmer
+$ ./utils/webassembly/macos/install-dependencies.sh
+# On Linux
+$ ./utils/webassembly/linux/install-dependencies.sh
+</code></pre>
+<h2><a class="header" href="#3-build-using-custom-preset-options" id="3-build-using-custom-preset-options">3. Build using custom preset options</a></h2>
+<p>We support both Linux and macOS to build Swift. You need to select the preset name, <a href="contribution-guide/./cache.html"><code>sccache</code></a> path and LLVM tools directory.</p>
+<pre><code class="language-sh"># On macOS
+$ ./utils/build-script \
+        --preset=webassembly-macos-target \
+        --preset-file ./utils/webassembly/build-presets.ini  \
+        SOURCE_PATH=$(dirname $(pwd)) \
+        LLVM_BIN_DIR=/usr/local/opt/llvm/bin \
+        C_CXX_LAUNCHER=$(which sccache)
+# On Linux
+$ ./utils/build-script \
+        --preset=webassembly-linux-target \
+        --preset-file ./utils/webassembly/build-presets.ini  \
+        SOURCE_PATH=$(dirname $(pwd)) \
+        LLVM_BIN_DIR=/usr/local/opt/llvm/bin \
+        C_CXX_LAUNCHER=$(which sccache)
+</code></pre>
+<p>Or if you want to build whole toolchain, please use <code>./utils/webassembly/build-toolchain.sh</code>. This script builds compiler, Swift Standard Library for host environment (e.g. macOS or Linux) and target environment (<code>wasm32-unknown-wasi</code>), Foundation and other packages. So it takes longer time than the above script.</p>
+<pre><code class="language-bash">$ ./utils/webassembly/build-toolchain.sh
+</code></pre>
+<p>If you want to get more information about build system, please feel free to ask @kateinoigakukun on Twitter or GitHub.</p>
+<h1><a class="header" href="#continuous-integration" id="continuous-integration">Continuous Integration</a></h1>
+<h2><a class="header" href="#continuous-integration-1" id="continuous-integration-1">Continuous Integration</a></h2>
+<p>We use GitHub Actions to build and run tests continuously.
+(But jobs without cache takes 2~3 hours to be completed)</p>
+<p>Currently (2020/10/4), we only run stdlib tests on Linux CI because the job execution time and storage reached GitHub Actions limits.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://github.com/swiftwasm/swift/pull/160#issuecomment-586537014">swiftwasm/swift#160</a></li>
+<li><a href="https://github.com/swiftwasm/swift/pull/232">swiftwasm/swift#232</a></li>
+</ul>
+<h3><a class="header" href="#nightly-distribution" id="nightly-distribution">Nightly distribution</a></h3>
+<p>We distribute latest <code>swiftwasm</code> branch and <code>swiftwasm-release/5.3</code> branch toolchains at UTC 00:00 everyday. You can check the latest toolchain at <a href="https://github.com/swiftwasm/swift/releases">GitHub Release Page</a></p>
+<h2><a class="header" href="#cache" id="cache">Cache</a></h2>
+<p>Compilation time of LLVM and the Swift toolchain is very long, so we recommend to cache the artifacts using <code>sccache</code>. <a href="https://github.com/apple/swift/blob/main/docs/HowToGuides/GettingStarted.md#the-roles-of-different-tools">The &quot;Getting started&quot; guide</a> from the upstream toolchain provides more details about the use of <code>sccache</code>.</p>
+<h3><a class="header" href="#references" id="references">References</a></h3>
+<ul>
+<li><a href="https://github.com/mozilla/sccache">mozilla/sccache</a></li>
+<li><a href="https://github.com/apple/swift/blob/master/docs/DevelopmentTips.md#use-sccache-to-cache-build-artifacts">Use sccache to cache build artifacts</a></li>
+</ul>
+<h2><a class="header" href="#debugging" id="debugging">Debugging</a></h2>
+<p>When you want to debug a WebAssembly binary, <a href="https://github.com/kateinoigakukun/wasminspect">wasminspect</a> is very helpful to investigate.</p>
+<p><img src="https://raw.githubusercontent.com/kateinoigakukun/wasminspect/master/assets/demo.gif" alt="demo" /></p>
 
                     </main>
 
