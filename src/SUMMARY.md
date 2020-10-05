@@ -14,6 +14,5 @@
 - [Contribution Guide](contribution-guide/index.md)
     - [How to build toolchain](contribution-guide/how-to-build-toolchain.md)
     - [Continuous Integration](contribution-guide/continuous-integration.md)
-    - [Debugging](contribution-guide/debugging.md)
-    - [Cache](contribution-guide/cache.md)
+    - [Tips](contribution-guide/tips.md)
 
