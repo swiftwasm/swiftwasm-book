@@ -38,36 +38,3 @@ it](https://github.com/unicode-org/icu/pull/990) were merged to the upstream rep
 Forked from [WebAssembly/wasi-sdk](https://github.com/WebAssembly/wasi-sdk) and [WebAssembly/wasi-libc](https://github.com/WebAssembly/wasi-libc).
 
 We fork them to build `wasi-sysroot` with pthread header. There aren't so many diff from upstream.
-
-## How to build
-
-Check out the project source code and run the `ci.sh` script, which will install the dependencies,
-and then run the build and tests.
-
-```sh
-$ mkdir swiftwasm-source
-$ cd swiftwasm-source
-$ git clone https://github.com/swiftwasm/swift.git
-$ ./swift/utils/webassembly/ci.sh
-```
-
-If you want to get more information about the build system, please feel free to ask 
-[@kateinoigakukun](https://twitter.com/kateinoigakukun) or
-[@MaxDesiatov](https://twitter.com/MaxDesiatov) on Twitter.
-
-## Development Tips
-
-### Cache
-
-Compilation time of LLVM project is very long, so we recommend to cache build results with `sccache`.
-Our `ci.sh` script does this automatically for you, and uses the `build-cache` subdirectory as a build
-cache. The upstream `swift` repository provides [an introductory guide to `sccache`
-usage]https://github.com/apple/swift/blob/main/docs/DevelopmentTips.md#use-sccache-to-cache-build-artifacts)
-if you'd like to use it manually.
-
-### Debugging
-
-When you want to debug a WebAssembly binary, [wasminspect](https://github.com/kateinoigakukun/wasminspect) 
-can help in the investigation if the debugged binary does not rely on integration with JavaScript.
-We recommend splitting your packages into separate executable targets, most of which shouldn't 
-assume the availability of JavaScript to make debugging easier.
