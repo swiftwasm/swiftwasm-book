@@ -12,7 +12,7 @@
     - [Exporting function](examples/exporting-function.md)
     - [Example Projects](examples/example-projects.md)
 - [Contribution Guide](contribution-guide/index.md)
-    - [How to build toolchain](contribution-guide/how-to-build-toolchain.md)
+    - [How to build the toolchain](contribution-guide/how-to-build-toolchain.md)
     - [Continuous Integration](contribution-guide/continuous-integration.md)
     - [Tips](contribution-guide/tips.md)
 

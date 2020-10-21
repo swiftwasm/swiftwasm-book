@@ -23,7 +23,7 @@ $ ./utils/webassembly/linux/install-dependencies.sh
 
 ## 3. Build using custom preset options
 
-We support both Linux and macOS to build Swift. You need to select the preset name, [`sccache`](./cache.md) path and LLVM tools directory.
+We support both Linux and macOS to build Swift. You need to select the preset name, `sccache` path and LLVM tools directory.
 
 
 ```sh

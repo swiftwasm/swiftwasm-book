@@ -27,6 +27,9 @@ Compilation time of LLVM and the Swift toolchain is very long, so we recommend t
 
 ## Debugging
 
-When you want to debug a WebAssembly binary, [wasminspect](https://github.com/kateinoigakukun/wasminspect) is very helpful to investigate.
+When you want to debug a WebAssembly binary, [wasminspect](https://github.com/kateinoigakukun/wasminspect) 
+can help in the investigation if the debugged binary does not rely on integration with JavaScript.
+We recommend splitting your packages into separate executable targets, most of which shouldn't 
+assume the availability of JavaScript to make debugging easier.
 
 ![demo](https://raw.githubusercontent.com/kateinoigakukun/wasminspect/master/assets/demo.gif)
