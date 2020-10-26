@@ -2,12 +2,13 @@
 
 [The Foundation core library](https://swift.org/core-libraries/#foundation) is available in
 SwiftWasm, but in a limited capacity. The main reason is that [the Dispatch core
-library](https://swift.org/core-libraries/#libdispatch) is unavailable due to lack of 
-standardized multi-threading support in WebAssembly. Many Foundation APIs rely on the presence
-of Dispatch under the hood, specifically file system access and threading helpers. A few other types
-are unavailable in browsers or aren't standardized in WASI hosts, such as support for sockets and
-low-level networking, or support for time zone files. and they had to be disabled. These types are
-therefore absent in SwiftWasm Foundation:
+library](https://swift.org/core-libraries/#libdispatch) is unavailable due to [the lack of 
+standardized multi-threading support](https://github.com/swiftwasm/swift/issues/1887) in WebAssembly
+and SwiftWasm itself. Many Foundation APIs rely on the presence of Dispatch under the hood,
+specifically file system access and threading helpers. A few other types are unavailable in browsers
+or aren't standardized in WASI hosts, such as support for sockets and low-level networking, or
+support for time zone files. and they had to be disabled. These types are therefore absent in
+SwiftWasm Foundation:
 
 * `FileManager`
 * `Host`
