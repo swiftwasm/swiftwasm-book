@@ -1,18 +1,24 @@
-# JavaScript Interoperation
+# JavaScript interoperation
 
 [JavaScriptKit](https://github.com/swiftwasm/JavaScriptKit) is a Swift framework to interact with JavaScript through WebAssembly.
 
-You can use any JavaScript API from Swift using this library.
+You can use any JavaScript API from Swift with this library. Here's a quick example of JavaScriptKit
+usage in a browser app:
 
 ```swift
 import JavaScriptKit
 
-let document = JSObject.global.document.object!
+let document = JSObject.global.document
 
-let divElement = document.createElement!("div").object!
+var divElement = document.createElement("div")
 divElement.innerText = "Hello, world"
-let body = document.body.object!
-_ = body.appendChild!(divElement)
+_ = document.body.appendChild(divElement)
 ```
 
-JavaScriptKit consists of NPM runtime library package and SwiftPM package for Swift side API.
+You can also use JavaScriptKit in SwiftWasm apps integrated with Node.js, as there no assumptions
+that any browser API is present in the library.
+
+JavaScriptKit consists of a runtime library package [hosted on
+npm](https://www.npmjs.com/package/javascript-kit-swift), and a SwiftPM package for the API on the
+Swift side. To integrate the JavaScript runtime automatically into your app, we recommend following
+the corresponding [guide for browser apps in our book](./browser-app.md).
