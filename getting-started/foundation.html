@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>JavaScript interoperation - Swift and WebAssembly</title>
+        <title>Swift Foundation - Swift and WebAssembly</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html" class="active"><strong aria-hidden="true">2.5.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/foundation.html"><strong aria-hidden="true">2.6.</strong> Swift Foundation</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="../contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.5.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/foundation.html" class="active"><strong aria-hidden="true">2.6.</strong> Swift Foundation</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="../contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,37 +159,54 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#javascript-interoperation" id="javascript-interoperation">JavaScript interoperation</a></h1>
-<p><a href="https://github.com/swiftwasm/JavaScriptKit">JavaScriptKit</a> is a Swift framework to interact with JavaScript through WebAssembly.</p>
-<p>You can use any JavaScript API from Swift with this library. Here's a quick example of JavaScriptKit
-usage in a browser app:</p>
-<pre><code class="language-swift">import JavaScriptKit
-
-let document = JSObject.global.document
-
-var divElement = document.createElement(&quot;div&quot;)
-divElement.innerText = &quot;Hello, world&quot;
-_ = document.body.appendChild(divElement)
-</code></pre>
-<p>You can also use JavaScriptKit in SwiftWasm apps integrated with Node.js, as there no assumptions
-that any browser API is present in the library.</p>
-<p>JavaScriptKit consists of a runtime library package <a href="https://www.npmjs.com/package/javascript-kit-swift">hosted on
-npm</a>, and a SwiftPM package for the API on the
-Swift side. To integrate the JavaScript runtime automatically into your app, we recommend following
-the corresponding <a href="./browser-app.html">guide for browser apps in our book</a>.</p>
+                        <h1><a class="header" href="#use-swift-foundation-in-your-code" id="use-swift-foundation-in-your-code">Use Swift Foundation in your code</a></h1>
+<p><a href="https://swift.org/core-libraries/#foundation">The Foundation core library</a> is available in
+SwiftWasm, but in a limited capacity. The main reason is that <a href="https://swift.org/core-libraries/#libdispatch">the Dispatch core
+library</a> is unavailable due to <a href="https://github.com/swiftwasm/swift/issues/1887">the lack of 
+standardized multi-threading support</a> in WebAssembly
+and SwiftWasm itself. Many Foundation APIs rely on the presence of Dispatch under the hood,
+specifically file system access and threading helpers. A few other types are unavailable in browsers
+or aren't standardized in WASI hosts, such as support for sockets and low-level networking, or
+support for time zone files. and they had to be disabled. These types are therefore absent in
+SwiftWasm Foundation:</p>
+<ul>
+<li><code>FileManager</code></li>
+<li><code>Host</code></li>
+<li><code>Notification</code></li>
+<li><code>NotificationQueue</code></li>
+<li><code>NSKeyedArchiver</code></li>
+<li><code>NSKeyedArchiverHelpers</code></li>
+<li><code>NSKeyedCoderOldStyleArray</code></li>
+<li><code>NSKeyedUnarchiver</code></li>
+<li><code>NSNotification</code></li>
+<li><code>NSSpecialValue</code></li>
+<li><code>Port</code></li>
+<li><code>PortMessage</code></li>
+<li><code>Process</code></li>
+<li><code>ProcessInfo</code></li>
+<li><code>PropertyListEncoder</code></li>
+<li><code>RunLoop</code></li>
+<li><code>Stream</code></li>
+<li><code>Thread</code></li>
+<li><code>Timer</code></li>
+<li><code>UserDefaults</code></li>
+</ul>
+<p>Related functions and properties on other types are also absent or disabled. We would like to make
+them available in the future as soon as possible, and <a href="../contribution-guide/index.html">we invite you to 
+contribute</a> and help us in achieving this goal!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../getting-started/browser-app.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../getting-started/javascript-interop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../getting-started/foundation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../examples/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -201,13 +218,13 @@ the corresponding <a href="./browser-app.html">guide for browser apps in our boo
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../getting-started/browser-app.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../getting-started/javascript-interop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../getting-started/foundation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../examples/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
