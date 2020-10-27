@@ -1,29 +1,45 @@
-# Importing function from host environment
+# Importing a function from host environments
 
-You can import a function from host environment using special attribute and linker option.
+You can import a function from your host environment using the integration of Swift Package Manager
+with C targets. Firstly, you should declare a signature for your function in a C header with an
+appropriate `__import_name__` attribute:
 
-```swift
-@_silgen_name("add")
-func add(_: Int, _: Int) -> Int
-
-print("2 + 3 = \(add(2, 3))")
+```c
+__attribute__((__import_name__("add")))
+extern int add(int lhs, int rhs);
 ```
 
-You need to compile the Swift code with linker option `--allow-undefined`.
+Here `__import_name__` specifies the name under which this function will be exposed to Swift code.
+Move this C header to a separate target, we'll call it `HostFunction` in this example. Your
+`Package.swift` manifest for your WebAssembly app would look like this:
 
+```swift
+// swift-tools-version:5.3
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+import PackageDescription
 
-```bash
-$ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
-$ swiftc \
-    -target wasm32-unknown-wasi \
-    -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
-    lib.swift -o lib.wasm \
-    -Xlinker --allow-undefined
+let package = Package(
+    name: "SwiftWasmApp",
+    targets: [
+      .target(name: "HostFunction", dependencies: []),
+      .target(name: "SwiftWasmApp", dependencies: ["HostFunction"]),
+    ]
+)
+```
+
+Place this header into the `include` subdirectory of your `HostFunction` target directory. You can
+then import this host function module into Swift code just as any other module:
+
+```swift
+import HostFunction
+
+print(add(2, 2))
 ```
 
 Then, you can inject a host function into the produced WebAssembly binary.
 
-Note that we use `env` as default import module name. We will add a way to specify module name to import in the near future.
+Note that we use `env` as default import module name. We will add a way to specify module name to
+import in the near future.
 
 ```javascript
 const WASI = require("@wasmer/wasi").WASI;
@@ -76,4 +92,6 @@ const main = async () => {
 main()
 ```
 
-If you use SwiftPM package, you can omit linker flag using clang's `__atribute__`. Please see [swiftwasm/JavaScriptKit#91](https://github.com/swiftwasm/JavaScriptKit/pull/91/files) for more detail info
+If you use Go bindings for Wasmer as your host environment, you should check [an example 
+repository](https://github.com/hassan-shahbazi/swiftwasm-go) from one of our contributors that shows
+an integration with an imported host function.
