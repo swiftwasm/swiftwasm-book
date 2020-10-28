@@ -8,6 +8,7 @@
     - [Creating a browser app](getting-started/browser-app.md)
     - [JavaScript interoperation](getting-started/javascript-interop.md)
     - [Swift Foundation](getting-started/foundation.md)
+    - [Testing your app](getting-started/testing.md)
 - [Examples](examples/index.md)
     - [Importing function](examples/importing-function.md)
     - [Exporting function](examples/exporting-function.md)
