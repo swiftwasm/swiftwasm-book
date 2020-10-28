@@ -38,8 +38,9 @@ print(add(2, 2))
 
 Then, you can inject a host function into the produced WebAssembly binary.
 
-Note that we use `env` as default import module name. We will add a way to specify module name to
-import in the near future.
+Note that we use `env` as default import module name. You can specify the module name as
+`__import_module__` in your C header. The full list of attributes in the header could look
+like `__attribute__((__import_module__("env"),__import_name__("add")))`.
 
 ```javascript
 const WASI = require("@wasmer/wasi").WASI;
@@ -95,3 +96,6 @@ main()
 If you use Go bindings for Wasmer as your host environment, you should check [an example 
 repository](https://github.com/hassan-shahbazi/swiftwasm-go) from one of our contributors that shows
 an integration with an imported host function.
+
+A more streamlined way to import host functions will be implemented in the future version of the
+SwiftWasm toolchain.
