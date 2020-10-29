@@ -1,7 +1,7 @@
 # Testing your app
 
 You can write a test suite for your SwiftWasm app or library, or run an existing test suite
-written for `XCTest` if you port existing code to SwiftWasm. You project has to have a
+written for `XCTest` if you port existing code to SwiftWasm. Your project has to have a
 `Package.swift` package manifest for this to work. We assume that you use SwiftPM to build your
 project and that you have a working package manifest. Please follow [our SwiftPM guide](./swift-package.md) for new projects.
 
