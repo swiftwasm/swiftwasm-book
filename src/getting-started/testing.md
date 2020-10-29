@@ -68,8 +68,8 @@ these APIs from compilation.
 
 If you use [`carton`](https://carton.dev) to develop and build your app, as described in [our guide
 for browser apps](./browser-app.md), just run `carton test` in the
-root directory of your package. This will automatically build the test suite and run it with Wasmer
-for you.
+root directory of your package. This will automatically build the test suite and run it with 
+[Wasmer](https://wasmer.io/) for you.
 
 ## Building and running the test suite with `swiftenv`
 
@@ -77,7 +77,7 @@ If you manage your SwiftWasm toolchain with `swiftenv` (as shown in [the "Setup"
 you can build your test suite by running this command in your terminal:
 
 ```sh
-$ swift build --build-tests
+$ swift build --build-tests --triple wasm32-unknown-wasi
 ```
 
 If you're used to running `swift test` to run test suites for other Swift platforms, we have to
