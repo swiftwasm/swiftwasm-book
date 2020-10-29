@@ -397,12 +397,12 @@ these APIs from compilation.</p>
 <h2><a class="header" href="#building-and-running-the-test-suite-with-carton" id="building-and-running-the-test-suite-with-carton">Building and running the test suite with <code>carton</code></a></h2>
 <p>If you use <a href="https://carton.dev"><code>carton</code></a> to develop and build your app, as described in <a href="getting-started/./browser-app.html">our guide
 for browser apps</a>, just run <code>carton test</code> in the
-root directory of your package. This will automatically build the test suite and run it with Wasmer
-for you.</p>
+root directory of your package. This will automatically build the test suite and run it with 
+<a href="https://wasmer.io/">Wasmer</a> for you.</p>
 <h2><a class="header" href="#building-and-running-the-test-suite-with-swiftenv" id="building-and-running-the-test-suite-with-swiftenv">Building and running the test suite with <code>swiftenv</code></a></h2>
 <p>If you manage your SwiftWasm toolchain with <code>swiftenv</code> (as shown in <a href="getting-started/./setup.html">the &quot;Setup&quot; section</a>),
 you can build your test suite by running this command in your terminal:</p>
-<pre><code class="language-sh">$ swift build --build-tests
+<pre><code class="language-sh">$ swift build --build-tests --triple wasm32-unknown-wasi
 </code></pre>
 <p>If you're used to running <code>swift test</code> to run test suites for other Swift platforms, we have to
 warn you that this won't work. <code>swift test</code> doesn't know what WebAssembly environment you'd like to 
