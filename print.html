@@ -342,23 +342,38 @@ them available in the future as soon as possible, and <a href="getting-started/.
 contribute</a> and help us in achieving this goal!</p>
 <h1><a class="header" href="#examples" id="examples">Examples</a></h1>
 <p>This section shows you example usage of our toolchain.</p>
-<h1><a class="header" href="#importing-function-from-host-environment" id="importing-function-from-host-environment">Importing function from host environment</a></h1>
-<p>You can import a function from host environment using special attribute and linker option.</p>
-<pre><code class="language-swift">@_silgen_name(&quot;add&quot;)
-func add(_: Int, _: Int) -&gt; Int
-
-print(&quot;2 + 3 = \(add(2, 3))&quot;)
+<h1><a class="header" href="#importing-a-function-from-host-environments" id="importing-a-function-from-host-environments">Importing a function from host environments</a></h1>
+<p>You can import a function from your host environment using the integration of Swift Package Manager
+with C targets. Firstly, you should declare a signature for your function in a C header with an
+appropriate <code>__import_name__</code> attribute:</p>
+<pre><code class="language-c">__attribute__((__import_name__(&quot;add&quot;)))
+extern int add(int lhs, int rhs);
 </code></pre>
-<p>You need to compile the Swift code with linker option <code>--allow-undefined</code>.</p>
-<pre><code class="language-bash">$ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
-$ swiftc \
-    -target wasm32-unknown-wasi \
-    -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
-    lib.swift -o lib.wasm \
-    -Xlinker --allow-undefined
+<p>Here <code>__import_name__</code> specifies the name under which this function will be exposed to Swift code.
+Move this C header to a separate target, we'll call it <code>HostFunction</code> in this example. Your
+<code>Package.swift</code> manifest for your WebAssembly app would look like this:</p>
+<pre><code class="language-swift">// swift-tools-version:5.3
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+import PackageDescription
+
+let package = Package(
+    name: &quot;SwiftWasmApp&quot;,
+    targets: [
+      .target(name: &quot;HostFunction&quot;, dependencies: []),
+      .target(name: &quot;SwiftWasmApp&quot;, dependencies: [&quot;HostFunction&quot;]),
+    ]
+)
+</code></pre>
+<p>Place this header into the <code>include</code> subdirectory of your <code>HostFunction</code> target directory. You can
+then import this host function module into Swift code just as any other module:</p>
+<pre><code class="language-swift">import HostFunction
+
+print(add(2, 2))
 </code></pre>
 <p>Then, you can inject a host function into the produced WebAssembly binary.</p>
-<p>Note that we use <code>env</code> as default import module name. We will add a way to specify module name to import in the near future.</p>
+<p>Note that we use <code>env</code> as default import module name. You can specify the module name as
+<code>__import_module__</code> in your C header. The full list of attributes in the header could look
+like <code>__attribute__((__import_module__(&quot;env&quot;),__import_name__(&quot;add&quot;)))</code>.</p>
 <pre><code class="language-javascript">const WASI = require(&quot;@wasmer/wasi&quot;).WASI;
 const WasmFs = require(&quot;@wasmer/wasmfs&quot;).WasmFs;
 
@@ -408,7 +423,11 @@ const main = async () =&gt; {
 
 main()
 </code></pre>
-<p>If you use SwiftPM package, you can omit linker flag using clang's <code>__atribute__</code>. Please see <a href="https://github.com/swiftwasm/JavaScriptKit/pull/91/files">swiftwasm/JavaScriptKit#91</a> for more detail info</p>
+<p>If you use Go bindings for Wasmer as your host environment, you should check <a href="https://github.com/hassan-shahbazi/swiftwasm-go">an example 
+repository</a> from one of our contributors that shows
+an integration with an imported host function.</p>
+<p>A more streamlined way to import host functions will be implemented in the future version of the
+SwiftWasm toolchain.</p>
 <h1><a class="header" href="#exporting-function-for-host-environment" id="exporting-function-for-host-environment">Exporting function for host environment</a></h1>
 <p>You can expose a Swift function for host environment using special attribute and linker option.</p>
 <pre><code class="language-swift">@_cdecl(&quot;add&quot;)
