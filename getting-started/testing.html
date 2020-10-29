@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Contribution Guide - Swift and WebAssembly</title>
+        <title>Testing your app - Swift and WebAssembly</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.5.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/foundation.html"><strong aria-hidden="true">2.6.</strong> Swift Foundation</a></li><li class="chapter-item expanded "><a href="../getting-started/testing.html"><strong aria-hidden="true">2.7.</strong> Testing your app</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html" class="active"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="../contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.5.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/foundation.html"><strong aria-hidden="true">2.6.</strong> Swift Foundation</a></li><li class="chapter-item expanded "><a href="../getting-started/testing.html" class="active"><strong aria-hidden="true">2.7.</strong> Testing your app</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="../contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,46 +159,93 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#contribution-guide" id="contribution-guide">Contribution Guide</a></h1>
-<h2><a class="header" href="#forum-posts" id="forum-posts">Forum posts</a></h2>
-<ul>
-<li><a href="https://forums.swift.org/t/wasm-support/16087/14">Design of this project</a></li>
-<li><a href="https://forums.swift.org/t/webassembly-swiftpm/34343">Swift Package Manager Support</a></li>
-</ul>
-<h2><a class="header" href="#repositories" id="repositories">Repositories</a></h2>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta" id="a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta"><a href="https://github.com/swiftwasm/swift">swiftwasm/swift</a></a></h3>
-<p>The main repository of this project. Forked from <a href="https://github.com/swiftwasm/swift">apple/swift</a>. We are tracking upstream changes using <a href="https://github.com/wei/pull">pull</a></p>
-<h4><a class="header" href="#branching-scheme" id="branching-scheme">Branching scheme</a></h4>
-<ul>
-<li><code>swiftwasm</code> is the main development branch.</li>
-<li><code>main</code> is a mirror of the <code>main</code> branch of the upstream <code>apple/swift</code> repository. This branch is necessary to avoid <a href="https://github.com/swiftwasm/swift/pull/36">some issues</a>.</li>
-<li><code>swiftwasm-release/5.3</code> is the branch where 5.3 release of SwiftWasm is prepared.</li>
-<li><code>release/5.3</code> is a mirror of the upstream <code>release/5.3</code> branch.</li>
-</ul>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta" id="a-hrefhttpsgithubcomswiftwasmllvm-projectswiftwasmllvm-projecta"><a href="https://github.com/swiftwasm/llvm-project">swiftwasm/llvm-project</a></a></h3>
-<p>This repository is a fork of <a href="https://github.com/apple/llvm-project">apple/llvm-project</a>.</p>
-<p><code>swiftwasm</code> branch is based on <code>swift/main</code> branch of <code>apple/llvm-project</code>.</p>
-<p>Please see the <a href="https://github.com/apple/llvm-project/blob/apple/main/apple-docs/AppleBranchingScheme.md">AppleBranchingScheme.md</a>
-document in the upstream repository for more details.</p>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia" id="a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia"><a href="https://github.com/swiftwasm/icu4c-wasi">swiftwasm/icu4c-wasi</a></a></h3>
-<p>Build script and patches for building ICU project for WebAssembly. <a href="https://github.com/unicode-org/icu/pull/990">The required changes to build 
-it</a> were merged to the upstream repository.</p>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca" id="a-hrefhttpsgithubcomswiftwasmwasi-sdkswiftwasmwasi-sdka-and-a-hrefhttpsgithubcomswiftwasmwasi-libcswiftwasmwasi-libca"><a href="https://github.com/swiftwasm/wasi-sdk">swiftwasm/wasi-sdk</a> and <a href="https://github.com/swiftwasm/wasi-libc">swiftwasm/wasi-libc</a></a></h3>
-<p>Forked from <a href="https://github.com/WebAssembly/wasi-sdk">WebAssembly/wasi-sdk</a> and <a href="https://github.com/WebAssembly/wasi-libc">WebAssembly/wasi-libc</a>.</p>
-<p>We fork them to build <code>wasi-sysroot</code> with pthread header. There aren't so many diff from upstream.</p>
+                        <h1><a class="header" href="#testing-your-app" id="testing-your-app">Testing your app</a></h1>
+<p>You can write a test suite for your SwiftWasm app or library, or run an existing test suite
+written for <code>XCTest</code> if you port existing code to SwiftWasm. Your project has to have a
+<code>Package.swift</code> package manifest for this to work. We assume that you use SwiftPM to build your
+project and that you have a working package manifest. Please follow <a href="./swift-package.html">our SwiftPM guide</a> for new projects.</p>
+<h2><a class="header" href="#a-simple-test-case" id="a-simple-test-case">A simple test case</a></h2>
+<p>Let's assume you have a <code>SwiftWasmLibrary</code> target in your project that you'd like to test. Your
+<code>Package.swift</code> should also have a test suite target with a dependency on the library target. It
+would probably look like this:</p>
+<pre><code class="language-swift">// swift-tools-version:5.3
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+  name: &quot;HelloSwiftWasm&quot;,
+  products: [
+    .executable(name: &quot;SwiftWasmApp&quot;, targets: [&quot;SwiftWasmApp&quot;]),
+  ],
+  targets: [
+    // Targets are the basic building blocks of a package. A target can define a module or a test
+    // suite. Targets can depend on other targets in this package, and on products in packages which
+    // this package depends on.
+    .target(
+      name: &quot;SwiftWasmApp&quot;,
+      dependencies: [&quot;SwiftWasmLibrary&quot;],
+    ),
+    .target(name: &quot;SwiftWasmLibrary&quot;),
+    .testTarget(name: &quot;SwiftWasmTests&quot;, dependencies: [&quot;SwiftWasmLibrary&quot;]),
+  ]
+)
+</code></pre>
+<p>Now you should make sure there's <code>Tests/SwiftWasmTests</code> subdirectory in your project.
+If you don't have any files in it yet, create <code>SwiftWasmTests.swift</code> in it:</p>
+<pre><code class="language-swift">import SwiftWasmLibrary
+import XCTest
+
+final class SwiftWasmTests: XCTestCase {
+  func testTrivial() {
+    XCTAssertEqual(text, &quot;Hello, world&quot;)
+  }
+}
+</code></pre>
+<p>This code assumes that your <code>SwiftWasmLibrary</code> defines some <code>text</code> with <code>&quot;Hello, world&quot;</code> value
+for this test to pass. Your test functions should all start with <code>test</code>, please see <a href="https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods">XCTest 
+documentation</a>
+for more details.</p>
+<h2><a class="header" href="#xctest-limitations-in-the-swiftwasm-toolchain" id="xctest-limitations-in-the-swiftwasm-toolchain">XCTest limitations in the SwiftWasm toolchain</a></h2>
+<p>As was mentioned in <a href="/foundation.html">our section about Swift Foundation</a>, multi-threading and
+file system APIs are currently not available in SwiftWasm. This means that <code>XCTestExpectation</code>
+and test hooks related to <code>Bundle</code> (such as <code>testBundleWillStart(_:)</code> and <code>testBundleDidFinish(_:)</code>)
+are not available in test suites compiled with SwiftWasm. If you have an existing test suite you're
+porting to WebAssembly, you should use <code>#if os(WASI)</code> directives to exclude places where you use
+these APIs from compilation.</p>
+<h2><a class="header" href="#building-and-running-the-test-suite-with-carton" id="building-and-running-the-test-suite-with-carton">Building and running the test suite with <code>carton</code></a></h2>
+<p>If you use <a href="https://carton.dev"><code>carton</code></a> to develop and build your app, as described in <a href="./browser-app.html">our guide
+for browser apps</a>, just run <code>carton test</code> in the
+root directory of your package. This will automatically build the test suite and run it with Wasmer
+for you.</p>
+<h2><a class="header" href="#building-and-running-the-test-suite-with-swiftenv" id="building-and-running-the-test-suite-with-swiftenv">Building and running the test suite with <code>swiftenv</code></a></h2>
+<p>If you manage your SwiftWasm toolchain with <code>swiftenv</code> (as shown in <a href="./setup.html">the &quot;Setup&quot; section</a>),
+you can build your test suite by running this command in your terminal:</p>
+<pre><code class="language-sh">$ swift build --build-tests
+</code></pre>
+<p>If you're used to running <code>swift test</code> to run test suites for other Swift platforms, we have to
+warn you that this won't work. <code>swift test</code> doesn't know what WebAssembly environment you'd like to 
+use to run your tests. Because of this building tests and running them are two separate steps when
+using <code>swiftenv</code>. After your tests are built, you can use a WASI-compatible host such as
+<a href="https://wasmer.io/">Wasmer</a> to run the test bundle:</p>
+<pre><code class="language-sh">$ wasmer .build/debug/HelloSwiftWasmPackageTests.xctest
+</code></pre>
+<p>As you can see, the produced test binary starts with the name of your package followed by
+<code>PackageTests.xctest</code>. It is located in the <code>.build/debug</code> subdirectory, or in the <code>.build/release</code>
+subdirectory when you build in release mode.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../examples/example-projects.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../getting-started/foundation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../contribution-guide/how-to-build-toolchain.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../examples/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -210,13 +257,13 @@ it</a> were merged to the upstream repository.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../examples/example-projects.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../getting-started/foundation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../contribution-guide/how-to-build-toolchain.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../examples/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
