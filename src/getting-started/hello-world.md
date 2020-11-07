@@ -12,11 +12,7 @@ $ echo 'print("Hello, world!")' > hello.swift
 ## 2. Compile Swift code into WebAssembly with WASI
 
 ```
-$ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
-$ swiftc \
-    -target wasm32-unknown-wasi \
-    -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
-    hello.swift -o hello.wasm
+$ swiftc -target wasm32-unknown-wasi hello.swift -o hello.wasm
 ```
 
 
