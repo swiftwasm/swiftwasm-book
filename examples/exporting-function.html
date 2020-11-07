@@ -167,10 +167,8 @@ func add(_ lhs: Int, _ rhs: Int) -&gt; Int {
 }
 </code></pre>
 <p>You need to compile the Swift code with linker option <code>--export</code>.</p>
-<pre><code class="language-bash">$ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
-$ swiftc \
+<pre><code class="language-bash">$ swiftc \
     -target wasm32-unknown-wasi \
-    -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
     lib.swift -o lib.wasm \
     -Xlinker --export=add
 </code></pre>

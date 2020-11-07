@@ -165,11 +165,7 @@
 <pre><code class="language-sh">$ echo 'print(&quot;Hello, world!&quot;)' &gt; hello.swift
 </code></pre>
 <h2><a class="header" href="#2-compile-swift-code-into-webassembly-with-wasi" id="2-compile-swift-code-into-webassembly-with-wasi">2. Compile Swift code into WebAssembly with WASI</a></h2>
-<pre><code>$ TOOLCHAIN_PATH=$(dirname $(swiftenv which swiftc))/../
-$ swiftc \
-    -target wasm32-unknown-wasi \
-    -sdk $TOOLCHAIN_PATH/share/wasi-sysroot \
-    hello.swift -o hello.wasm
+<pre><code>$ swiftc -target wasm32-unknown-wasi hello.swift -o hello.wasm
 </code></pre>
 <h2><a class="header" href="#3-run-the-produced-binary-on-webassembly-runtime" id="3-run-the-produced-binary-on-webassembly-runtime">3. Run the produced binary on WebAssembly runtime</a></h2>
 <p>You can the run the produced binary with <a href="https://wasmer.io/">wasmer</a> (or other WebAssembly runtime):</p>

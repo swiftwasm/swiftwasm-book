@@ -218,15 +218,15 @@ these APIs from compilation.</p>
 for browser apps</a>, just run <code>carton test</code> in the
 root directory of your package. This will automatically build the test suite and run it with 
 <a href="https://wasmer.io/">Wasmer</a> for you.</p>
-<h2><a class="header" href="#building-and-running-the-test-suite-with-swiftenv" id="building-and-running-the-test-suite-with-swiftenv">Building and running the test suite with <code>swiftenv</code></a></h2>
-<p>If you manage your SwiftWasm toolchain with <code>swiftenv</code> (as shown in <a href="./setup.html">the &quot;Setup&quot; section</a>),
+<h2><a class="header" href="#building-and-running-the-test-suite-with-swiftpm" id="building-and-running-the-test-suite-with-swiftpm">Building and running the test suite with <code>SwiftPM</code></a></h2>
+<p>If you manage your SwiftWasm toolchain without <code>carton</code> (as shown in <a href="./setup.html">the &quot;Setup&quot; section</a>),
 you can build your test suite by running this command in your terminal:</p>
 <pre><code class="language-sh">$ swift build --build-tests --triple wasm32-unknown-wasi
 </code></pre>
 <p>If you're used to running <code>swift test</code> to run test suites for other Swift platforms, we have to
 warn you that this won't work. <code>swift test</code> doesn't know what WebAssembly environment you'd like to 
 use to run your tests. Because of this building tests and running them are two separate steps when
-using <code>swiftenv</code>. After your tests are built, you can use a WASI-compatible host such as
+using <code>SwiftPM</code>. After your tests are built, you can use a WASI-compatible host such as
 <a href="https://wasmer.io/">Wasmer</a> to run the test bundle:</p>
 <pre><code class="language-sh">$ wasmer .build/debug/HelloSwiftWasmPackageTests.xctest
 </code></pre>
