@@ -71,9 +71,9 @@ for browser apps](./browser-app.md), just run `carton test` in the
 root directory of your package. This will automatically build the test suite and run it with 
 [Wasmer](https://wasmer.io/) for you.
 
-## Building and running the test suite with `swiftenv`
+## Building and running the test suite with `SwiftPM`
 
-If you manage your SwiftWasm toolchain with `swiftenv` (as shown in [the "Setup" section](./setup.md)),
+If you manage your SwiftWasm toolchain without `carton` (as shown in [the "Setup" section](./setup.md)),
 you can build your test suite by running this command in your terminal:
 
 ```sh
@@ -83,7 +83,7 @@ $ swift build --build-tests --triple wasm32-unknown-wasi
 If you're used to running `swift test` to run test suites for other Swift platforms, we have to
 warn you that this won't work. `swift test` doesn't know what WebAssembly environment you'd like to 
 use to run your tests. Because of this building tests and running them are two separate steps when
-using `swiftenv`. After your tests are built, you can use a WASI-compatible host such as
+using `SwiftPM`. After your tests are built, you can use a WASI-compatible host such as
 [Wasmer](https://wasmer.io/) to run the test bundle:
 
 ```sh
