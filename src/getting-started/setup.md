@@ -15,14 +15,14 @@ Tag: [swift-wasm-5.3.0-RELEASE](https://github.com/swiftwasm/swift/releases/tag/
 | [Ubuntu 20.04](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.3.0-RELEASE/swift-wasm-5.3.0-RELEASE-ubuntu20.04_x86_64.tar.gz) | [5.3-focal, focal](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
 
 
-You can download the latest development snapshot from [Release Page](https://github.com/swiftwasm/swift/releases)
+You can download the latest development snapshot from [the Releases page](https://github.com/swiftwasm/swift/releases)
 
 
 # Using Downloads
 
 ## macOS
 
-An Xcode toolchain (.xctoolchain) includes a copy of the compiler, linker, and other related tools needed to provide a cohesive development experience for working in a specific version of Swift.
+An Xcode toolchain (`.xctoolchain`) includes a copy of the compiler, linker, and other related tools needed to provide a cohesive development experience for working in a specific version of Swift.
 
 
 ### Requirements

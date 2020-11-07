@@ -24,4 +24,4 @@ Swift side. To integrate the JavaScript runtime automatically into your app, we 
 the corresponding [guide for browser apps in our book](./browser-app.md).
 
 
-You can get more detailed JavaScriptKit documentation [here](https://swiftwasm.github.io/JavaScriptKit/)
+You can get more detailed JavaScriptKit documentation [here](https://swiftwasm.github.io/JavaScriptKit/).
