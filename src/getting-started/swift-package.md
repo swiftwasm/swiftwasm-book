@@ -33,6 +33,6 @@ $ swift build --triple wasm32-unknown-wasi
 Just as in the [previous section](./hello-world.md), you can run the produced binary with the `wasmer` WebAssembly runtime.
 
 ```sh
-$ wasmer ./.build/debug/hello-swiftwasm
+$ wasmer ./.build/debug/hello-swiftwasm.wasm
 Hello, world!
 ```
