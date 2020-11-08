@@ -198,7 +198,7 @@
 </ul>
 <h3><a class="header" href="#installation-1" id="installation-1">Installation</a></h3>
 <ol>
-<li>Download the latest package release.</li>
+<li><a href="https://book.swiftwasm.org/getting-started/setup.html#swiftwasm-53">Download the latest package release.</a></li>
 <li>Run the package installer, which will install an Xcode toolchain into <code>/Library/Developer/Toolchains/</code>.</li>
 <li>To use the Swift toolchain with command-line tools, use <code>xcrun --toolchain swiftwasm</code> or add the Swift toolchain to your path as follows:</li>
 </ol>
@@ -325,7 +325,7 @@ Creating Tests/helloTests/XCTestManifests.swift
 </code></pre>
 <h2><a class="header" href="#3-run-the-produced-binary" id="3-run-the-produced-binary">3. Run the produced binary</a></h2>
 <p>Just as in the <a href="getting-started/./hello-world.html">previous section</a>, you can run the produced binary with the <code>wasmer</code> WebAssembly runtime.</p>
-<pre><code class="language-sh">$ wasmer ./.build/debug/hello-swiftwasm
+<pre><code class="language-sh">$ wasmer ./.build/debug/hello-swiftwasm.wasm
 Hello, world!
 </code></pre>
 <h1><a class="header" href="#creating-a-browser-app" id="creating-a-browser-app">Creating a Browser App</a></h1>
