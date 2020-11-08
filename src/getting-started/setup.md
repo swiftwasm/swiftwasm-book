@@ -32,7 +32,7 @@ An Xcode toolchain (`.xctoolchain`) includes a copy of the compiler, linker, and
 
 ### Installation
 
-1. Download the latest package release.
+1. [Download the latest package release.](https://book.swiftwasm.org/getting-started/setup.html#swiftwasm-53)
 2. Run the package installer, which will install an Xcode toolchain into `/Library/Developer/Toolchains/`.
 3. To use the Swift toolchain with command-line tools, use `xcrun --toolchain swiftwasm` or add the Swift toolchain to your path as follows:
 
