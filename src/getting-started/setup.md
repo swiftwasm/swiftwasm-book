@@ -48,6 +48,9 @@ SwiftWasm Swift version 5.3 (swiftlang-5.3.0)
 Target: x86_64-apple-darwin19.6.0
 ```
 
+> Warning: `xcrun` finds executable binary based on `--toolchain` option or `TOOLCHAINS` environment variable, but it also sets `SDKROOT` as host target SDK (e.g. `MacOSX.sdk`). So you need to specify `-sdk` option as `/Library/Developer/Toolchains/swift-wasm-5.3.0-RELEASE.xctoolchain/usr/share/wasi-sysroot` when launching `swiftc` from xcrun. `swift build` or other SwiftPM commands automatically find SDK path based on target triple, so they don't require to specify it.
+
+
 ## Linux
 
 Packages for Linux are tar archives including a copy of the Swift compiler, linker, and related tools. You can install them anywhere as long as the extracted tools are in your PATH.
