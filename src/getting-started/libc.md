@@ -20,8 +20,8 @@ import WASILibc
 
 ## Limitations
 
-WebAssembly and [WASI](https://wasi.dev/) provide a constrained environment, which currently
-does not directly support multi-threading, or filesystem access in the browser. Thus, you should
-not expect these APIs to work when importing `WASILibc`. This has an impact on what [can support
-in the Swift Foundation](/getting-started/foundation.md) at the moment, please be aware of these
-limitations when porting your code.
+WebAssembly and [WASI](https://wasi.dev/) provide a constrained environment, which currently does
+not directly support multi-threading, or filesystem access in the browser. Thus, you should not
+expect these APIs to work when importing `WASILibc`. Please be aware of these limitations when
+porting your code, which also has an impact on what [can be supported in the Swift
+Foundation](/getting-started/foundation.md) at the moment.
