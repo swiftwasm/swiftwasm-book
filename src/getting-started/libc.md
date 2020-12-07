@@ -1,11 +1,12 @@
 # `WASILibc` module
 
-When porting existing projects from other platforms to SwiftWasm you might find code that relies on
-importing a platform-specific [C library](https://en.wikipedia.org/wiki/C_standard_library) module
-directly. It looks like `import Glibc` on Linux, or `import Darwin` on Apple platforms. Fortunately,
-most of the standard C library APIs are available when using SwiftWasm, you just need to use
-`import WASILibc` to get access to it. Most probably you want to preserve compatibility with other
-platforms, thus your imports would look like this:
+When porting existing projects from other platforms to SwiftWasm you might stumble upon code that
+relies on importing a platform-specific [C
+library](https://en.wikipedia.org/wiki/C_standard_library) module directly. It looks like `import
+Glibc` on Linux, or `import Darwin` on Apple platforms. Fortunately, most of the standard C library
+APIs are available when using SwiftWasm, you just need to use `import WASILibc` to get access to it.
+Most probably you want to preserve compatibility with other platforms, thus your imports would look
+like this:
 
 ```swift
 #if canImport(Darwin)
