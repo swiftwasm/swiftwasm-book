@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Examples - Swift and WebAssembly</title>
+        <title>WASILibc module - Swift and WebAssembly</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.5.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/foundation.html"><strong aria-hidden="true">2.6.</strong> Swift Foundation</a></li><li class="chapter-item expanded "><a href="../getting-started/testing.html"><strong aria-hidden="true">2.7.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="../getting-started/libc.html"><strong aria-hidden="true">2.8.</strong> WASILibc module</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html" class="active"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="../contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.5.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/foundation.html"><strong aria-hidden="true">2.6.</strong> Swift Foundation</a></li><li class="chapter-item expanded "><a href="../getting-started/testing.html"><strong aria-hidden="true">2.7.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="../getting-started/libc.html" class="active"><strong aria-hidden="true">2.8.</strong> WASILibc module</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="../contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,21 +159,40 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#examples" id="examples">Examples</a></h1>
-<p>This section shows you example usage of our toolchain.</p>
+                        <h1><a class="header" href="#wasilibc-module" id="wasilibc-module"><code>WASILibc</code> module</a></h1>
+<p>When porting existing projects from other platforms to SwiftWasm you might stumble upon code that
+relies on importing a platform-specific <a href="https://en.wikipedia.org/wiki/C_standard_library">C
+library</a> module directly. It looks like <code>import Glibc</code> on Linux, or <code>import Darwin</code> on Apple platforms. Fortunately, most of the standard C library
+APIs are available when using SwiftWasm, you just need to use <code>import WASILibc</code> to get access to it.
+Most probably you want to preserve compatibility with other platforms, thus your imports would look
+like this:</p>
+<pre><code class="language-swift">#if canImport(Darwin)
+import Darwin
+#elseif canImport(Glibc)
+import Glibc
+#elseif canImport(WASILibc)
+import WASILibc
+#endif
+</code></pre>
+<h2><a class="header" href="#limitations" id="limitations">Limitations</a></h2>
+<p>WebAssembly and <a href="https://wasi.dev/">WASI</a> provide a constrained environment, which currently does
+not directly support multi-threading, or filesystem access in the browser. Thus, you should not
+expect these APIs to work when importing <code>WASILibc</code>. Please be aware of these limitations when
+porting your code, which also has an impact on what <a href="/getting-started/foundation.html">can be supported in the Swift
+Foundation</a> at the moment.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../getting-started/libc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../getting-started/testing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../examples/importing-function.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../examples/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -185,13 +204,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../getting-started/libc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../getting-started/testing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../examples/importing-function.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../examples/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
