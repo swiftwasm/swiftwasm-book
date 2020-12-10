@@ -10,6 +10,7 @@ or aren't standardized in WASI hosts, such as support for sockets and low-level 
 support for time zone files, and they had to be disabled. These types are therefore absent in
 SwiftWasm Foundation:
 
+* `FoundationNetworking` types, such as `URLSession` and related APIs
 * `FileManager`
 * `Host`
 * `Notification`
