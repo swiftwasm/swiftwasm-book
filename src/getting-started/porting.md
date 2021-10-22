@@ -74,4 +74,3 @@ SwiftWasm Foundation:
 Related functions and properties on other types are also absent or disabled. We would like to make
 them available in the future as soon as possible, and [we invite you to 
 contribute](../contribution-guide/index.md) and help us in achieving this goal!
-diff --git a/src/getting-started/libc.md b/src/getting-started/libc.md
