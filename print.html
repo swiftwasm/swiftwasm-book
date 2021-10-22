@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Use Swift Package Manager</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.4.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.5.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/foundation.html"><strong aria-hidden="true">2.6.</strong> Swift Foundation</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.7.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="getting-started/libc.html"><strong aria-hidden="true">2.8.</strong> WASILibc module</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.7.</strong> Testing your app</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -331,6 +331,71 @@ Creating Tests/helloTests/XCTestManifests.swift
 <pre><code class="language-sh">$ wasmer ./.build/debug/hello-swiftwasm.wasm
 Hello, world!
 </code></pre>
+<h1><a class="header" href="#porting-code-from-other-platforms-to-webassembly" id="porting-code-from-other-platforms-to-webassembly">Porting code from other platforms to WebAssembly</a></h1>
+<p>In the form that's currently standardized and supported by browsers and other hosts, WebAssembly
+is a 32-bit architecture. You have to take this into account when porting code from other
+platforms, since <code>Int</code> type is a signed 32-bit integer, and <code>UInt</code> is an unsigned 32-bit integer
+when building with SwiftWasm. You'll need to audit codepaths that cast 64-bit integers to <code>Int</code>
+or <code>UInt</code>, and a good amount of cross-platform test coverage can help with that.</p>
+<p>Additionally, there a differences in APIs exposed by the standard C library and Swift core
+libraries which we discuss in the next few subsections.</p>
+<h2><a class="header" href="#wasilibc-module" id="wasilibc-module"><code>WASILibc</code> module</a></h2>
+<p>When porting existing projects from other platforms to SwiftWasm you might stumble upon code that
+relies on importing a platform-specific <a href="https://en.wikipedia.org/wiki/C_standard_library">C
+library</a> module directly. It looks like <code>import Glibc</code> on Linux, or <code>import Darwin</code> on Apple platforms. Fortunately, most of the standard C library
+APIs are available when using SwiftWasm, you just need to use <code>import WASILibc</code> to get access to it.
+Most probably you want to preserve compatibility with other platforms, thus your imports would look
+like this:</p>
+<pre><code class="language-swift">#if canImport(Darwin)
+import Darwin
+#elseif canImport(Glibc)
+import Glibc
+#elseif canImport(WASILibc)
+import WASILibc
+#endif
+</code></pre>
+<h3><a class="header" href="#limitations" id="limitations">Limitations</a></h3>
+<p>WebAssembly and <a href="https://wasi.dev/">WASI</a> provide a constrained environment, which currently does
+not directly support multi-threading, or filesystem access in the browser. Thus, you should not
+expect these APIs to work when importing <code>WASILibc</code>. Please be aware of these limitations when
+porting your code, which also has an impact on what <a href="getting-started/porting.html#swift-foundation-and-dispatch">can be supported in the Swift
+Foundation</a> at the moment.</p>
+<h2><a class="header" href="#swift-foundation-and-dispatch" id="swift-foundation-and-dispatch">Swift Foundation and Dispatch</a></h2>
+<p><a href="https://swift.org/core-libraries/#foundation">The Foundation core library</a> is available in
+SwiftWasm, but in a limited capacity. The main reason is that <a href="https://swift.org/core-libraries/#libdispatch">the Dispatch core
+library</a> is unavailable due to <a href="https://github.com/swiftwasm/swift/issues/1887">the lack of 
+standardized multi-threading support</a> in WebAssembly
+and SwiftWasm itself. Many Foundation APIs rely on the presence of Dispatch under the hood,
+specifically file system access and threading helpers. A few other types are unavailable in browsers
+or aren't standardized in WASI hosts, such as support for sockets and low-level networking, or
+support for time zone files, and they had to be disabled. These types are therefore absent in
+SwiftWasm Foundation:</p>
+<ul>
+<li><code>FoundationNetworking</code> types, such as <code>URLSession</code> and related APIs</li>
+<li><code>FileManager</code></li>
+<li><code>Host</code></li>
+<li><code>Notification</code></li>
+<li><code>NotificationQueue</code></li>
+<li><code>NSKeyedArchiver</code></li>
+<li><code>NSKeyedArchiverHelpers</code></li>
+<li><code>NSKeyedCoderOldStyleArray</code></li>
+<li><code>NSKeyedUnarchiver</code></li>
+<li><code>NSNotification</code></li>
+<li><code>NSSpecialValue</code></li>
+<li><code>Port</code></li>
+<li><code>PortMessage</code></li>
+<li><code>Process</code></li>
+<li><code>ProcessInfo</code></li>
+<li><code>PropertyListEncoder</code></li>
+<li><code>RunLoop</code></li>
+<li><code>Stream</code></li>
+<li><code>Thread</code></li>
+<li><code>Timer</code></li>
+<li><code>UserDefaults</code></li>
+</ul>
+<p>Related functions and properties on other types are also absent or disabled. We would like to make
+them available in the future as soon as possible, and <a href="getting-started/../contribution-guide/index.html">we invite you to 
+contribute</a> and help us in achieving this goal!</p>
 <h1><a class="header" href="#creating-a-browser-app" id="creating-a-browser-app">Creating a Browser App</a></h1>
 <p>Currently, <a href="https://tokamak.dev">the Tokamak UI framework</a> is one of the easiest ways to build a
 browser app with SwiftWasm. It tries to be compatible with <a href="https://developer.apple.com/xcode/swiftui/">the SwiftUI
@@ -405,42 +470,6 @@ npm</a>, and a SwiftPM package for the API on the
 Swift side. To integrate the JavaScript runtime automatically into your app, we recommend following
 the corresponding <a href="getting-started/./browser-app.html">guide for browser apps in our book</a>.</p>
 <p>You can get more detailed JavaScriptKit documentation <a href="https://swiftwasm.github.io/JavaScriptKit/">here</a>.</p>
-<h1><a class="header" href="#use-swift-foundation-in-your-code" id="use-swift-foundation-in-your-code">Use Swift Foundation in your code</a></h1>
-<p><a href="https://swift.org/core-libraries/#foundation">The Foundation core library</a> is available in
-SwiftWasm, but in a limited capacity. The main reason is that <a href="https://swift.org/core-libraries/#libdispatch">the Dispatch core
-library</a> is unavailable due to <a href="https://github.com/swiftwasm/swift/issues/1887">the lack of 
-standardized multi-threading support</a> in WebAssembly
-and SwiftWasm itself. Many Foundation APIs rely on the presence of Dispatch under the hood,
-specifically file system access and threading helpers. A few other types are unavailable in browsers
-or aren't standardized in WASI hosts, such as support for sockets and low-level networking, or
-support for time zone files, and they had to be disabled. These types are therefore absent in
-SwiftWasm Foundation:</p>
-<ul>
-<li><code>FoundationNetworking</code> types, such as <code>URLSession</code> and related APIs</li>
-<li><code>FileManager</code></li>
-<li><code>Host</code></li>
-<li><code>Notification</code></li>
-<li><code>NotificationQueue</code></li>
-<li><code>NSKeyedArchiver</code></li>
-<li><code>NSKeyedArchiverHelpers</code></li>
-<li><code>NSKeyedCoderOldStyleArray</code></li>
-<li><code>NSKeyedUnarchiver</code></li>
-<li><code>NSNotification</code></li>
-<li><code>NSSpecialValue</code></li>
-<li><code>Port</code></li>
-<li><code>PortMessage</code></li>
-<li><code>Process</code></li>
-<li><code>ProcessInfo</code></li>
-<li><code>PropertyListEncoder</code></li>
-<li><code>RunLoop</code></li>
-<li><code>Stream</code></li>
-<li><code>Thread</code></li>
-<li><code>Timer</code></li>
-<li><code>UserDefaults</code></li>
-</ul>
-<p>Related functions and properties on other types are also absent or disabled. We would like to make
-them available in the future as soon as possible, and <a href="getting-started/../contribution-guide/index.html">we invite you to 
-contribute</a> and help us in achieving this goal!</p>
 <h1><a class="header" href="#testing-your-app" id="testing-your-app">Testing your app</a></h1>
 <p>You can write a test suite for your SwiftWasm app or library, or run an existing test suite
 written for <code>XCTest</code> if you port existing code to SwiftWasm. Your project has to have a
@@ -515,27 +544,6 @@ using <code>SwiftPM</code>. After your tests are built, you can use a WASI-compa
 <p>As you can see, the produced test binary starts with the name of your package followed by
 <code>PackageTests.xctest</code>. It is located in the <code>.build/debug</code> subdirectory, or in the <code>.build/release</code>
 subdirectory when you build in release mode.</p>
-<h1><a class="header" href="#wasilibc-module" id="wasilibc-module"><code>WASILibc</code> module</a></h1>
-<p>When porting existing projects from other platforms to SwiftWasm you might stumble upon code that
-relies on importing a platform-specific <a href="https://en.wikipedia.org/wiki/C_standard_library">C
-library</a> module directly. It looks like <code>import Glibc</code> on Linux, or <code>import Darwin</code> on Apple platforms. Fortunately, most of the standard C library
-APIs are available when using SwiftWasm, you just need to use <code>import WASILibc</code> to get access to it.
-Most probably you want to preserve compatibility with other platforms, thus your imports would look
-like this:</p>
-<pre><code class="language-swift">#if canImport(Darwin)
-import Darwin
-#elseif canImport(Glibc)
-import Glibc
-#elseif canImport(WASILibc)
-import WASILibc
-#endif
-</code></pre>
-<h2><a class="header" href="#limitations" id="limitations">Limitations</a></h2>
-<p>WebAssembly and <a href="https://wasi.dev/">WASI</a> provide a constrained environment, which currently does
-not directly support multi-threading, or filesystem access in the browser. Thus, you should not
-expect these APIs to work when importing <code>WASILibc</code>. Please be aware of these limitations when
-porting your code, which also has an impact on what <a href="getting-started//getting-started/foundation.html">can be supported in the Swift
-Foundation</a> at the moment.</p>
 <h1><a class="header" href="#examples" id="examples">Examples</a></h1>
 <p>This section shows you example usage of our toolchain.</p>
 <h1><a class="header" href="#importing-a-function-from-host-environments" id="importing-a-function-from-host-environments">Importing a function from host environments</a></h1>
