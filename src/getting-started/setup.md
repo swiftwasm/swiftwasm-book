@@ -6,13 +6,13 @@ To install Swift for WebAssembly toolchain, download one of the packages below a
 
 ### SwiftWasm 5.4
 
-Tag: [swift-wasm-5.4.0-RELEASE](https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.4.0-RELEASE)
+Tag: [swift-wasm-5.5.0-RELEASE](https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.5.0-RELEASE)
 
 | Download | Docker Tag |
 |:------------------:|:----------:|
-| [macOS](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.4.0-RELEASE/swift-wasm-5.4.0-RELEASE-macos_x86_64.pkg) | Unavailable |
-| [Ubuntu 18.04](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.4.0-RELEASE/swift-wasm-5.4.0-RELEASE-ubuntu18.04_x86_64.tar.gz) | [5.4, 5.4-bionic, bionic, latest](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
-| [Ubuntu 20.04](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.4.0-RELEASE/swift-wasm-5.4.0-RELEASE-ubuntu20.04_x86_64.tar.gz) | [5.4-focal, focal](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
+| [macOS](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.5.0-RELEASE/swift-wasm-5.5.0-RELEASE-macos_x86_64.pkg) | Unavailable |
+| [Ubuntu 18.04](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.5.0-RELEASE/swift-wasm-5.5.0-RELEASE-ubuntu18.04_x86_64.tar.gz) | [5.5, 5.5-bionic, bionic, latest](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
+| [Ubuntu 20.04](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.5.0-RELEASE/swift-wasm-5.5.0-RELEASE-ubuntu20.04_x86_64.tar.gz) | [5.5-focal, focal](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
 
 
 You can download the latest development snapshot from [the Releases page](https://github.com/swiftwasm/swift/releases)
