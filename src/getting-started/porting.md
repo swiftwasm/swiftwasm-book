@@ -63,7 +63,7 @@ SwiftWasm Foundation:
 * `Port`
 * `PortMessage`
 * `Process`
-* `ProcessInfo`'s `processName`, `userName`, and `fullUserName`
+* `ProcessInfo` (Partially available since 5.7)
 * `PropertyListEncoder`
 * `RunLoop`
 * `Stream`
