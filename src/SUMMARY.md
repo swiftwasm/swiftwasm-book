@@ -10,6 +10,7 @@
     - [JavaScript interoperation](getting-started/javascript-interop.md)
     - [Testing your app](getting-started/testing.md)
     - [Debugging](getting-started/debugging.md)
+    - [Troubleshooting](getting-started/troubleshooting.md)
 - [Examples](examples/index.md)
     - [Importing function](examples/importing-function.md)
     - [Exporting function](examples/exporting-function.md)
