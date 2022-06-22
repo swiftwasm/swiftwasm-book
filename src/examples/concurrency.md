@@ -6,7 +6,7 @@ However, there are still two global task executors available in SwiftWasm.
 ## Cooperative Task Executor
 
 `Cooperative Task Executor` is the default task executor in SwiftWasm. It is a simple single-threaded cooperative task executor implemented in [Swift Concurrency library](https://github.com/apple/swift/blob/0c67ce64874d83b2d4f8d73b899ee58f2a75527f/stdlib/public/Concurrency/CooperativeGlobalExecutor.inc).
-If you are not familiar with "Cooperative" in concurrent programming term, see [its definition for more detail](https://en.wikipedia.org/wiki/Cooperative_multitasking).
+If you are not familiar with "Cooperative" in concurrent programming term, see [its definition for more details](https://en.wikipedia.org/wiki/Cooperative_multitasking).
 
 This executor has an *event loop* that dispatches tasks until no more tasks are enqueued, and exits immediately after all tasks are dispatched.
 Note that this executor won't yield control to the host environment during execution, so any host's async operation cannot call back to the Wasm execution.
