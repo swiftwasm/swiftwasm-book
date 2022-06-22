@@ -32,7 +32,7 @@ struct Main {
 `JavaScript Event Loop-based Task Executor` is a task executor that cooperates with the JavaScript's event loop. It is provided by [`JavaScriptKit`](https://github.com/swiftwasm/JavaScriptKit), and you need to activate it explicitly by calling a predefined `JavaScriptEventLoop.installGlobalExecutor()` function (see below for more details).
 
 This executor also has its own *event loop* that dispatches tasks until no more tasks are enqueued synchronously.
-It yields control to the JavaScript side every after all pending tasks are dispatched, so JavaScript program can call back to the executed Wasm module.
+It yields control to the JavaScript side after all pending tasks are dispatched, so JavaScript program can call back to the executed Wasm module.
 After a task is resumed by callbacks from JavaScript, the executor starts its event loop again in the next microtask tick.
 
 To enable this executor, you need to use `JavaScriptEventLoop` module, which is provided as a part of `JavaScriptKit` package.
