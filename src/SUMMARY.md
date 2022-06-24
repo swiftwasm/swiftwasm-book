@@ -8,6 +8,7 @@
     - [Porting code from other platforms](getting-started/porting.md)
     - [Creating a browser app](getting-started/browser-app.md)
     - [JavaScript interoperation](getting-started/javascript-interop.md)
+    - [Concurrency](getting-started/concurrency.md)
     - [Testing your app](getting-started/testing.md)
     - [Debugging](getting-started/debugging.md)
 - [Examples](examples/index.md)
