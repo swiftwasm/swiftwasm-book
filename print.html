@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.7.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="getting-started/debugging.html"><strong aria-hidden="true">2.8.</strong> Debugging</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/concurrency.html"><strong aria-hidden="true">2.7.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.8.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -471,6 +471,72 @@ npm</a>, and a SwiftPM package for the API on the
 Swift side. To integrate the JavaScript runtime automatically into your app, we recommend following
 the corresponding <a href="getting-started/./browser-app.html">guide for browser apps in our book</a>.</p>
 <p>You can get more detailed JavaScriptKit documentation <a href="https://swiftwasm.github.io/JavaScriptKit/">here</a>.</p>
+<h1><a class="header" href="#running-async-functions-in-webassembly" id="running-async-functions-in-webassembly">Running <code>async</code> functions in WebAssembly</a></h1>
+<p>On macOS, iOS, and Linux, <code>libdispatch</code>-based executor is used by default, but <code>libdispatch</code> is not supported in single-threaded WebAssembly environment.
+However, there are still two global task executors available in SwiftWasm.</p>
+<h2><a class="header" href="#cooperative-task-executor" id="cooperative-task-executor">Cooperative Task Executor</a></h2>
+<p><code>Cooperative Task Executor</code> is the default task executor in SwiftWasm. It is a simple single-threaded cooperative task executor implemented in <a href="https://github.com/apple/swift/blob/0c67ce64874d83b2d4f8d73b899ee58f2a75527f/stdlib/public/Concurrency/CooperativeGlobalExecutor.inc">Swift Concurrency library</a>.
+If you are not familiar with &quot;Cooperative&quot; in concurrent programming term, see <a href="https://en.wikipedia.org/wiki/Cooperative_multitasking">its definition for more details</a>.</p>
+<p>This executor has an <em>event loop</em> that dispatches tasks until no more tasks are enqueued, and exits immediately after all tasks are dispatched.
+Note that this executor won't yield control to the host environment during execution, so any host's async operation cannot call back to the Wasm execution.</p>
+<p>This executor is suitable for WASI command line tools, or host-independent standalone applications.</p>
+<pre><code class="language-swift">// USAGE
+// $ swiftc -target wasm32-unknown-wasi -parse-as-library main.swift -o main.wasm
+// $ wasmtime main.wasm
+@main
+struct Main {
+    static func main() async throws {
+        print(&quot;Sleeping for 1 second... 😴&quot;)
+        try await Task.sleep(nanoseconds: 1_000_000_000)
+        print(&quot;Wake up! 😁&quot;)
+    }
+}
+</code></pre>
+<h2><a class="header" href="#javascript-event-loop-based-task-executor" id="javascript-event-loop-based-task-executor">JavaScript Event Loop-based Task Executor</a></h2>
+<p><code>JavaScript Event Loop-based Task Executor</code> is a task executor that cooperates with the JavaScript's event loop. It is provided by <a href="https://github.com/swiftwasm/JavaScriptKit"><code>JavaScriptKit</code></a>, and you need to activate it explicitly by calling a predefined <code>JavaScriptEventLoop.installGlobalExecutor()</code> function (see below for more details).</p>
+<p>This executor also has its own <em>event loop</em> that dispatches tasks until no more tasks are enqueued synchronously.
+It yields control to the JavaScript side after all pending tasks are dispatched, so JavaScript program can call back to the executed Wasm module.
+After a task is resumed by callbacks from JavaScript, the executor starts its event loop again in the next microtask tick.</p>
+<p>To enable this executor, you need to use <code>JavaScriptEventLoop</code> module, which is provided as a part of <code>JavaScriptKit</code> package.</p>
+<ol start="0">
+<li>Ensure that you added <code>JavaScriptKit</code> dependency to your <code>Package.swift</code></li>
+<li>Add <code>JavaScriptEventLoop</code> dependency to your targets that use this executor</li>
+</ol>
+<pre><code class="language-swift">.product(name: &quot;JavaScriptEventLoop&quot;, package: &quot;JavaScriptKit&quot;),
+</code></pre>
+<ol start="2">
+<li>Import <code>JavaScriptEventLoop</code> and call <code>JavaScriptEventLoop.installGlobalExecutor()</code> before spawning any tasks to activate the executor instead of the default cooperative executor.</li>
+</ol>
+<p>Note that this executor is only available on JavaScript host environment.</p>
+<p>See also <a href="https://github.com/swiftwasm/JavaScriptKit/#asyncawait"><code>JavaScriptKit</code> package <code>README</code></a> for more details.</p>
+<pre><code class="language-swift">import JavaScriptEventLoop
+import JavaScriptKit
+
+JavaScriptEventLoop.installGlobalExecutor()
+
+let document = JSObject.global.document
+var asyncButtonElement = document.createElement(&quot;button&quot;)
+_ = document.body.appendChild(asyncButtonElement)
+
+asyncButtonElement.innerText = &quot;Fetch Zen&quot;
+func printZen() async throws {
+    let fetch = JSObject.global.fetch.function!
+    let response = try await JSPromise(fetch(&quot;https://api.github.com/zen&quot;).object!)!.value
+    let text = try await JSPromise(response.text().object!)!.value
+    print(text)
+}
+asyncButtonElement.onclick = .object(JSClosure { _ in
+    Task {
+        do {
+            try await printZen()
+        } catch {
+            print(error)
+        }
+    }
+
+    return .undefined
+})
+</code></pre>
 <h1><a class="header" href="#testing-your-app" id="testing-your-app">Testing your app</a></h1>
 <p>You can write a test suite for your SwiftWasm app or library, or run an existing test suite
 written for <code>XCTest</code> if you port existing code to SwiftWasm. Your project has to have a
