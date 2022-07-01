@@ -11,11 +11,21 @@ func add(_ lhs: Int, _ rhs: Int) -> Int {
 
 You need to compile the Swift code with linker option `--export`.
 
+To call the exported function as a library multiple times, you need to:
+
+1. Compile it as a [*WASI reactor* execution model](https://github.com/WebAssembly/WASI/blob/bac366c8aeb69cacfea6c4c04a503191bf1cede1/legacy/application-abi.md).
+   The default execution model is *command*, so you need to pass `-mexec-model=reactor` to linker.
+2. Call `_initialize` function before interacting with the instance.
+
+If your code has any top-level code, you need to export `main` function as well, and call it after `_initialize` function.
+
 ```bash
 $ swiftc \
     -target wasm32-unknown-wasi \
     lib.swift -o lib.wasm \
-    -Xlinker --export=add
+    -Xlinker --export=add \
+    -Xswiftc -Xclang-linker -Xswiftc -mexec-model=reactor \
+    -Xlinker --export=main # Optional
 ```
 
 Then, you can use the exported function from host environment.
@@ -43,9 +53,13 @@ const main = async () => {
   const wasmBinary = await readFile("lib.wasm");
 
   // Instantiate the WebAssembly file
-  let { instance } = await WebAssembly.instantiate(wasmBinary, {
+  const { instance } = await WebAssembly.instantiate(wasmBinary, {
     wasi_snapshot_preview1: wasi.wasiImport,
   });
+  // Initialize the instance by following WASI reactor ABI
+  instance.exports._initialize();
+  // (Optional) Run the top-level code
+  instance.exports.main();
   // Get the exported function
   const addFn = instance.exports.add;
   console.log("2 + 3 = " + addFn(2, 3))
