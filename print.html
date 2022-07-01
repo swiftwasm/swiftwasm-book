@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/concurrency.html"><strong aria-hidden="true">2.7.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.8.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/concurrency.html"><strong aria-hidden="true">2.7.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.8.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="getting-started/troubleshooting.html"><strong aria-hidden="true">2.10.</strong> Troubleshooting</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -634,6 +634,34 @@ can help in the investigation if the debugged binary does not rely on integratio
 We recommend splitting your packages into separate executable targets, most of which shouldn't 
 assume the availability of JavaScript to make debugging easier.</p>
 <p><img src="https://raw.githubusercontent.com/kateinoigakukun/wasminspect/master/assets/demo.gif" alt="demo" /></p>
+<h1><a class="header" href="#troubleshooting" id="troubleshooting">Troubleshooting</a></h1>
+<p>These are some common issues you may run into while using SwiftWasm.</p>
+<p>If you are having trouble that is not listed here, try searching for it in the <a href="https://github.com/swiftwasm/swift/issues">SwiftWasm issue tracker</a>.
+If you are still having trouble, please file an issue or contact us at <a href="https://discord.gg/ashJW8T8yp">the community Discord server</a>.</p>
+<h2><a class="header" href="#runtimeerror-memory-access-out-of-bounds" id="runtimeerror-memory-access-out-of-bounds"><code>RuntimeError: memory access out of bounds</code></a></h2>
+<p>If you encounter this error, there are 3 possible causes:</p>
+<h3><a class="header" href="#1-you-are-trying-to-access-invalid-memory-in-your-code" id="1-you-are-trying-to-access-invalid-memory-in-your-code">1. You are trying to access invalid memory in your code</a></h3>
+<p>In this case, you need to make sure which memory operations are invalid in your code by <code>UnsafePointer</code> or C code.</p>
+<h3><a class="header" href="#2-you-missed-program-initialization-defined-in-a-hrefhttpsgithubcomwebassemblywasiblobbac366c8aeb69cacfea6c4c04a503191bf1cede1legacyapplication-abimdwasi-application-abia" id="2-you-missed-program-initialization-defined-in-a-hrefhttpsgithubcomwebassemblywasiblobbac366c8aeb69cacfea6c4c04a503191bf1cede1legacyapplication-abimdwasi-application-abia">2. You missed program initialization defined in <a href="https://github.com/WebAssembly/WASI/blob/bac366c8aeb69cacfea6c4c04a503191bf1cede1/legacy/application-abi.md">WASI Application ABI</a>.</a></h3>
+<p>If your application is used as a library, you need to follow <a href="https://github.com/WebAssembly/WASI/blob/bac366c8aeb69cacfea6c4c04a503191bf1cede1/legacy/application-abi.md"><em>WASI reactor ABI</em></a>.</p>
+<p>Please make sure that you followed it by reviewing the <a href="getting-started/../examples/exporting-function.html">Exporting function guide</a></p>
+<h3><a class="header" href="#3-stack-overflow-is-occurring" id="3-stack-overflow-is-occurring">3. Stack overflow is occurring.</a></h3>
+<p>If you are using <code>--stack-first</code> linker option (carton uses it by default), you can face <code>RuntimeError: memory access out of bounds</code> error due to stack overflow.</p>
+<p>You have two options to solve this issue:</p>
+<ol>
+<li>
+<p>Avoid recursive calls if possible.</p>
+</li>
+<li>
+<p>Extend the stack size by linker option <code>-z stack-size=&lt;size&gt;</code>. <a href="https://github.com/llvm/llvm-project/blob/fabe915705472e2c06ed1aa9a90620462594e82f/llvm/include/llvm/BinaryFormat/Wasm.h#L32">The default stack size is 64KB</a></p>
+<pre><code>swift build --triple wasm32-unknown-wasi -Xlinker -z -Xlinker stack-size=131072
+</code></pre>
+</li>
+<li>
+<p>Identify which function consumes a lof of stack space by some tools like <a href="https://github.com/kateinoigakukun/wasm-stack-consumer">wasm-stack-consumer</a></p>
+</li>
+</ol>
+<p>See also: <a href="https://bugs.llvm.org/show_bug.cgi?id=37181">LLVM Bugzilla – wasm32: Allow placing the stack before global data</a></p>
 <h1><a class="header" href="#examples" id="examples">Examples</a></h1>
 <p>This section shows you example usage of our toolchain.</p>
 <h1><a class="header" href="#importing-a-function-from-host-environments" id="importing-a-function-from-host-environments">Importing a function from host environments</a></h1>
@@ -730,10 +758,19 @@ func add(_ lhs: Int, _ rhs: Int) -&gt; Int {
 }
 </code></pre>
 <p>You need to compile the Swift code with linker option <code>--export</code>.</p>
+<p>To call the exported function as a library multiple times, you need to:</p>
+<ol>
+<li>Compile it as a <a href="https://github.com/WebAssembly/WASI/blob/bac366c8aeb69cacfea6c4c04a503191bf1cede1/legacy/application-abi.md"><em>WASI reactor</em> execution model</a>.
+The default execution model is <em>command</em>, so you need to pass <code>-mexec-model=reactor</code> to linker.</li>
+<li>Call <code>_initialize</code> function before interacting with the instance.</li>
+</ol>
+<p>If your code has any top-level code, you need to export <code>main</code> function as well, and call it after <code>_initialize</code> function.</p>
 <pre><code class="language-bash">$ swiftc \
     -target wasm32-unknown-wasi \
     lib.swift -o lib.wasm \
-    -Xlinker --export=add
+    -Xlinker --export=add \
+    -Xswiftc -Xclang-linker -Xswiftc -mexec-model=reactor \
+    -Xlinker --export=main # Optional
 </code></pre>
 <p>Then, you can use the exported function from host environment.</p>
 <pre><code class="language-javascript">const WASI = require(&quot;@wasmer/wasi&quot;).WASI;
@@ -758,9 +795,13 @@ const main = async () =&gt; {
   const wasmBinary = await readFile(&quot;lib.wasm&quot;);
 
   // Instantiate the WebAssembly file
-  let { instance } = await WebAssembly.instantiate(wasmBinary, {
+  const { instance } = await WebAssembly.instantiate(wasmBinary, {
     wasi_snapshot_preview1: wasi.wasiImport,
   });
+  // Initialize the instance by following WASI reactor ABI
+  instance.exports._initialize();
+  // (Optional) Run the top-level code
+  instance.exports.main();
   // Get the exported function
   const addFn = instance.exports.add;
   console.log(&quot;2 + 3 = &quot; + addFn(2, 3))
