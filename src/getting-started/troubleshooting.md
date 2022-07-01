@@ -2,7 +2,7 @@
 
 These are some common issues you may run into while using SwiftWasm.
 
-If you are having trouble that is not listed here, try searching for it in the [SwiftWasm issue](https://github.com/swiftwasm/swift/issues).
+If you are having trouble that is not listed here, try searching for it in the [SwiftWasm issue tracker](https://github.com/swiftwasm/swift/issues).
 If you are still having trouble, please file an issue or contact us at [the community Discord server](https://discord.gg/ashJW8T8yp).
 
 
