@@ -2,7 +2,7 @@
 
 - [Introduction](README.md)
 - [Getting Started](getting-started/index.md)
-    - [Setup](getting-started/setup.md)
+    - [Installation](getting-started/setup.md)
     - [Hello, World](getting-started/hello-world.md)
     - [Using Swift Package Manager](getting-started/swift-package.md)
     - [Porting code from other platforms](getting-started/porting.md)
@@ -11,6 +11,7 @@
     - [Concurrency](getting-started/concurrency.md)
     - [Testing your app](getting-started/testing.md)
     - [Debugging](getting-started/debugging.md)
+    - [Troubleshooting](getting-started/troubleshooting.md)
 - [Examples](examples/index.md)
     - [Importing function](examples/importing-function.md)
     - [Exporting function](examples/exporting-function.md)
