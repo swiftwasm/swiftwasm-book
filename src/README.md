@@ -1,6 +1,8 @@
 # Introduction
 
-Welcome to the SwiftWasm Documentation! To get started visit the [table of contents](./SUMMARY.md).
+Welcome to the SwiftWasm Documentation! 
+
+To get started visit the [table of contents](./SUMMARY.md), or the compiled docs at [book.swiftwasm.org](book.swiftwasm.org).
 
 [SwiftWasm is an open source project to support the WebAssembly target for Swift.](https://github.com/swiftwasm)
 
