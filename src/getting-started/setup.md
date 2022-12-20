@@ -4,16 +4,16 @@ To install Swift for WebAssembly toolchain, download one of the packages below a
 
 ## Releases
 
-### SwiftWasm 5.6
+### SwiftWasm 5.7
 
-Tag: [swift-wasm-5.6.0-RELEASE](https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.6.0-RELEASE)
+Tag: [swift-wasm-5.7.1-RELEASE](https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.7.1-RELEASE)
 
 | Download | Docker Tag |
 |:------------------:|:----------:|
-| [macOS arm64](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.6.0-RELEASE/swift-wasm-5.6.0-RELEASE-macos_arm64.pkg) | Unavailable |
-| [macOS x86](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.6.0-RELEASE/swift-wasm-5.6.0-RELEASE-macos_x86_64.pkg) | Unavailable |
-| [Ubuntu 18.04 x86](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.6.0-RELEASE/swift-wasm-5.6.0-RELEASE-ubuntu18.04_x86_64.tar.gz) | [5.6, 5.6-bionic, bionic, latest](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
-| [Ubuntu 20.04 x86](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.6.0-RELEASE/swift-wasm-5.6.0-RELEASE-ubuntu20.04_x86_64.tar.gz) | [5.6-focal, focal](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
+| [macOS arm64](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.7.1-RELEASE/swift-wasm-5.7.1-RELEASE-macos_arm64.pkg) | Unavailable |
+| [macOS x86](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.7.1-RELEASE/swift-wasm-5.7.1-RELEASE-macos_x86_64.pkg) | Unavailable |
+| [Ubuntu 18.04 x86](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.7.1-RELEASE/swift-wasm-5.7.1-RELEASE-ubuntu18.04_x86_64.tar.gz) | [5.7, 5.7-bionic, bionic, latest](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
+| [Ubuntu 20.04 x86](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.7.1-RELEASE/swift-wasm-5.7.1-RELEASE-ubuntu20.04_x86_64.tar.gz) | [5.7-focal, focal](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
 
 
 You can download the latest development snapshot from [the Releases page](https://github.com/swiftwasm/swift/releases)
@@ -33,7 +33,7 @@ An Xcode toolchain (`.xctoolchain`) includes a copy of the compiler, linker, and
 
 ### Installation
 
-1. [Download the latest package release](https://book.swiftwasm.org/getting-started/setup.html#swiftwasm-56) according to your CPU architecture (arm64 for [Apple Silicon Macs](https://support.apple.com/en-us/HT211814), x86 for Intel Macs).
+1. [Download the latest package release](https://book.swiftwasm.org/getting-started/setup.html#swiftwasm-57) according to your CPU architecture (arm64 for [Apple Silicon Macs](https://support.apple.com/en-us/HT211814), x86 for Intel Macs).
 2. Run the package installer, which will install an Xcode toolchain into `/Library/Developer/Toolchains/`.
 3. To use the Swift toolchain with command-line tools, use `xcrun --toolchain swiftwasm` or add the Swift toolchain to your path as follows:
 
@@ -45,11 +45,11 @@ export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PA
 
 ```bash
 $ swift --version
-SwiftWasm Swift version 5.6 (swiftlang-5.6.0)
-Target: x86_64-apple-darwin20.6.0
+SwiftWasm Swift version 5.7.1 (swiftlang-5.7.1)
+Target: x86_64-apple-darwin21.6.0
 ```
 
-> Warning: `xcrun` finds executable binary based on `--toolchain` option or `TOOLCHAINS` environment variable, but it also sets `SDKROOT` as host target SDK (e.g. `MacOSX.sdk`). So you need to specify `-sdk` option as `/Library/Developer/Toolchains/swift-wasm-5.6.0-RELEASE.xctoolchain/usr/share/wasi-sysroot` when launching `swiftc` from xcrun. `swift build` or other SwiftPM commands automatically find SDK path based on target triple, so they don't require to specify it.
+> Warning: `xcrun` finds executable binary based on `--toolchain` option or `TOOLCHAINS` environment variable, but it also sets `SDKROOT` as host target SDK (e.g. `MacOSX.sdk`). So you need to specify `-sdk` option as `/Library/Developer/Toolchains/swift-wasm-5.7.1-RELEASE.xctoolchain/usr/share/wasi-sysroot` when launching `swiftc` from xcrun. `swift build` or other SwiftPM commands automatically find SDK path based on target triple, so they don't require to specify it.
 
 
 ## Linux
