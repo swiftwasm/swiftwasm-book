@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/concurrency.html"><strong aria-hidden="true">2.7.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="../getting-started/testing.html"><strong aria-hidden="true">2.8.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="../getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="../getting-started/troubleshooting.html"><strong aria-hidden="true">2.10.</strong> Troubleshooting</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html" class="active"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li><li class="chapter-item expanded "><a href="../contribution-guide/tips.html"><strong aria-hidden="true">4.2.</strong> Tips</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/concurrency.html"><strong aria-hidden="true">2.7.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="../getting-started/testing.html"><strong aria-hidden="true">2.8.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="../getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="../getting-started/troubleshooting.html"><strong aria-hidden="true">2.10.</strong> Troubleshooting</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html" class="active"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -160,41 +160,43 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#how-to-build-toolchain" id="how-to-build-toolchain">How to build toolchain</a></h1>
+<p>This document describes how to build the toolchain for WebAssembly.
+This is just a quick guide, so if you want to know more about the toolchain, it might be good entry point to read <a href="https://github.com/swiftwasm/swift/blob/swiftwasm/.github/workflows/build-toolchain.yml">continuous integration scripts</a>.
+Or you can ask questions in GitHub issues or SwiftWasm Discord server (see <a href="https://swiftwasm.org">the official website</a> for the link).</p>
 <h2><a class="header" href="#1-checkout-the-project-source-code" id="1-checkout-the-project-source-code">1. Checkout the project source code.</a></h2>
 <pre><code class="language-sh">$ mkdir swiftwasm-source
 $ cd swiftwasm-source
 $ git clone https://github.com/swiftwasm/swift.git
-$ ./swift/utils/update-checkout --scheme wasm --clone
+$ ./swift/utils/update-checkout --clone --scheme wasm
 </code></pre>
 <h2><a class="header" href="#2-install-required-dependencies" id="2-install-required-dependencies">2. Install required dependencies</a></h2>
-<p>Before building Swift, please install required dependencies.</p>
-<pre><code class="language-sh"># On macOS
-$ brew install cmake ninja llvm sccache wasmer
-$ ./utils/webassembly/macos/install-dependencies.sh
-# On Linux
-$ ./utils/webassembly/linux/install-dependencies.sh
+<ol>
+<li><a href="https://github.com/apple/swift/blob/main/docs/HowToGuides/GettingStarted.md#installing-dependencies">Please follow the upstream instruction</a></li>
+<li>Download WebAssembly specific build toolchain</li>
+</ol>
+<pre><code class="language-sh">$ ./swift/utils/webassembly/install-build-sdk.sh
 </code></pre>
-<h2><a class="header" href="#3-build-using-custom-preset-options" id="3-build-using-custom-preset-options">3. Build using custom preset options</a></h2>
-<p>We support both Linux and macOS to build Swift. You need to select the preset name, <code>sccache</code> path and LLVM tools directory.</p>
-<pre><code class="language-sh"># On macOS
-$ ./utils/build-script \
-        --preset=webassembly-macos-target \
-        --preset-file ./utils/webassembly/build-presets.ini  \
-        SOURCE_PATH=$(dirname $(pwd)) \
-        LLVM_BIN_DIR=/usr/local/opt/llvm/bin \
-        C_CXX_LAUNCHER=$(which sccache)
-# On Linux
-$ ./utils/build-script \
-        --preset=webassembly-linux-target \
-        --preset-file ./utils/webassembly/build-presets.ini  \
-        SOURCE_PATH=$(dirname $(pwd)) \
-        LLVM_BIN_DIR=/usr/local/opt/llvm/bin \
-        C_CXX_LAUNCHER=$(which sccache)
+<ol start="3">
+<li>(If you want to run test suite) Install <a href="https://wasmer.io/"><code>Wasmer</code></a></li>
+</ol>
+<h2><a class="header" href="#3-build-the-toolchain" id="3-build-the-toolchain">3. Build the toolchain</a></h2>
+<p><code>./swift/utils/webassembly/build-toolchain.sh</code> will build:</p>
+<ol>
+<li>Swift compiler that can compile Swift code to WebAssembly support</li>
+<li>Swift standard library and core libraries for WebAssembly</li>
+</ol>
+<h2><a class="header" href="#build-on-docker" id="build-on-docker">Build on Docker</a></h2>
+<p>You can also build the toolchain on Docker image used in CI.</p>
+<pre><code class="language-sh">$ docker volume create oss-swift-package
+$ docker run --name swiftwasm-ci-buildbot \
+    -dit \
+    -w /home/build-user/ \
+    -v $PWD/swift:/home/build-user/swift \
+    -v oss-swift-package:/home/build-user \
+    ghcr.io/swiftwasm/swift-ci:main-ubuntu-20.04
+$ docker exec swiftwasm-ci-buildbot ./swift/utils/webassembly/ci.sh
+$ docker cp swiftwasm-ci-buildbot:/home/build-user/swift-wasm-DEVELOPMENT-SNAPSHOT-*-ubuntu-20.04.tar.gz .
 </code></pre>
-<p>Or if you want to build whole toolchain, please use <code>./utils/webassembly/build-toolchain.sh</code>. This script builds compiler, Swift Standard Library for host environment (e.g. macOS or Linux) and target environment (<code>wasm32-unknown-wasi</code>), Foundation and other packages. So it takes longer time than the above script.</p>
-<pre><code class="language-bash">$ ./utils/webassembly/build-toolchain.sh
-</code></pre>
-<p>If you want to get more information about build system, please feel free to ask @kateinoigakukun on Twitter or GitHub.</p>
 
                     </main>
 
@@ -206,10 +208,6 @@ $ ./utils/build-script \
                             </a>
                         
 
-                        
-                            <a rel="next" href="../contribution-guide/tips.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -224,10 +222,6 @@ $ ./utils/build-script \
                     </a>
                 
 
-                
-                    <a rel="next" href="../contribution-guide/tips.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
