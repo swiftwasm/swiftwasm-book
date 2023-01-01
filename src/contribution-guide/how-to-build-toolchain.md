@@ -1,52 +1,50 @@
 # How to build toolchain
 
+This document describes how to build the toolchain for WebAssembly.
+This is just a quick guide, so if you want to know more about the toolchain, it might be good entry point to read [continuous integration scripts](https://github.com/swiftwasm/swift/blob/swiftwasm/.github/workflows/build-toolchain.yml).
+Or you can ask questions in GitHub issues or SwiftWasm Discord server (see [the official website](https://swiftwasm.org) for the link).
+
 ## 1. Checkout the project source code.
 
 ```sh
 $ mkdir swiftwasm-source
 $ cd swiftwasm-source
 $ git clone https://github.com/swiftwasm/swift.git
-$ ./swift/utils/update-checkout --scheme wasm --clone
+$ ./swift/utils/update-checkout --clone --scheme wasm
 ```
 
 ## 2. Install required dependencies
 
-Before building Swift, please install required dependencies.
+1. [Please follow the upstream instruction](https://github.com/apple/swift/blob/main/docs/HowToGuides/GettingStarted.md#installing-dependencies)
+2. Download WebAssembly specific build toolchain
 
 ```sh
-# On macOS
-$ brew install cmake ninja llvm sccache wasmer
-$ ./utils/webassembly/macos/install-dependencies.sh
-# On Linux
-$ ./utils/webassembly/linux/install-dependencies.sh
+$ ./swift/utils/webassembly/install-build-sdk.sh
 ```
 
-## 3. Build using custom preset options
+3. (If you want to run test suite) Install [`Wasmer`](https://wasmer.io/)
 
-We support both Linux and macOS to build Swift. You need to select the preset name, `sccache` path and LLVM tools directory.
+## 3. Build the toolchain
 
+`./swift/utils/webassembly/build-toolchain.sh` will build:
+
+1. Swift compiler that can compile Swift code to WebAssembly support
+2. Swift standard library and core libraries for WebAssembly
+
+
+## Build on Docker
+
+You can also build the toolchain on Docker image used in CI.
 
 ```sh
-# On macOS
-$ ./utils/build-script \
-        --preset=webassembly-macos-target \
-        --preset-file ./utils/webassembly/build-presets.ini  \
-        SOURCE_PATH=$(dirname $(pwd)) \
-        LLVM_BIN_DIR=/usr/local/opt/llvm/bin \
-        C_CXX_LAUNCHER=$(which sccache)
-# On Linux
-$ ./utils/build-script \
-        --preset=webassembly-linux-target \
-        --preset-file ./utils/webassembly/build-presets.ini  \
-        SOURCE_PATH=$(dirname $(pwd)) \
-        LLVM_BIN_DIR=/usr/local/opt/llvm/bin \
-        C_CXX_LAUNCHER=$(which sccache)
+$ docker volume create oss-swift-package
+$ docker run --name swiftwasm-ci-buildbot \
+    -dit \
+    -w /home/build-user/ \
+    -v $PWD/swift:/home/build-user/swift \
+    -v oss-swift-package:/home/build-user \
+    ghcr.io/swiftwasm/swift-ci:main-ubuntu-20.04
+$ docker exec swiftwasm-ci-buildbot ./swift/utils/webassembly/ci.sh
+$ docker cp swiftwasm-ci-buildbot:/home/build-user/swift-wasm-DEVELOPMENT-SNAPSHOT-*-ubuntu-20.04.tar.gz .
 ```
 
-Or if you want to build whole toolchain, please use `./utils/webassembly/build-toolchain.sh`. This script builds compiler, Swift Standard Library for host environment (e.g. macOS or Linux) and target environment (`wasm32-unknown-wasi`), Foundation and other packages. So it takes longer time than the above script.
-
-```bash
-$ ./utils/webassembly/build-toolchain.sh
-```
-
-If you want to get more information about build system, please feel free to ask @kateinoigakukun on Twitter or GitHub.
