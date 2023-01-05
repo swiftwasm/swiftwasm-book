@@ -24,7 +24,7 @@ $ swiftc \
     -target wasm32-unknown-wasi \
     lib.swift -o lib.wasm \
     -Xlinker --export=add \
-    -Xswiftc -Xclang-linker -Xswiftc -mexec-model=reactor \
+    -Xclang-linker -mexec-model=reactor \
     -Xlinker --export=main # Optional
 ```
 
