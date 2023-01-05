@@ -178,7 +178,7 @@ The default execution model is <em>command</em>, so you need to pass <code>-mexe
     -target wasm32-unknown-wasi \
     lib.swift -o lib.wasm \
     -Xlinker --export=add \
-    -Xswiftc -Xclang-linker -Xswiftc -mexec-model=reactor \
+    -Xclang-linker -mexec-model=reactor \
     -Xlinker --export=main # Optional
 </code></pre>
 <p>Then, you can use the exported function from host environment.</p>
