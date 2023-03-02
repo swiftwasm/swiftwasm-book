@@ -67,5 +67,5 @@ carton dev
    will immediately rebuild the app and reload all browser tabs that have the app open.
 
 You can also clone [the Tokamak repository](https://github.com/TokamakUI/Tokamak) and run `carton
-dev` in its root directory. This will build the demo app that shows almost all of the currently
+dev --product TokamakDemo` in its root directory. This will build the demo app that shows almost all of the currently
 implemented APIs.
