@@ -181,13 +181,15 @@
 <h1><a class="header" href="#installation" id="installation">Installation</a></h1>
 <p>To install Swift for WebAssembly toolchain, download one of the packages below and follow the instructions for your operating system.</p>
 <h2><a class="header" href="#releases" id="releases">Releases</a></h2>
-<h3><a class="header" href="#swiftwasm-57" id="swiftwasm-57">SwiftWasm 5.7</a></h3>
-<p>Tag: <a href="https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.7.3-RELEASE">swift-wasm-5.7.3-RELEASE</a></p>
+<h3><a class="header" href="#swiftwasm-58" id="swiftwasm-58">SwiftWasm 5.8</a></h3>
+<p>Tag: <a href="https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.8.0-RELEASE">swift-wasm-5.8.0-RELEASE</a></p>
 <table><thead><tr><th align="center">Download</th><th align="center">Docker Tag</th></tr></thead><tbody>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.7.3-RELEASE/swift-wasm-5.7.3-RELEASE-macos_arm64.pkg">macOS arm64</a></td><td align="center">Unavailable</td></tr>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.7.3-RELEASE/swift-wasm-5.7.3-RELEASE-macos_x86_64.pkg">macOS x86</a></td><td align="center">Unavailable</td></tr>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.7.3-RELEASE/swift-wasm-5.7.3-RELEASE-ubuntu18.04_x86_64.tar.gz">Ubuntu 18.04 x86</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.7, 5.7-bionic, bionic, latest</a></td></tr>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.7.3-RELEASE/swift-wasm-5.7.3-RELEASE-ubuntu20.04_x86_64.tar.gz">Ubuntu 20.04 x86</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.7-focal, focal</a></td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.8.0-RELEASE/swift-wasm-5.8.0-RELEASE-macos_arm64.pkg">macOS arm64</a></td><td align="center">Unavailable</td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.8.0-RELEASE/swift-wasm-5.8.0-RELEASE-macos_x86_64.pkg">macOS x86</a></td><td align="center">Unavailable</td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.8.0-RELEASE/swift-wasm-5.8.0-RELEASE-ubuntu18.04_x86_64.tar.gz">Ubuntu 18.04 x86_64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.8-bionic, bionic</a></td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.8.0-RELEASE/swift-wasm-5.8.0-RELEASE-ubuntu20.04_x86_64.tar.gz">Ubuntu 20.04 x86_64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.8-focal, focal</a></td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.8.0-RELEASE/swift-wasm-5.8.0-RELEASE-ubuntu20.04_aarch64.tar.gz">Ubuntu 20.04 aarch64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.8-focal, focal</a></td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.8.0-RELEASE/swift-wasm-5.8.0-RELEASE-ubuntu22.04_x86_64.tar.gz">Ubuntu 22.04 x86_64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.8, 5.8-jammy, jammy, latest</a></td></tr>
 </tbody></table>
 <p>You can download the latest development snapshot from <a href="https://github.com/swiftwasm/swift/releases">the Releases page</a></p>
 <h1><a class="header" href="#using-downloads" id="using-downloads">Using Downloads</a></h1>
@@ -209,11 +211,11 @@
 <li>Run <code>swift --version</code>. If you installed the toolchain successfully, you can get the following message.</li>
 </ol>
 <pre><code class="language-bash">$ swift --version
-SwiftWasm Swift version 5.7.3 (swiftlang-5.7.3)
+SwiftWasm Swift version 5.8.0 (swiftlang-5.8.0)
 Target: x86_64-apple-darwin21.6.0
 </code></pre>
 <blockquote>
-<p>Warning: <code>xcrun</code> finds executable binary based on <code>--toolchain</code> option or <code>TOOLCHAINS</code> environment variable, but it also sets <code>SDKROOT</code> as host target SDK (e.g. <code>MacOSX.sdk</code>). So you need to specify <code>-sdk</code> option as <code>/Library/Developer/Toolchains/swift-wasm-5.7.3-RELEASE.xctoolchain/usr/share/wasi-sysroot</code> when launching <code>swiftc</code> from xcrun. <code>swift build</code> or other SwiftPM commands automatically find SDK path based on target triple, so they don't require to specify it.</p>
+<p>Warning: <code>xcrun</code> finds executable binary based on <code>--toolchain</code> option or <code>TOOLCHAINS</code> environment variable, but it also sets <code>SDKROOT</code> as host target SDK (e.g. <code>MacOSX.sdk</code>). So you need to specify <code>-sdk</code> option as <code>/Library/Developer/Toolchains/swift-wasm-5.8.0-RELEASE.xctoolchain/usr/share/wasi-sysroot</code> when launching <code>swiftc</code> from xcrun. <code>swift build</code> or other SwiftPM commands automatically find SDK path based on target triple, so they don't require to specify it.</p>
 </blockquote>
 <h2><a class="header" href="#linux" id="linux">Linux</a></h2>
 <p>Packages for Linux are tar archives including a copy of the Swift compiler, linker, and related tools. You can install them anywhere as long as the extracted tools are in your PATH.</p>
@@ -279,8 +281,9 @@ apt-get install \
 <p>SwiftWasm Dockerfiles are located on <a href="https://github.com/swiftwasm/swiftwasm-docker">swiftwasm-docker</a> repository.</p>
 <h3><a class="header" href="#supported-platforms" id="supported-platforms">Supported Platforms</a></h3>
 <ul>
-<li>Ubuntu 18.04</li>
-<li>Ubuntu 20.04</li>
+<li>Ubuntu 18.04 (x86_64)</li>
+<li>Ubuntu 20.04 (x86_64, aarch64)</li>
+<li>Ubuntu 22.04 (x86_64)</li>
 </ul>
 <h3><a class="header" href="#using-docker-images" id="using-docker-images">Using Docker Images</a></h3>
 <ol>
@@ -836,40 +839,39 @@ it</a> were merged to the upstream repository.</p>
 <p>We apply some patches for <a href="https://github.com/WebAssembly/wasi-sdk">WebAssembly/wasi-sdk</a> and <a href="https://github.com/WebAssembly/wasi-libc">WebAssembly/wasi-libc</a> to build <code>wasi-sysroot</code> with pthread header. There aren't so many diff from upstream.</p>
 <h1><a class="header" href="#how-to-build-toolchain" id="how-to-build-toolchain">How to build toolchain</a></h1>
 <p>This document describes how to build the toolchain for WebAssembly.
-This is just a quick guide, so if you want to know more about the toolchain, it might be good entry point to read <a href="https://github.com/swiftwasm/swift/blob/swiftwasm/.github/workflows/build-toolchain.yml">continuous integration scripts</a>.
+This is just a quick guide, so if you want to know more about the toolchain, it might be good entry point to read <a href="https://github.com/swiftwasm/swiftwasm-build/blob/main/.github/workflows/build-toolchain.yml">continuous integration scripts</a>.
 Or you can ask questions in GitHub issues or SwiftWasm Discord server (see <a href="https://swiftwasm.org">the official website</a> for the link).</p>
 <h2><a class="header" href="#1-checkout-the-project-source-code" id="1-checkout-the-project-source-code">1. Checkout the project source code.</a></h2>
 <pre><code class="language-sh">$ mkdir swiftwasm-source
 $ cd swiftwasm-source
-$ git clone https://github.com/swiftwasm/swift.git
-$ ./swift/utils/update-checkout --clone --scheme wasm
+$ git clone https://github.com/swiftwasm/swiftwasm-build.git
+$ cd swiftwasm-build
+$ ./tools/build/install-build-sdk.sh main
+$ ./tools/git-swift-workspace --scheme main
 </code></pre>
 <h2><a class="header" href="#2-install-required-dependencies" id="2-install-required-dependencies">2. Install required dependencies</a></h2>
 <ol>
 <li><a href="https://github.com/apple/swift/blob/main/docs/HowToGuides/GettingStarted.md#installing-dependencies">Please follow the upstream instruction</a></li>
-<li>Download WebAssembly specific build toolchain</li>
-</ol>
-<pre><code class="language-sh">$ ./swift/utils/webassembly/install-build-sdk.sh
-</code></pre>
-<ol start="3">
-<li>(If you want to run test suite) Install <a href="https://wasmer.io/"><code>Wasmer</code></a></li>
+<li>(If you want to run test suite) Install <a href="https://wasmtime.dev/"><code>Wasmtime</code></a></li>
 </ol>
 <h2><a class="header" href="#3-build-the-toolchain" id="3-build-the-toolchain">3. Build the toolchain</a></h2>
-<p><code>./swift/utils/webassembly/build-toolchain.sh</code> will build:</p>
+<p><code>./tools/build/build-toolchain.sh</code></p>
+<p>This script will build the following components:</p>
 <ol>
 <li>Swift compiler that can compile Swift code to WebAssembly support</li>
 <li>Swift standard library and core libraries for WebAssembly</li>
 </ol>
 <h2><a class="header" href="#build-on-docker" id="build-on-docker">Build on Docker</a></h2>
-<p>You can also build the toolchain on Docker image used in CI.</p>
+<p>You can also build the toolchain on Docker image used in CI.
+Note that you have already checked out the source code in <a href="contribution-guide/how-to-build-toolchain.html#1-checkout-the-project-source-code">the previous step</a>.</p>
 <pre><code class="language-sh">$ docker volume create oss-swift-package
 $ docker run --name swiftwasm-ci-buildbot \
     -dit \
     -w /home/build-user/ \
-    -v $PWD/swift:/home/build-user/swift \
+    -v ./swiftwasm-source:/source \
     -v oss-swift-package:/home/build-user \
     ghcr.io/swiftwasm/swift-ci:main-ubuntu-20.04
-$ docker exec swiftwasm-ci-buildbot ./swift/utils/webassembly/ci.sh
+$ docker exec swiftwasm-ci-buildbot /bin/bash -lc 'env; cp -r /source/* /home/build-user/; ./swiftwasm-build/tools/build/ci.sh main'
 $ docker cp swiftwasm-ci-buildbot:/home/build-user/swift-wasm-DEVELOPMENT-SNAPSHOT-*-ubuntu-20.04.tar.gz .
 </code></pre>
 

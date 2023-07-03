@@ -161,40 +161,39 @@
                     <main>
                         <h1><a class="header" href="#how-to-build-toolchain" id="how-to-build-toolchain">How to build toolchain</a></h1>
 <p>This document describes how to build the toolchain for WebAssembly.
-This is just a quick guide, so if you want to know more about the toolchain, it might be good entry point to read <a href="https://github.com/swiftwasm/swift/blob/swiftwasm/.github/workflows/build-toolchain.yml">continuous integration scripts</a>.
+This is just a quick guide, so if you want to know more about the toolchain, it might be good entry point to read <a href="https://github.com/swiftwasm/swiftwasm-build/blob/main/.github/workflows/build-toolchain.yml">continuous integration scripts</a>.
 Or you can ask questions in GitHub issues or SwiftWasm Discord server (see <a href="https://swiftwasm.org">the official website</a> for the link).</p>
 <h2><a class="header" href="#1-checkout-the-project-source-code" id="1-checkout-the-project-source-code">1. Checkout the project source code.</a></h2>
 <pre><code class="language-sh">$ mkdir swiftwasm-source
 $ cd swiftwasm-source
-$ git clone https://github.com/swiftwasm/swift.git
-$ ./swift/utils/update-checkout --clone --scheme wasm
+$ git clone https://github.com/swiftwasm/swiftwasm-build.git
+$ cd swiftwasm-build
+$ ./tools/build/install-build-sdk.sh main
+$ ./tools/git-swift-workspace --scheme main
 </code></pre>
 <h2><a class="header" href="#2-install-required-dependencies" id="2-install-required-dependencies">2. Install required dependencies</a></h2>
 <ol>
 <li><a href="https://github.com/apple/swift/blob/main/docs/HowToGuides/GettingStarted.md#installing-dependencies">Please follow the upstream instruction</a></li>
-<li>Download WebAssembly specific build toolchain</li>
-</ol>
-<pre><code class="language-sh">$ ./swift/utils/webassembly/install-build-sdk.sh
-</code></pre>
-<ol start="3">
-<li>(If you want to run test suite) Install <a href="https://wasmer.io/"><code>Wasmer</code></a></li>
+<li>(If you want to run test suite) Install <a href="https://wasmtime.dev/"><code>Wasmtime</code></a></li>
 </ol>
 <h2><a class="header" href="#3-build-the-toolchain" id="3-build-the-toolchain">3. Build the toolchain</a></h2>
-<p><code>./swift/utils/webassembly/build-toolchain.sh</code> will build:</p>
+<p><code>./tools/build/build-toolchain.sh</code></p>
+<p>This script will build the following components:</p>
 <ol>
 <li>Swift compiler that can compile Swift code to WebAssembly support</li>
 <li>Swift standard library and core libraries for WebAssembly</li>
 </ol>
 <h2><a class="header" href="#build-on-docker" id="build-on-docker">Build on Docker</a></h2>
-<p>You can also build the toolchain on Docker image used in CI.</p>
+<p>You can also build the toolchain on Docker image used in CI.
+Note that you have already checked out the source code in <a href="#1-checkout-the-project-source-code">the previous step</a>.</p>
 <pre><code class="language-sh">$ docker volume create oss-swift-package
 $ docker run --name swiftwasm-ci-buildbot \
     -dit \
     -w /home/build-user/ \
-    -v $PWD/swift:/home/build-user/swift \
+    -v ./swiftwasm-source:/source \
     -v oss-swift-package:/home/build-user \
     ghcr.io/swiftwasm/swift-ci:main-ubuntu-20.04
-$ docker exec swiftwasm-ci-buildbot ./swift/utils/webassembly/ci.sh
+$ docker exec swiftwasm-ci-buildbot /bin/bash -lc 'env; cp -r /source/* /home/build-user/; ./swiftwasm-build/tools/build/ci.sh main'
 $ docker cp swiftwasm-ci-buildbot:/home/build-user/swift-wasm-DEVELOPMENT-SNAPSHOT-*-ubuntu-20.04.tar.gz .
 </code></pre>
 
