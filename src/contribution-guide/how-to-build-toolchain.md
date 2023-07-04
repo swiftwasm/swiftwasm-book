@@ -20,6 +20,8 @@ $ ./tools/git-swift-workspace --scheme main
 1. [Please follow the upstream instruction](https://github.com/apple/swift/blob/main/docs/HowToGuides/GettingStarted.md#installing-dependencies)
 2. (If you want to run test suite) Install [`Wasmtime`](https://wasmtime.dev/)
 
+If you are using macOS, please ensure that you don't have `llvm` package installed via Homebrew.
+
 ## 3. Build the toolchain
 
 `./tools/build/build-toolchain.sh`
