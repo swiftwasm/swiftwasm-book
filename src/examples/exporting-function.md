@@ -3,6 +3,7 @@
 You can expose a Swift function for host environment using special attribute and linker option.
 
 ```swift
+// File name: lib.swift
 @_cdecl("add")
 func add(_ lhs: Int, _ rhs: Int) -> Int {
     return lhs + rhs
@@ -17,56 +18,44 @@ To call the exported function as a library multiple times, you need to:
    The default execution model is *command*, so you need to pass `-mexec-model=reactor` to linker.
 2. Call `_initialize` function before interacting with the instance.
 
-If your code has any top-level code, you need to export `main` function as well, and call it after `_initialize` function.
-
 ```bash
 $ swiftc \
     -target wasm32-unknown-wasi \
+    -parse-as-library \
     lib.swift -o lib.wasm \
     -Xlinker --export=add \
-    -Xclang-linker -mexec-model=reactor \
-    -Xlinker --export=main # Optional
+    -Xclang-linker -mexec-model=reactor
 ```
 
 Then, you can use the exported function from host environment.
 
 ```javascript
-const WASI = require("@wasmer/wasi").WASI;
-const WasmFs = require("@wasmer/wasmfs").WasmFs;
+// File name: main.mjs
+import { WASI, File, OpenFile, ConsoleStdout } from "@bjorn3/browser_wasi_shim";
+import fs from "fs/promises";
 
-const promisify = require("util").promisify;
-const fs = require("fs");
-const readFile = promisify(fs.readFile);
+// Instantiate a new WASI Instance
+// See https://github.com/bjorn3/browser_wasi_shim/ for more detail about constructor options
+let wasi = new WASI([], [],
+  [
+    new OpenFile(new File([])), // stdin
+    ConsoleStdout.lineBuffered(msg => console.log(`[WASI stdout] ${msg}`)),
+    ConsoleStdout.lineBuffered(msg => console.warn(`[WASI stderr] ${msg}`)),
+  ],
+  { debug: false }
+);
 
-const main = async () => {
-  // Instantiate a new WASI Instance
-  const wasmFs = new WasmFs();
-  let wasi = new WASI({
-    args: [],
-    env: {},
-    bindings: {
-      ...WASI.defaultBindings,
-      fs: wasmFs.fs,
-    },
-  });
+const wasmBinary = await fs.readFile("lib.wasm");
 
-  const wasmBinary = await readFile("lib.wasm");
-
-  // Instantiate the WebAssembly file
-  const { instance } = await WebAssembly.instantiate(wasmBinary, {
-    wasi_snapshot_preview1: wasi.wasiImport,
-  });
-  // Initialize the instance by following WASI reactor ABI
-  instance.exports._initialize();
-  // (Optional) Run the top-level code
-  instance.exports.main();
-  // Get the exported function
-  const addFn = instance.exports.add;
-  console.log("2 + 3 = " + addFn(2, 3))
-
-};
-
-main()
+// Instantiate the WebAssembly file
+const { instance } = await WebAssembly.instantiate(wasmBinary, {
+  wasi_snapshot_preview1: wasi.wasiImport,
+});
+// Initialize the instance by following WASI reactor ABI
+wasi.initialize(instance);
+// Get the exported function
+const addFn = instance.exports.add;
+console.log("2 + 3 = " + addFn(2, 3))
 ```
 
 If you use SwiftPM package, you can omit linker flag using clang's `__atribute__`. Please see [swiftwasm/JavaScriptKit#91](https://github.com/swiftwasm/JavaScriptKit/pull/91/files) for more detail info
