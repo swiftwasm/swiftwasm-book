@@ -1,5 +1,7 @@
 # Importing a function from host environments
 
+## Swift 5.10 or earlier
+
 You can import a function from your host environment using the integration of Swift Package Manager
 with C targets. Firstly, you should declare a signature for your function in a C header with an
 appropriate `__import_name__` attribute:
@@ -14,15 +16,14 @@ Move this C header to a separate target, we'll call it `HostFunction` in this ex
 `Package.swift` manifest for your WebAssembly app would look like this:
 
 ```swift
-// swift-tools-version:5.3
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
-    name: "SwiftWasmApp",
+    name: "Example",
     targets: [
       .target(name: "HostFunction", dependencies: []),
-      .target(name: "SwiftWasmApp", dependencies: ["HostFunction"]),
+      .executableTarget(name: "Example", dependencies: ["HostFunction"]),
     ]
 )
 ```
@@ -43,41 +44,24 @@ Note that we use `env` as default import module name. You can specify the module
 like `__attribute__((__import_module__("env"),__import_name__("add")))`.
 
 ```javascript
-const WASI = require("@wasmer/wasi").WASI;
-const WasmFs = require("@wasmer/wasmfs").WasmFs;
-
-const promisify = require("util").promisify;
-const fs = require("fs");
-const readFile = promisify(fs.readFile);
+// File name: main.mjs
+import { WASI, File, OpenFile, ConsoleStdout } from "@bjorn3/browser_wasi_shim";
+import fs from "fs/promises";
 
 const main = async () => {
-  const wasmFs = new WasmFs();
-  // Output stdout and stderr to console
-  const originalWriteSync = wasmFs.fs.writeSync;
-  wasmFs.fs.writeSync = (fd, buffer, offset, length, position) => {
-    const text = new TextDecoder("utf-8").decode(buffer);
-    switch (fd) {
-      case 1:
-        console.log(text);
-        break;
-      case 2:
-        console.error(text);
-        break;
-    }
-    return originalWriteSync(fd, buffer, offset, length, position);
-  };
 
   // Instantiate a new WASI Instance
-  let wasi = new WASI({
-    args: [],
-    env: {},
-    bindings: {
-      ...WASI.defaultBindings,
-      fs: wasmFs.fs,
-    },
-  });
+  // See https://github.com/bjorn3/browser_wasi_shim/ for more detail about constructor options
+  let wasi = new WASI([], [],
+    [
+      new OpenFile(new File([])), // stdin
+      ConsoleStdout.lineBuffered(msg => console.log(`[WASI stdout] ${msg}`)),
+      ConsoleStdout.lineBuffered(msg => console.warn(`[WASI stderr] ${msg}`)),
+    ],
+    { debug: false }
+  );
 
-  const wasmBinary = await readFile("lib.wasm");
+  const wasmBinary = await fs.readFile(".build/wasm32-unknown-wasi/debug/Example.wasm");
 
   // Instantiate the WebAssembly file
   let { instance } = await WebAssembly.instantiate(wasmBinary, {
@@ -99,3 +83,28 @@ an integration with an imported host function.
 
 A more streamlined way to import host functions will be implemented in the future version of the
 SwiftWasm toolchain.
+
+
+## Swift 6.0 or later
+
+If you are using Swift 6.0 or later, you can use experimental `@_extern(wasm)` attribute
+
+Swift 6.0 introduces a new attribute `@_extern(wasm)` to import a function from the host environment.
+To use this experimental feature, you need to enable it in your SwiftPM manifest file:
+
+```swift
+.executableTarget(
+    name: "Example",
+    swiftSettings: [
+        .enableExperimentalFeature("Extern")
+    ]),
+```
+
+Then, you can import a function from the host environment as follows without using C headers:
+
+```swift
+@_extern(wasm, module: "env", name: "add")
+func add(_ a: Int, _ b: Int) -> Int
+
+print(add(2, 2))
+```

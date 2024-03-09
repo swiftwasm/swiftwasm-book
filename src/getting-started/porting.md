@@ -32,7 +32,7 @@ import WASILibc
 ### Limitations
 
 WebAssembly and [WASI](https://wasi.dev/) provide a constrained environment, which currently does
-not directly support multi-threading, or filesystem access in the browser. Thus, you should not
+not directly support multi-threading. Thus, you should not
 expect these APIs to work when importing `WASILibc`. Please be aware of these limitations when
 porting your code, which also has an impact on what [can be supported in the Swift
 Foundation](#swift-foundation-and-dispatch) at the moment.
@@ -44,32 +44,34 @@ SwiftWasm, but in a limited capacity. The main reason is that [the Dispatch core
 library](https://swift.org/core-libraries/#libdispatch) is unavailable due to [the lack of 
 standardized multi-threading support](https://github.com/swiftwasm/swift/issues/1887) in WebAssembly
 and SwiftWasm itself. Many Foundation APIs rely on the presence of Dispatch under the hood,
-specifically file system access and threading helpers. A few other types are unavailable in browsers
-or aren't standardized in WASI hosts, such as support for sockets and low-level networking, or
-support for time zone files, and they had to be disabled. These types are therefore absent in
-SwiftWasm Foundation:
+specifically threading helpers. A few other types are unavailable in browsers
+or aren't standardized in WASI hosts, such as support for sockets and low-level networking,
+and they had to be disabled. These types are therefore absent in SwiftWasm Foundation:
 
-* `FoundationNetworking` types, such as `URLSession` and related APIs
-* `FileManager`
-* `Host`
-* `Notification`
-* `NotificationQueue`
-* `NSKeyedArchiver`
-* `NSKeyedArchiverHelpers`
-* `NSKeyedCoderOldStyleArray`
-* `NSKeyedUnarchiver`
-* `NSNotification`
-* `NSSpecialValue`
-* `Port`
-* `PortMessage`
-* `Process`
-* `ProcessInfo` (Partially available since 5.7)
-* `PropertyListEncoder`
-* `RunLoop`
-* `Stream`
-* `Thread`
-* `Timer`
-* `UserDefaults`
+| Type or module | Status |
+|----------------|--------|
+| `FoundationNetworking` | ❌ Unavailable |
+| `FileManager` | ✅ Available after 6.0 |
+| `Host` | ✅ Partially available after 6.0 |
+| `Notification` | ✅ Available after 6.0 |
+| `NotificationQueue` | ❌ Unavailable |
+| `NSKeyedArchiver` | ✅ Available after 6.0 |
+| `NSKeyedArchiverHelpers` | ✅ Available after 6.0 |
+| `NSKeyedCoderOldStyleArray` | ✅ Available after 6.0 |
+| `NSKeyedUnarchiver` | ✅ Available after 6.0 |
+| `NSNotification` | ✅ Available after 6.0 |
+| `NSSpecialValue` | ✅ Available after 6.0 |
+| `Port` | ✅ Available after 6.0 |
+| `PortMessage` | ✅ Available after 6.0 |
+| `Process` | ❌ Unavailable |
+| `ProcessInfo` | ✅ Partially available after 5.7 |
+| `PropertyListEncoder` | ✅ Available after 6.0 |
+| `RunLoop` | ❌ Unavailable |
+| `Stream` | ✅ Partially available after 6.0 |
+| `SocketPort` | ❌ Unavailable |
+| `Thread` | ❌ Unavailable |
+| `Timer` | ❌ Unavailable |
+| `UserDefaults` | ✅ Available after 6.0 |
 
 Related functions and properties on other types are also absent or disabled. We would like to make
 them available in the future as soon as possible, and [we invite you to 

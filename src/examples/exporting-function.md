@@ -1,5 +1,7 @@
 # Exporting function for host environment
 
+## Swift 5.10 or earlier
+
 You can expose a Swift function for host environment using special attribute and linker option.
 
 ```swift
@@ -59,3 +61,26 @@ console.log("2 + 3 = " + addFn(2, 3))
 ```
 
 If you use SwiftPM package, you can omit linker flag using clang's `__atribute__`. Please see [swiftwasm/JavaScriptKit#91](https://github.com/swiftwasm/JavaScriptKit/pull/91/files) for more detail info
+
+## Swift 6.0 or later
+
+If you use Swift 6.0 or later, you can use `@_expose(wasm, "add")` and omit the `--export` linker flag.
+
+```swift
+// File name: lib.swift
+@_expose(wasm, "add")
+@_cdecl("add") // This is still required to call the function with C ABI
+func add(_ lhs: Int, _ rhs: Int) -> Int {
+    return lhs + rhs
+}
+```
+
+Then you can compile the Swift code with the following command without `--export` linker flag.
+
+```bash
+$ swiftc \
+    -target wasm32-unknown-wasi \
+    -parse-as-library \
+    lib.swift -o lib.wasm \
+    -Xclang-linker -mexec-model=reactor
+```

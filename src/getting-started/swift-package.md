@@ -6,18 +6,12 @@ You can also use SwiftPM for managing packages in the same way as other platform
 ## 1. Create a package from template
 
 ```sh
-$ swift package init --type executable
-Creating executable package: hello
+$ swift package init --type executable --name Example 
+Creating executable package: Example
 Creating Package.swift
-Creating README.md
 Creating .gitignore
 Creating Sources/
-Creating Sources/hello/main.swift
-Creating Tests/
-Creating Tests/LinuxMain.swift
-Creating Tests/helloTests/
-Creating Tests/helloTests/helloTests.swift
-Creating Tests/helloTests/XCTestManifests.swift
+Creating Sources/main.swift
 ```
 
 ## 2. Build the Project into a WebAssembly binary
@@ -28,11 +22,19 @@ You need to pass `--triple` option, which indicates that you are building for th
 $ swift build --triple wasm32-unknown-wasi
 ```
 
-## 3. Run the produced binary
-
-Just as in the [previous section](./hello-world.md), you can run the produced binary with the `wasmer` WebAssembly runtime.
+<!--
+If [you installed Swift SDK instead of the whole toolchain](./setup.md#experimental-swift-sdk), you need to use the following command:
 
 ```sh
-$ wasmer ./.build/debug/hello-swiftwasm.wasm
+$ swift build --experimental-swift-sdk <SDK name>
+```
+-->
+
+## 3. Run the produced binary
+
+Just as in the [previous section](./hello-world.md), you can run the produced binary with WebAssembly runtimes like `wasmtime`.
+
+```sh
+$ wasmtime ./.build/wasm32-unknown-wasi/debug/Example.wasm
 Hello, world!
 ```

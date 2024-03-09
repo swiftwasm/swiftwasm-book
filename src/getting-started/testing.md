@@ -12,45 +12,37 @@ Let's assume you have a `SwiftWasmLibrary` target in your project that you'd lik
 would probably look like this:
 
 ```swift
-// swift-tools-version:5.3
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version: 5.9
 
 import PackageDescription
 
 let package = Package(
-  name: "HelloSwiftWasm",
-  products: [
-    .executable(name: "SwiftWasmApp", targets: ["SwiftWasmApp"]),
-  ],
-  targets: [
-    // Targets are the basic building blocks of a package. A target can define a module or a test
-    // suite. Targets can depend on other targets in this package, and on products in packages which
-    // this package depends on.
-    .target(
-      name: "SwiftWasmApp",
-      dependencies: ["SwiftWasmLibrary"],
-    ),
-    .target(name: "SwiftWasmLibrary"),
-    .testTarget(name: "SwiftWasmTests", dependencies: ["SwiftWasmLibrary"]),
-  ]
+    name: "Example",
+    products: [
+        .library(name: "Example", targets: ["Example"]),
+    ],
+    targets: [
+        .target(name: "Example"),
+        .testTarget(name: "ExampleTests", dependencies: ["Example"]),
+    ]
 )
 ```
 
-Now you should make sure there's `Tests/SwiftWasmTests` subdirectory in your project.
-If you don't have any files in it yet, create `SwiftWasmTests.swift` in it:
+Now you should make sure there's `Tests/ExampleTests` subdirectory in your project.
+If you don't have any files in it yet, create `ExampleTests.swift` in it:
 
 ```swift
-import SwiftWasmLibrary
+import Example
 import XCTest
 
-final class SwiftWasmTests: XCTestCase {
+final class ExampleTests: XCTestCase {
   func testTrivial() {
     XCTAssertEqual(text, "Hello, world")
   }
 }
 ```
 
-This code assumes that your `SwiftWasmLibrary` defines some `text` with `"Hello, world"` value
+This code assumes that your `Example` defines some `text` with `"Hello, world"` value
 for this test to pass. Your test functions should all start with `test`, please see [XCTest 
 documentation](https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods)
 for more details.
@@ -64,17 +56,9 @@ are not available in test suites compiled with SwiftWasm. If you have an existin
 porting to WebAssembly, you should use `#if os(WASI)` directives to exclude places where you use
 these APIs from compilation.
 
-## Building and running the test suite with `carton`
-
-If you use [`carton`](https://carton.dev) to develop and build your app, as described in [our guide
-for browser apps](./browser-app.md), just run `carton test` in the
-root directory of your package. This will automatically build the test suite and run it with 
-[Wasmer](https://wasmer.io/) for you.
-
 ## Building and running the test suite with `SwiftPM`
 
-If you manage your SwiftWasm toolchain without `carton` (as shown in [the "Setup" section](./setup.md)),
-you can build your test suite by running this command in your terminal:
+You can build your test suite by running this command in your terminal:
 
 ```sh
 $ swift build --build-tests --triple wasm32-unknown-wasi
@@ -84,12 +68,18 @@ If you're used to running `swift test` to run test suites for other Swift platfo
 warn you that this won't work. `swift test` doesn't know what WebAssembly environment you'd like to 
 use to run your tests. Because of this building tests and running them are two separate steps when
 using `SwiftPM`. After your tests are built, you can use a WASI-compatible host such as
-[Wasmer](https://wasmer.io/) to run the test bundle:
+[wasmtime](https://wasmtime.dev/) to run the test bundle:
 
 ```sh
-$ wasmer .build/debug/HelloSwiftWasmPackageTests.xctest
+$ wasmtime .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
 ```
 
 As you can see, the produced test binary starts with the name of your package followed by
-`PackageTests.xctest`. It is located in the `.build/debug` subdirectory, or in the `.build/release`
+`PackageTests.wasm`. It is located in the `.build/debug` subdirectory, or in the `.build/release`
 subdirectory when you build in release mode.
+
+## Building and running the test suite with `carton`
+
+If you use [`carton`](https://carton.dev) to develop and build your app, as described in [our guide
+for browser apps](./browser-app.md), just run `carton test` in the
+root directory of your package. This will automatically build the test suite and run it with a WASI runtime for you.
