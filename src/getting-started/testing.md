@@ -81,5 +81,5 @@ subdirectory when you build in release mode.
 ## Building and running the test suite with `carton`
 
 If you use [`carton`](https://carton.dev) to develop and build your app, as described in [our guide
-for browser apps](./browser-app.md), just run `carton test` in the
+for browser apps](./browser-app.md), just run `swift run carton test` in the
 root directory of your package. This will automatically build the test suite and run it with a WASI runtime for you.
