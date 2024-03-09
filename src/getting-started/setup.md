@@ -41,6 +41,8 @@ SwiftWasm Swift version 5.9.1 (swiftlang-5.9.1)
 Target: x86_64-apple-darwin21.6.0
 ```
 
+If you want to uninstall the toolchain, you can remove the toolchain directory from `/Library/Developer/Toolchains/` and make sure to remove the toolchain from your `PATH`.
+
 ## Linux
 
 1. [Download the latest package release](#latest-release) according to your Ubuntu version and CPU architecture.
