@@ -2,9 +2,9 @@
 
 To install Swift for WebAssembly toolchain, download one of the packages below and follow the instructions for your operating system.
 
-## Releases
+## Latest Release
 
-### SwiftWasm 5.9
+**SwiftWasm 5.9**
 
 Tag: [swift-wasm-5.9.1-RELEASE](https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.9.1-RELEASE)
 
@@ -20,108 +20,58 @@ Tag: [swift-wasm-5.9.1-RELEASE](https://github.com/swiftwasm/swift/releases/tag/
 
 You can download the latest development snapshot from [the Releases page](https://github.com/swiftwasm/swift/releases)
 
+## Toolchain Installation
 
-# Using Downloads
+### macOS
 
-## macOS
-
-An Xcode toolchain (`.xctoolchain`) includes a copy of the compiler, linker, and other related tools needed to provide a cohesive development experience for working in a specific version of Swift.
-
-
-### Requirements
-
-- macOS 10.15 or later
-
-
-### Installation
-
-1. [Download the latest package release](https://book.swiftwasm.org/getting-started/setup.html#swiftwasm-57) according to your CPU architecture (arm64 for [Apple Silicon Macs](https://support.apple.com/en-us/HT211814), x86 for Intel Macs).
+1. [Download the latest package release](#latest-release) according to your CPU architecture (arm64 for [Apple Silicon Macs](https://support.apple.com/en-us/HT211814), x86 for Intel Macs).
 2. Run the package installer, which will install an Xcode toolchain into `/Library/Developer/Toolchains/`.
-3. To use the Swift toolchain with command-line tools, use `xcrun --toolchain swiftwasm` or add the Swift toolchain to your path as follows:
+3. To use the Swift toolchain with command-line tools, use `env TOOLCHAINS=swiftwasm swift` or add the Swift toolchain to your path as follows:
 
 ```bash
-export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
+export PATH=/Library/Developer/Toolchains/<toolchain name>.xctoolchain/usr/bin:"${PATH}"
 ```
 
 4. Run `swift --version`. If you installed the toolchain successfully, you can get the following message.
 
 ```bash
 $ swift --version
+# Or TOOLCHAINS=swiftwasm swift --version
 SwiftWasm Swift version 5.9.1 (swiftlang-5.9.1)
 Target: x86_64-apple-darwin21.6.0
 ```
 
-> Warning: `xcrun` finds executable binary based on `--toolchain` option or `TOOLCHAINS` environment variable, but it also sets `SDKROOT` as host target SDK (e.g. `MacOSX.sdk`). So you need to specify `-sdk` option as `/Library/Developer/Toolchains/swift-wasm-5.9.1-RELEASE.xctoolchain/usr/share/wasi-sysroot` when launching `swiftc` from xcrun. `swift build` or other SwiftPM commands automatically find SDK path based on target triple, so they don't require to specify it.
-
-
 ## Linux
 
-Packages for Linux are tar archives including a copy of the Swift compiler, linker, and related tools. You can install them anywhere as long as the extracted tools are in your PATH.
+1. [Download the latest package release](#latest-release) according to your Ubuntu version and CPU architecture.
+2. Follow the official Swift installation guide for Linux from [swift.org](https://www.swift.org/install/linux/#installation-via-tarball) while skipping GPG key verification, which is not provided for SwiftWasm releases.
 
-### Requirements
+<!--- TODO: Update the link and uncomment after releasing 5.9.2
+## Experimental: Swift SDK
 
-- Ubuntu 18.04 or 20.04 (64-bit)
+SwiftWasm provides [Swift SDK](https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md)s for WebAssembly. You can use the Swift SDK to cross-compile Swift packages for WebAssembly without installing the whole toolchain.
 
-### Installation
-
-1. Install required dependencies:
-
-
-```bash
-# Ubuntu 18.04
-apt-get install \
-          binutils \
-          git \
-          libc6-dev \
-          libcurl4 \
-          libedit2 \
-          libgcc-5-dev \
-          libpython2.7 \
-          libsqlite3-0 \
-          libstdc++-5-dev \
-          libxml2 \
-          pkg-config \
-          tzdata \
-          zlib1g-dev
-# Ubuntu 20.04
-apt-get install \
-          binutils \
-          git \
-          gnupg2 \
-          libc6-dev \
-          libcurl4 \
-          libedit2 \
-          libgcc-9-dev \
-          libpython2.7 \
-          libsqlite3-0 \
-          libstdc++-9-dev \
-          libxml2 \
-          libz3-dev \
-          pkg-config \
-          tzdata \
-          zlib1g-dev
-```
-
-2. Download the latest binary release above.
-
-The `swift-wasm-<VERSION>-<PLATFORM>.tar.gz` file is the toolchain itself.
-
-3. Extract the archive with the following command:
+To use the Swift SDK, you need to install the official Swift toolchain 5.9 or later. Then, you can install the Swift SDK using the following command:
 
 ```bash
-tar xzf swift-wasm-<VERSION>-<PLATFORM>.tar.gz
-```
-This creates a usr/ directory in the location of the archive.
-
-
-4. Add the Swift toolchain to your path as follows:
-
-```
-export PATH=$(pwd)/usr/bin:"${PATH}"
+$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9-SNAPSHOT-2024-03-02-a/swift-wasm-5.9-SNAPSHOT-2024-03-02-a-macos_arm64.artifactbundle.zip
 ```
 
-You can now execute the swiftc command to build Swift projects.
+After installing the Swift SDK, you can see the installed SDKs using the following command:
 
+```bash
+$ swift experimental-sdk list
+<SDK name>
+...
+```
+
+You can use the installed SDKs to cross-compile Swift packages for WebAssembly using the following command:
+
+```bash
+$ swift build --experimental-swift-sdk <SDK name>
+```
+
+-->
 
 ## Docker
 
