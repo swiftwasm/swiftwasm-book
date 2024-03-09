@@ -12,3 +12,12 @@ WebAssembly is described on its [home page](https://webassembly.org/) as:
 
 
 We use LLVM as a compiler backend to produce WebAssembly binaries. Our resulting binaries also depend on [WASI](https://wasi.dev), which is a modular system interface for WebAssembly. WASI is mainly required to compile Swift Standard Library.
+
+## Project Status
+
+[All compiler and standard library changes have been upstreamed to the official Swift repository, and the upstream CI is now testing WebAssembly targets.](https://forums.swift.org/t/stdlib-and-runtime-tests-for-wasm-wasi-now-available-on-swift-ci/70385)
+
+The remaining works are:
+
+- Upstreaming the changes to the Foundation and XCTest projects.
+- Integrating the build system with the official Swift CI.
