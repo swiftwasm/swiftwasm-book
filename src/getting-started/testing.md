@@ -7,7 +7,7 @@ project and that you have a working package manifest. Please follow [our SwiftPM
 
 ## A simple test case
 
-Let's assume you have a `SwiftWasmLibrary` target in your project that you'd like to test. Your
+Let's assume you have an `Example` target in your project that you'd like to test. Your
 `Package.swift` should also have a test suite target with a dependency on the library target. It
 would probably look like this:
 
