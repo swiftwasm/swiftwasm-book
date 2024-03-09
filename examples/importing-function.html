@@ -160,6 +160,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#importing-a-function-from-host-environments" id="importing-a-function-from-host-environments">Importing a function from host environments</a></h1>
+<h2><a class="header" href="#swift-510-or-earlier" id="swift-510-or-earlier">Swift 5.10 or earlier</a></h2>
 <p>You can import a function from your host environment using the integration of Swift Package Manager
 with C targets. Firstly, you should declare a signature for your function in a C header with an
 appropriate <code>__import_name__</code> attribute:</p>
@@ -169,15 +170,14 @@ extern int add(int lhs, int rhs);
 <p>Here <code>__import_name__</code> specifies the name under which this function will be exposed to Swift code.
 Move this C header to a separate target, we'll call it <code>HostFunction</code> in this example. Your
 <code>Package.swift</code> manifest for your WebAssembly app would look like this:</p>
-<pre><code class="language-swift">// swift-tools-version:5.3
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+<pre><code class="language-swift">// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
-    name: &quot;SwiftWasmApp&quot;,
+    name: &quot;Example&quot;,
     targets: [
       .target(name: &quot;HostFunction&quot;, dependencies: []),
-      .target(name: &quot;SwiftWasmApp&quot;, dependencies: [&quot;HostFunction&quot;]),
+      .executableTarget(name: &quot;Example&quot;, dependencies: [&quot;HostFunction&quot;]),
     ]
 )
 </code></pre>
@@ -191,41 +191,24 @@ print(add(2, 2))
 <p>Note that we use <code>env</code> as default import module name. You can specify the module name as
 <code>__import_module__</code> in your C header. The full list of attributes in the header could look
 like <code>__attribute__((__import_module__(&quot;env&quot;),__import_name__(&quot;add&quot;)))</code>.</p>
-<pre><code class="language-javascript">const WASI = require(&quot;@wasmer/wasi&quot;).WASI;
-const WasmFs = require(&quot;@wasmer/wasmfs&quot;).WasmFs;
-
-const promisify = require(&quot;util&quot;).promisify;
-const fs = require(&quot;fs&quot;);
-const readFile = promisify(fs.readFile);
+<pre><code class="language-javascript">// File name: main.mjs
+import { WASI, File, OpenFile, ConsoleStdout } from &quot;@bjorn3/browser_wasi_shim&quot;;
+import fs from &quot;fs/promises&quot;;
 
 const main = async () =&gt; {
-  const wasmFs = new WasmFs();
-  // Output stdout and stderr to console
-  const originalWriteSync = wasmFs.fs.writeSync;
-  wasmFs.fs.writeSync = (fd, buffer, offset, length, position) =&gt; {
-    const text = new TextDecoder(&quot;utf-8&quot;).decode(buffer);
-    switch (fd) {
-      case 1:
-        console.log(text);
-        break;
-      case 2:
-        console.error(text);
-        break;
-    }
-    return originalWriteSync(fd, buffer, offset, length, position);
-  };
 
   // Instantiate a new WASI Instance
-  let wasi = new WASI({
-    args: [],
-    env: {},
-    bindings: {
-      ...WASI.defaultBindings,
-      fs: wasmFs.fs,
-    },
-  });
+  // See https://github.com/bjorn3/browser_wasi_shim/ for more detail about constructor options
+  let wasi = new WASI([], [],
+    [
+      new OpenFile(new File([])), // stdin
+      ConsoleStdout.lineBuffered(msg =&gt; console.log(`[WASI stdout] ${msg}`)),
+      ConsoleStdout.lineBuffered(msg =&gt; console.warn(`[WASI stderr] ${msg}`)),
+    ],
+    { debug: false }
+  );
 
-  const wasmBinary = await readFile(&quot;lib.wasm&quot;);
+  const wasmBinary = await fs.readFile(&quot;.build/wasm32-unknown-wasi/debug/Example.wasm&quot;);
 
   // Instantiate the WebAssembly file
   let { instance } = await WebAssembly.instantiate(wasmBinary, {
@@ -245,6 +228,22 @@ repository</a> from one of our contributors that shows
 an integration with an imported host function.</p>
 <p>A more streamlined way to import host functions will be implemented in the future version of the
 SwiftWasm toolchain.</p>
+<h2><a class="header" href="#swift-60-or-later" id="swift-60-or-later">Swift 6.0 or later</a></h2>
+<p>If you are using Swift 6.0 or later, you can use experimental <code>@_extern(wasm)</code> attribute</p>
+<p>Swift 6.0 introduces a new attribute <code>@_extern(wasm)</code> to import a function from the host environment.
+To use this experimental feature, you need to enable it in your SwiftPM manifest file:</p>
+<pre><code class="language-swift">.executableTarget(
+    name: &quot;Example&quot;,
+    swiftSettings: [
+        .enableExperimentalFeature(&quot;Extern&quot;)
+    ]),
+</code></pre>
+<p>Then, you can import a function from the host environment as follows without using C headers:</p>
+<pre><code class="language-swift">@_extern(wasm, module: &quot;env&quot;, name: &quot;add&quot;)
+func add(_ a: Int, _ b: Int) -&gt; Int
+
+print(add(2, 2))
+</code></pre>
 
                     </main>
 

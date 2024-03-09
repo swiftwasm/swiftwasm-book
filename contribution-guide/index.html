@@ -160,26 +160,12 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#contribution-guide" id="contribution-guide">Contribution Guide</a></h1>
-<h2><a class="header" href="#forum-posts" id="forum-posts">Forum posts</a></h2>
-<ul>
-<li><a href="https://forums.swift.org/t/wasm-support/16087/14">Design of this project</a></li>
-<li><a href="https://forums.swift.org/t/webassembly-swiftpm/34343">Swift Package Manager Support</a></li>
-</ul>
 <h2><a class="header" href="#repositories" id="repositories">Repositories</a></h2>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta" id="a-hrefhttpsgithubcomswiftwasmswiftswiftwasmswifta"><a href="https://github.com/swiftwasm/swift">swiftwasm/swift</a></a></h3>
-<p>The main repository of this project. Forked from <a href="https://github.com/swiftwasm/swift">apple/swift</a>. We are tracking upstream changes using <a href="https://github.com/wei/pull">pull</a></p>
-<h4><a class="header" href="#branching-scheme" id="branching-scheme">Branching scheme</a></h4>
-<ul>
-<li><code>swiftwasm</code> is the main development branch.</li>
-<li><code>main</code> is a mirror of the <code>main</code> branch of the upstream <code>apple/swift</code> repository. This branch is necessary to avoid <a href="https://github.com/swiftwasm/swift/pull/36">some issues</a>.</li>
-<li><code>swiftwasm-release/VERSION</code> is the branch where <code>VERSION</code> release of SwiftWasm is prepared.</li>
-<li><code>release/VERSION</code> is a mirror of the upstream <code>release/VERSION</code> branch.</li>
-</ul>
+<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmswiftwasm-buildswiftwasmswiftwasm-builda" id="a-hrefhttpsgithubcomswiftwasmswiftwasm-buildswiftwasmswiftwasm-builda"><a href="https://github.com/swiftwasm/swiftwasm-build">swiftwasm/swiftwasm-build</a></a></h3>
+<p>The main development repository for the SwiftWasm project. It contains the build script and patches for building the Swift compiler and standard library for WebAssembly. See the <a href="https://github.com/swiftwasm/swiftwasm-build/blob/main/README.md">README</a> for more information.</p>
 <h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia" id="a-hrefhttpsgithubcomswiftwasmicu4c-wasiswiftwasmicu4c-wasia"><a href="https://github.com/swiftwasm/icu4c-wasi">swiftwasm/icu4c-wasi</a></a></h3>
 <p>Build script and patches for building ICU project for WebAssembly. <a href="https://github.com/unicode-org/icu/pull/990">The required changes to build 
 it</a> were merged to the upstream repository.</p>
-<h3><a class="header" href="#a-hrefhttpsgithubcomswiftwasmwasi-sdk-buildswiftwasmwasi-sdk-builda" id="a-hrefhttpsgithubcomswiftwasmwasi-sdk-buildswiftwasmwasi-sdk-builda"><a href="https://github.com/swiftwasm/wasi-sdk-build">swiftwasm/wasi-sdk-build</a></a></h3>
-<p>We apply some patches for <a href="https://github.com/WebAssembly/wasi-sdk">WebAssembly/wasi-sdk</a> and <a href="https://github.com/WebAssembly/wasi-libc">WebAssembly/wasi-libc</a> to build <code>wasi-sysroot</code> with pthread header. There aren't so many diff from upstream.</p>
 
                     </main>
 

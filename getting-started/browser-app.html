@@ -170,44 +170,67 @@ While you can build Tokamak apps without <code>carton</code>, that would require
 already automated with <code>carton</code>.</p>
 <h3><a class="header" href="#system-requirements" id="system-requirements">System Requirements</a></h3>
 <ul>
-<li>macOS 10.15 and Xcode 11.4 or later.</li>
-<li><a href="https://swift.org/download/">Swift 5.2 or later</a> and Ubuntu 18.04 for Linux users.</li>
+<li><a href="https://swift.org/download/">Swift 5.9.2 or later</a></li>
 </ul>
 <h3><a class="header" href="#installation" id="installation">Installation</a></h3>
-<p>On macOS <code>carton</code> can be installed with <a href="https://brew.sh/">Homebrew</a>. Make sure you have Homebrew
-installed and then run:</p>
-<pre><code class="language-sh">brew install swiftwasm/tap/carton
-</code></pre>
-<p>You'll have to build <code>carton</code> from sources on Linux. Clone the repository and run
-<code>swift build -c release</code>, the <code>carton</code> binary will be located in the <code>.build/release</code>
-directory after that.
-Assuming you already have Homebrew installed, you can create a new Tokamak
-app by following these steps:</p>
 <ol>
-<li>Install <code>carton</code>:</li>
-</ol>
-<pre><code>brew install swiftwasm/tap/carton
-</code></pre>
-<p>If you had <code>carton</code> installed before this, make sure you have version 0.6.1 or greater:</p>
-<pre><code>carton --version
-</code></pre>
-<ol start="2">
 <li>Create a directory for your project and make it current:</li>
 </ol>
-<pre><code>mkdir TokamakApp &amp;&amp; cd TokamakApp
+<pre><code>mkdir MyApp &amp;&amp; cd MyApp
+</code></pre>
+<ol start="2">
+<li>Initialize the project:</li>
+</ol>
+<pre><code>swift package init --type executable
 </code></pre>
 <ol start="3">
-<li>Initialize the project from a template with <code>carton</code>:</li>
+<li>Add Tokamak and carton as dependencies to your <code>Package.swift</code>:</li>
 </ol>
-<pre><code>carton init --template tokamak
+<pre><code class="language-swift">// swift-tools-version:5.8
+import PackageDescription
+let package = Package(
+    name: &quot;MyApp&quot;,
+    platforms: [.macOS(.v11), .iOS(.v13)],
+    dependencies: [
+        .package(url: &quot;https://github.com/TokamakUI/Tokamak&quot;, from: &quot;0.11.0&quot;),
+        .package(url: &quot;https://github.com/swiftwasm/carton&quot;, from: &quot;1.0.0&quot;),
+    ],
+    targets: [
+        .executableTarget(
+            name: &quot;MyApp&quot;,
+            dependencies: [
+                .product(name: &quot;TokamakShim&quot;, package: &quot;Tokamak&quot;)
+            ]),
+    ]
+)
 </code></pre>
 <ol start="4">
-<li>Build the project and start the development server, <code>carton dev</code> can be kept running
-during development:</li>
+<li>Add your first view to <code>Sources/main.swift</code>:</li>
 </ol>
-<pre><code>carton dev
+<pre><code class="language-swift">import TokamakDOM
+
+@main
+struct TokamakApp: App {
+    var body: some Scene {
+        WindowGroup(&quot;Tokamak App&quot;) {
+            ContentView()
+        }
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        Text(&quot;Hello, world!&quot;)
+    }
+}
 </code></pre>
 <ol start="5">
+<li>Build the project and start the development server, <code>swift run carton dev</code> can be kept running
+during development:</li>
+</ol>
+<pre><code>swift run carton dev
+</code></pre>
+<ol start="6">
 <li>Open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a> in your browser to see the app
 running. You can edit the app source code in your favorite editor and save it, <code>carton</code>
 will immediately rebuild the app and reload all browser tabs that have the app open.</li>

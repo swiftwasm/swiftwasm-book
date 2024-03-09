@@ -168,6 +168,13 @@
 <p>WebAssembly (abbreviated as Wasm) is a binary instruction format for a stack-based virtual machine. Wasm is designed as a portable compilation target for programming languages, enabling deployment on the web for client and server applications.</p>
 </blockquote>
 <p>We use LLVM as a compiler backend to produce WebAssembly binaries. Our resulting binaries also depend on <a href="https://wasi.dev">WASI</a>, which is a modular system interface for WebAssembly. WASI is mainly required to compile Swift Standard Library.</p>
+<h2><a class="header" href="#project-status" id="project-status">Project Status</a></h2>
+<p><a href="https://forums.swift.org/t/stdlib-and-runtime-tests-for-wasm-wasi-now-available-on-swift-ci/70385">All compiler and standard library changes have been upstreamed to the official Swift repository, and the upstream CI is now testing WebAssembly targets.</a></p>
+<p>The remaining works are:</p>
+<ul>
+<li>Upstreaming the changes to the Foundation and XCTest projects.</li>
+<li>Integrating the build system with the official Swift CI.</li>
+</ul>
 
                     </main>
 

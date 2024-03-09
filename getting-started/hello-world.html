@@ -168,11 +168,11 @@
 <pre><code>$ swiftc -target wasm32-unknown-wasi hello.swift -o hello.wasm
 </code></pre>
 <h2><a class="header" href="#3-run-the-produced-binary-on-webassembly-runtime" id="3-run-the-produced-binary-on-webassembly-runtime">3. Run the produced binary on WebAssembly runtime</a></h2>
-<p>You can the run the produced binary with <a href="https://wasmer.io/">wasmer</a> (or other WebAssembly runtime):</p>
-<pre><code class="language-sh">$ wasmer hello.wasm
+<p>You can the run the produced binary with <a href="https://wasmtime.dev/">wasmtime</a> (or other WebAssembly runtime):</p>
+<pre><code class="language-sh">$ wasmtime hello.wasm
 </code></pre>
 <p>The produced binary depends on WASI which is an interface of system call for WebAssembly.
-So you need to use WASI supported runtime and when you run the binary on browser, you need WASI polyfill library like <a href="https://github.com/wasmerio/wasmer-js/tree/master/packages/wasi">@wasmer/wasi</a>.</p>
+So you need to use WASI supported runtime and when you run the binary on browser, you need WASI polyfill library like <a href="https://github.com/bjorn3/browser_wasi_shim">@bjorn3/browser_wasi_shim</a>.</p>
 
                     </main>
 

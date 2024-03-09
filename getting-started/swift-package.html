@@ -162,26 +162,27 @@
                         <h1><a class="header" href="#compile-a-swiftpm-package-to-webassembly" id="compile-a-swiftpm-package-to-webassembly">Compile a SwiftPM package to WebAssembly</a></h1>
 <p>You can also use SwiftPM for managing packages in the same way as other platforms.</p>
 <h2><a class="header" href="#1-create-a-package-from-template" id="1-create-a-package-from-template">1. Create a package from template</a></h2>
-<pre><code class="language-sh">$ swift package init --type executable
-Creating executable package: hello
+<pre><code class="language-sh">$ swift package init --type executable --name Example 
+Creating executable package: Example
 Creating Package.swift
-Creating README.md
 Creating .gitignore
 Creating Sources/
-Creating Sources/hello/main.swift
-Creating Tests/
-Creating Tests/LinuxMain.swift
-Creating Tests/helloTests/
-Creating Tests/helloTests/helloTests.swift
-Creating Tests/helloTests/XCTestManifests.swift
+Creating Sources/main.swift
 </code></pre>
 <h2><a class="header" href="#2-build-the-project-into-a-webassembly-binary" id="2-build-the-project-into-a-webassembly-binary">2. Build the Project into a WebAssembly binary</a></h2>
 <p>You need to pass <code>--triple</code> option, which indicates that you are building for the target.</p>
 <pre><code class="language-sh">$ swift build --triple wasm32-unknown-wasi
 </code></pre>
+<!--
+If [you installed Swift SDK instead of the whole toolchain](./setup.md#experimental-swift-sdk), you need to use the following command:
+
+```sh
+$ swift build --experimental-swift-sdk <SDK name>
+```
+-->
 <h2><a class="header" href="#3-run-the-produced-binary" id="3-run-the-produced-binary">3. Run the produced binary</a></h2>
-<p>Just as in the <a href="./hello-world.html">previous section</a>, you can run the produced binary with the <code>wasmer</code> WebAssembly runtime.</p>
-<pre><code class="language-sh">$ wasmer ./.build/debug/hello-swiftwasm.wasm
+<p>Just as in the <a href="./hello-world.html">previous section</a>, you can run the produced binary with WebAssembly runtimes like <code>wasmtime</code>.</p>
+<pre><code class="language-sh">$ wasmtime ./.build/wasm32-unknown-wasi/debug/Example.wasm
 Hello, world!
 </code></pre>
 

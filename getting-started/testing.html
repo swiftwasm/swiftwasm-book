@@ -168,41 +168,33 @@ project and that you have a working package manifest. Please follow <a href="./s
 <p>Let's assume you have a <code>SwiftWasmLibrary</code> target in your project that you'd like to test. Your
 <code>Package.swift</code> should also have a test suite target with a dependency on the library target. It
 would probably look like this:</p>
-<pre><code class="language-swift">// swift-tools-version:5.3
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+<pre><code class="language-swift">// swift-tools-version: 5.9
 
 import PackageDescription
 
 let package = Package(
-  name: &quot;HelloSwiftWasm&quot;,
-  products: [
-    .executable(name: &quot;SwiftWasmApp&quot;, targets: [&quot;SwiftWasmApp&quot;]),
-  ],
-  targets: [
-    // Targets are the basic building blocks of a package. A target can define a module or a test
-    // suite. Targets can depend on other targets in this package, and on products in packages which
-    // this package depends on.
-    .target(
-      name: &quot;SwiftWasmApp&quot;,
-      dependencies: [&quot;SwiftWasmLibrary&quot;],
-    ),
-    .target(name: &quot;SwiftWasmLibrary&quot;),
-    .testTarget(name: &quot;SwiftWasmTests&quot;, dependencies: [&quot;SwiftWasmLibrary&quot;]),
-  ]
+    name: &quot;Example&quot;,
+    products: [
+        .library(name: &quot;Example&quot;, targets: [&quot;Example&quot;]),
+    ],
+    targets: [
+        .target(name: &quot;Example&quot;),
+        .testTarget(name: &quot;ExampleTests&quot;, dependencies: [&quot;Example&quot;]),
+    ]
 )
 </code></pre>
-<p>Now you should make sure there's <code>Tests/SwiftWasmTests</code> subdirectory in your project.
-If you don't have any files in it yet, create <code>SwiftWasmTests.swift</code> in it:</p>
-<pre><code class="language-swift">import SwiftWasmLibrary
+<p>Now you should make sure there's <code>Tests/ExampleTests</code> subdirectory in your project.
+If you don't have any files in it yet, create <code>ExampleTests.swift</code> in it:</p>
+<pre><code class="language-swift">import Example
 import XCTest
 
-final class SwiftWasmTests: XCTestCase {
+final class ExampleTests: XCTestCase {
   func testTrivial() {
     XCTAssertEqual(text, &quot;Hello, world&quot;)
   }
 }
 </code></pre>
-<p>This code assumes that your <code>SwiftWasmLibrary</code> defines some <code>text</code> with <code>&quot;Hello, world&quot;</code> value
+<p>This code assumes that your <code>Example</code> defines some <code>text</code> with <code>&quot;Hello, world&quot;</code> value
 for this test to pass. Your test functions should all start with <code>test</code>, please see <a href="https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods">XCTest 
 documentation</a>
 for more details.</p>
@@ -213,26 +205,24 @@ and test hooks related to <code>Bundle</code> (such as <code>testBundleWillStart
 are not available in test suites compiled with SwiftWasm. If you have an existing test suite you're
 porting to WebAssembly, you should use <code>#if os(WASI)</code> directives to exclude places where you use
 these APIs from compilation.</p>
-<h2><a class="header" href="#building-and-running-the-test-suite-with-carton" id="building-and-running-the-test-suite-with-carton">Building and running the test suite with <code>carton</code></a></h2>
-<p>If you use <a href="https://carton.dev"><code>carton</code></a> to develop and build your app, as described in <a href="./browser-app.html">our guide
-for browser apps</a>, just run <code>carton test</code> in the
-root directory of your package. This will automatically build the test suite and run it with 
-<a href="https://wasmer.io/">Wasmer</a> for you.</p>
 <h2><a class="header" href="#building-and-running-the-test-suite-with-swiftpm" id="building-and-running-the-test-suite-with-swiftpm">Building and running the test suite with <code>SwiftPM</code></a></h2>
-<p>If you manage your SwiftWasm toolchain without <code>carton</code> (as shown in <a href="./setup.html">the &quot;Setup&quot; section</a>),
-you can build your test suite by running this command in your terminal:</p>
+<p>You can build your test suite by running this command in your terminal:</p>
 <pre><code class="language-sh">$ swift build --build-tests --triple wasm32-unknown-wasi
 </code></pre>
 <p>If you're used to running <code>swift test</code> to run test suites for other Swift platforms, we have to
 warn you that this won't work. <code>swift test</code> doesn't know what WebAssembly environment you'd like to 
 use to run your tests. Because of this building tests and running them are two separate steps when
 using <code>SwiftPM</code>. After your tests are built, you can use a WASI-compatible host such as
-<a href="https://wasmer.io/">Wasmer</a> to run the test bundle:</p>
-<pre><code class="language-sh">$ wasmer .build/debug/HelloSwiftWasmPackageTests.xctest
+<a href="https://wasmtime.dev/">wasmtime</a> to run the test bundle:</p>
+<pre><code class="language-sh">$ wasmtime .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
 </code></pre>
 <p>As you can see, the produced test binary starts with the name of your package followed by
-<code>PackageTests.xctest</code>. It is located in the <code>.build/debug</code> subdirectory, or in the <code>.build/release</code>
+<code>PackageTests.wasm</code>. It is located in the <code>.build/debug</code> subdirectory, or in the <code>.build/release</code>
 subdirectory when you build in release mode.</p>
+<h2><a class="header" href="#building-and-running-the-test-suite-with-carton" id="building-and-running-the-test-suite-with-carton">Building and running the test suite with <code>carton</code></a></h2>
+<p>If you use <a href="https://carton.dev"><code>carton</code></a> to develop and build your app, as described in <a href="./browser-app.html">our guide
+for browser apps</a>, just run <code>swift run carton test</code> in the
+root directory of your package. This will automatically build the test suite and run it with a WASI runtime for you.</p>
 
                     </main>
 

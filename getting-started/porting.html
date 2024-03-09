@@ -184,7 +184,7 @@ import WASILibc
 </code></pre>
 <h3><a class="header" href="#limitations" id="limitations">Limitations</a></h3>
 <p>WebAssembly and <a href="https://wasi.dev/">WASI</a> provide a constrained environment, which currently does
-not directly support multi-threading, or filesystem access in the browser. Thus, you should not
+not directly support multi-threading. Thus, you should not
 expect these APIs to work when importing <code>WASILibc</code>. Please be aware of these limitations when
 porting your code, which also has an impact on what <a href="#swift-foundation-and-dispatch">can be supported in the Swift
 Foundation</a> at the moment.</p>
@@ -194,33 +194,33 @@ SwiftWasm, but in a limited capacity. The main reason is that <a href="https://s
 library</a> is unavailable due to <a href="https://github.com/swiftwasm/swift/issues/1887">the lack of 
 standardized multi-threading support</a> in WebAssembly
 and SwiftWasm itself. Many Foundation APIs rely on the presence of Dispatch under the hood,
-specifically file system access and threading helpers. A few other types are unavailable in browsers
-or aren't standardized in WASI hosts, such as support for sockets and low-level networking, or
-support for time zone files, and they had to be disabled. These types are therefore absent in
-SwiftWasm Foundation:</p>
-<ul>
-<li><code>FoundationNetworking</code> types, such as <code>URLSession</code> and related APIs</li>
-<li><code>FileManager</code></li>
-<li><code>Host</code></li>
-<li><code>Notification</code></li>
-<li><code>NotificationQueue</code></li>
-<li><code>NSKeyedArchiver</code></li>
-<li><code>NSKeyedArchiverHelpers</code></li>
-<li><code>NSKeyedCoderOldStyleArray</code></li>
-<li><code>NSKeyedUnarchiver</code></li>
-<li><code>NSNotification</code></li>
-<li><code>NSSpecialValue</code></li>
-<li><code>Port</code></li>
-<li><code>PortMessage</code></li>
-<li><code>Process</code></li>
-<li><code>ProcessInfo</code> (Partially available since 5.7)</li>
-<li><code>PropertyListEncoder</code></li>
-<li><code>RunLoop</code></li>
-<li><code>Stream</code></li>
-<li><code>Thread</code></li>
-<li><code>Timer</code></li>
-<li><code>UserDefaults</code></li>
-</ul>
+specifically threading helpers. A few other types are unavailable in browsers
+or aren't standardized in WASI hosts, such as support for sockets and low-level networking,
+and they had to be disabled. These types are therefore absent in SwiftWasm Foundation:</p>
+<table><thead><tr><th>Type or module</th><th>Status</th></tr></thead><tbody>
+<tr><td><code>FoundationNetworking</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>FileManager</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>Host</code></td><td>✅ Partially available after 6.0</td></tr>
+<tr><td><code>Notification</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>NotificationQueue</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>NSKeyedArchiver</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>NSKeyedArchiverHelpers</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>NSKeyedCoderOldStyleArray</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>NSKeyedUnarchiver</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>NSNotification</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>NSSpecialValue</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>Port</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>PortMessage</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>Process</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>ProcessInfo</code></td><td>✅ Partially available after 5.7</td></tr>
+<tr><td><code>PropertyListEncoder</code></td><td>✅ Available after 6.0</td></tr>
+<tr><td><code>RunLoop</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>Stream</code></td><td>✅ Partially available after 6.0</td></tr>
+<tr><td><code>SocketPort</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>Thread</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>Timer</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>UserDefaults</code></td><td>✅ Available after 6.0</td></tr>
+</tbody></table>
 <p>Related functions and properties on other types are also absent or disabled. We would like to make
 them available in the future as soon as possible, and <a href="../contribution-guide/index.html">we invite you to 
 contribute</a> and help us in achieving this goal!</p>
