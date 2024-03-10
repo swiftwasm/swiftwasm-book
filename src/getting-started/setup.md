@@ -52,11 +52,13 @@ If you want to uninstall the toolchain, you can remove the toolchain directory f
 
 SwiftWasm provides [Swift SDK](https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md)s for WebAssembly. You can use the Swift SDK to cross-compile Swift packages for WebAssembly without installing the whole toolchain.
 
-To use the Swift SDK, you need to install the official Swift toolchain 5.9 or later. Then, you can install the Swift SDK using the following command:
+To use the Swift SDK, you need to install the official Swift toolchain 5.9 or later. Then, you can install the Swift SDK using the following command while replacing `<your platform>`:
 
 ```bash
-$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9-SNAPSHOT-2024-03-02-a/swift-wasm-5.9-SNAPSHOT-2024-03-02-a-macos_arm64.artifactbundle.zip
+$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9.2-RELEASE/swift-wasm-5.9.2-RELEASE-<your platform>.artifactbundle.zip
 ```
+
+You can find the latest Swift SDK release from [the GitHub Releases page](https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.9.2-RELEASE).
 
 After installing the Swift SDK, you can see the installed SDKs using the following command:
 
