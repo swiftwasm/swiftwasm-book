@@ -196,32 +196,19 @@ Target: x86_64-apple-darwin21.6.0
 <li><a href="#latest-release">Download the latest package release</a> according to your Ubuntu version and CPU architecture.</li>
 <li>Follow the official Swift installation guide for Linux from <a href="https://www.swift.org/install/linux/#installation-via-tarball">swift.org</a> while skipping GPG key verification, which is not provided for SwiftWasm releases.</li>
 </ol>
-<!--- TODO: Update the link and uncomment after releasing 5.9.2
-## Experimental: Swift SDK
-
-SwiftWasm provides [Swift SDK](https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md)s for WebAssembly. You can use the Swift SDK to cross-compile Swift packages for WebAssembly without installing the whole toolchain.
-
-To use the Swift SDK, you need to install the official Swift toolchain 5.9 or later. Then, you can install the Swift SDK using the following command:
-
-```bash
-$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9-SNAPSHOT-2024-03-02-a/swift-wasm-5.9-SNAPSHOT-2024-03-02-a-macos_arm64.artifactbundle.zip
-```
-
-After installing the Swift SDK, you can see the installed SDKs using the following command:
-
-```bash
-$ swift experimental-sdk list
-<SDK name>
+<h2><a class="header" href="#experimental-swift-sdk" id="experimental-swift-sdk">Experimental: Swift SDK</a></h2>
+<p>SwiftWasm provides <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md">Swift SDK</a>s for WebAssembly. You can use the Swift SDK to cross-compile Swift packages for WebAssembly without installing the whole toolchain.</p>
+<p>To use the Swift SDK, you need to install the official Swift toolchain 5.9 or later. Then, you can install the Swift SDK using the following command:</p>
+<pre><code class="language-bash">$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9-SNAPSHOT-2024-03-02-a/swift-wasm-5.9-SNAPSHOT-2024-03-02-a-macos_arm64.artifactbundle.zip
+</code></pre>
+<p>After installing the Swift SDK, you can see the installed SDKs using the following command:</p>
+<pre><code class="language-bash">$ swift experimental-sdk list
+&lt;SDK name&gt;
 ...
-```
-
-You can use the installed SDKs to cross-compile Swift packages for WebAssembly using the following command:
-
-```bash
-$ swift build --experimental-swift-sdk <SDK name>
-```
-
--->
+</code></pre>
+<p>You can use the installed SDKs to cross-compile Swift packages for WebAssembly using the following command:</p>
+<pre><code class="language-bash">$ swift build --experimental-swift-sdk &lt;SDK name&gt;
+</code></pre>
 <h2><a class="header" href="#docker" id="docker">Docker</a></h2>
 <p>SwiftWasm offical Docker images are hosted on <a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">GitHub Container Registry</a>.</p>
 <p>SwiftWasm Dockerfiles are located on <a href="https://github.com/swiftwasm/swiftwasm-docker">swiftwasm-docker</a> repository.</p>

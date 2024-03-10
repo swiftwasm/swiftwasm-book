@@ -173,13 +173,9 @@ Creating Sources/main.swift
 <p>You need to pass <code>--triple</code> option, which indicates that you are building for the target.</p>
 <pre><code class="language-sh">$ swift build --triple wasm32-unknown-wasi
 </code></pre>
-<!--
-If [you installed Swift SDK instead of the whole toolchain](./setup.md#experimental-swift-sdk), you need to use the following command:
-
-```sh
-$ swift build --experimental-swift-sdk <SDK name>
-```
--->
+<p>If <a href="./setup.html#experimental-swift-sdk">you installed Swift SDK instead of the whole toolchain</a>, you need to use the following command:</p>
+<pre><code class="language-sh">$ swift build --experimental-swift-sdk &lt;SDK name&gt;
+</code></pre>
 <h2><a class="header" href="#3-run-the-produced-binary" id="3-run-the-produced-binary">3. Run the produced binary</a></h2>
 <p>Just as in the <a href="./hello-world.html">previous section</a>, you can run the produced binary with WebAssembly runtimes like <code>wasmtime</code>.</p>
 <pre><code class="language-sh">$ wasmtime ./.build/wasm32-unknown-wasi/debug/Example.wasm
