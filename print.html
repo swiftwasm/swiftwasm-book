@@ -224,9 +224,10 @@ Target: x86_64-apple-darwin21.6.0
 </ol>
 <h2><a class="header" href="#experimental-swift-sdk" id="experimental-swift-sdk">Experimental: Swift SDK</a></h2>
 <p>SwiftWasm provides <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md">Swift SDK</a>s for WebAssembly. You can use the Swift SDK to cross-compile Swift packages for WebAssembly without installing the whole toolchain.</p>
-<p>To use the Swift SDK, you need to install the official Swift toolchain 5.9 or later. Then, you can install the Swift SDK using the following command:</p>
-<pre><code class="language-bash">$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9-SNAPSHOT-2024-03-02-a/swift-wasm-5.9-SNAPSHOT-2024-03-02-a-macos_arm64.artifactbundle.zip
+<p>To use the Swift SDK, you need to install the official Swift toolchain 5.9 or later. Then, you can install the Swift SDK using the following command while replacing <code>&lt;your platform&gt;</code>:</p>
+<pre><code class="language-bash">$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9.2-RELEASE/swift-wasm-5.9.2-RELEASE-&lt;your platform&gt;.artifactbundle.zip
 </code></pre>
+<p>You can find the latest Swift SDK release from <a href="https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.9.2-RELEASE">the GitHub Releases page</a>.</p>
 <p>After installing the Swift SDK, you can see the installed SDKs using the following command:</p>
 <pre><code class="language-bash">$ swift experimental-sdk list
 &lt;SDK name&gt;
