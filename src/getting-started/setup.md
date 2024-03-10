@@ -48,7 +48,6 @@ If you want to uninstall the toolchain, you can remove the toolchain directory f
 1. [Download the latest package release](#latest-release) according to your Ubuntu version and CPU architecture.
 2. Follow the official Swift installation guide for Linux from [swift.org](https://www.swift.org/install/linux/#installation-via-tarball) while skipping GPG key verification, which is not provided for SwiftWasm releases.
 
-<!--- TODO: Update the link and uncomment after releasing 5.9.2
 ## Experimental: Swift SDK
 
 SwiftWasm provides [Swift SDK](https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md)s for WebAssembly. You can use the Swift SDK to cross-compile Swift packages for WebAssembly without installing the whole toolchain.
@@ -72,8 +71,6 @@ You can use the installed SDKs to cross-compile Swift packages for WebAssembly u
 ```bash
 $ swift build --experimental-swift-sdk <SDK name>
 ```
-
--->
 
 ## Docker
 

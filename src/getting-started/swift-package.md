@@ -22,13 +22,11 @@ You need to pass `--triple` option, which indicates that you are building for th
 $ swift build --triple wasm32-unknown-wasi
 ```
 
-<!--
 If [you installed Swift SDK instead of the whole toolchain](./setup.md#experimental-swift-sdk), you need to use the following command:
 
 ```sh
 $ swift build --experimental-swift-sdk <SDK name>
 ```
--->
 
 ## 3. Run the produced binary
 
