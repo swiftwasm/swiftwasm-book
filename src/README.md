@@ -19,5 +19,4 @@ We use LLVM as a compiler backend to produce WebAssembly binaries. Our resulting
 
 The remaining works are:
 
-- Upstreaming the changes to the Foundation and XCTest projects.
 - Integrating the build system with the official Swift CI.
