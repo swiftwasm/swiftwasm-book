@@ -3,6 +3,7 @@
 - [Introduction](README.md)
 - [Getting Started](getting-started/index.md)
     - [Installation](getting-started/setup.md)
+        - [Development Snapshot](getting-started/setup-snapshot.md)
     - [Hello, World](getting-started/hello-world.md)
     - [Using Swift Package Manager](getting-started/swift-package.md)
     - [Porting code from other platforms](getting-started/porting.md)
