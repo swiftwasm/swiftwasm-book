@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Hello, World - Swift and WebAssembly</title>
+        <title>Development Snapshot - Swift and WebAssembly</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup-snapshot.html"><strong aria-hidden="true">2.1.1.</strong> Development Snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html" class="active"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/concurrency.html"><strong aria-hidden="true">2.7.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="../getting-started/testing.html"><strong aria-hidden="true">2.8.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="../getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="../getting-started/troubleshooting.html"><strong aria-hidden="true">2.10.</strong> Troubleshooting</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/setup-snapshot.html" class="active"><strong aria-hidden="true">2.1.1.</strong> Development Snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="../getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="../getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="../getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="../getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="../getting-started/concurrency.html"><strong aria-hidden="true">2.7.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="../getting-started/testing.html"><strong aria-hidden="true">2.8.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="../getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="../getting-started/troubleshooting.html"><strong aria-hidden="true">2.10.</strong> Troubleshooting</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="../examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="../examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="../contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,33 +159,85 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#hello-world" id="hello-world">Hello, World!</a></h1>
-<p>This section will show you how to compile a simple Swift code into WebAssembly and run the produced binary on WASI supported WebAssembly runtime.</p>
-<h2><a class="header" href="#1-create-a-swift-file" id="1-create-a-swift-file">1. Create a Swift file</a></h2>
-<pre><code class="language-sh">$ echo 'print(&quot;Hello, world!&quot;)' &gt; hello.swift
+                        <h1><a class="header" href="#installation---development-snapshot" id="installation---development-snapshot">Installation - Development Snapshot</a></h1>
+<h2><a class="header" href="#webassembly-sdk---cross-compile-to-webassembly" id="webassembly-sdk---cross-compile-to-webassembly">WebAssembly SDK - Cross compile to WebAssembly</a></h2>
+<p>The upstream Open Source Swift toolchain does support WebAssembly as a target platform since <strong>Swift 6.0</strong>.
+For those versions, you just need to install <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md">Swift SDK for cross-compilation</a>.</p>
+<h2><a class="header" href="#instructions" id="instructions">Instructions</a></h2>
+<ol>
+<li>
+<p><strong>Find a Development Snapshot</strong></p>
+<p>Visit the <a href="https://github.com/swiftwasm/swift/releases">SwiftWasm GitHub Releases page</a>.</p>
+</li>
+<li>
+<p><strong>Match the Swift Toolchain Version</strong></p>
+<p>Refer to the release note's table to find the corresponding upstream Swift toolchain version.</p>
+<blockquote>
+<p>For example, <a href="https://github.com/swiftwasm/swift/releases/tag/swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a"><code>swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a</code></a> corresponds to <code>swift-DEVELOPMENT-SNAPSHOT-2024-06-11-a</code></p>
+</blockquote>
+</li>
+<li>
+<p><strong>Download the Swift Toolchain</strong></p>
+<p>Download the appropriate Swift toolchain version from <a href="https://www.swift.org/install">swift.org/install</a>.</p>
+</li>
+<li>
+<p><strong>Get the Swift SDK artifactbundle URL</strong></p>
+<p>Find the URL ending with <code>.artifactbundle.zip</code> from the release page you found in step 1.</p>
+</li>
+<li>
+<p><strong>Install the Swift SDK for WebAssembly</strong></p>
+<p>Use the following command to install the Swift SDK:</p>
+<pre><code class="language-console">$ swift sdk install &lt;URL-or-filename-of-swift-sdk-artifactbundle&gt;
 </code></pre>
-<h2><a class="header" href="#2-compile-swift-code-into-webassembly-with-wasi" id="2-compile-swift-code-into-webassembly-with-wasi">2. Compile Swift code into WebAssembly with WASI</a></h2>
-<pre><code>$ swiftc -target wasm32-unknown-wasi hello.swift -o hello.wasm
+<blockquote>
+<p>For example, if you selected <code>swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a</code>, you need to run the following command:</p>
+<pre><code class="language-console">$ swift sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a-wasm32-unknown-wasi.artifactbundle.zip
 </code></pre>
-<h2><a class="header" href="#3-run-the-produced-binary-on-webassembly-runtime" id="3-run-the-produced-binary-on-webassembly-runtime">3. Run the produced binary on WebAssembly runtime</a></h2>
-<p>You can the run the produced binary with <a href="https://wasmtime.dev/">wasmtime</a> (or other WebAssembly runtime):</p>
-<pre><code class="language-sh">$ wasmtime hello.wasm
+</blockquote>
+</li>
+<li>
+<p>You can see the installed SDKs using the following command:</p>
+<pre><code class="language-console">$ swift sdk list
+&lt;Swift SDK id&gt;
+...
 </code></pre>
-<p>The produced binary depends on WASI which is an interface of system call for WebAssembly.
-So you need to use WASI supported runtime and when you run the binary on browser, you need WASI polyfill library like <a href="https://github.com/bjorn3/browser_wasi_shim">@bjorn3/browser_wasi_shim</a>.</p>
+<blockquote>
+<p>Once you don't need the SDK, you can remove it using the following command:</p>
+<pre><code class="language-console"> $ swift sdk remove &lt;Swift SDK id&gt;
+</code></pre>
+</blockquote>
+</li>
+</ol>
+<h2><a class="header" href="#how-to-use-the-swift-sdk" id="how-to-use-the-swift-sdk">How to use the Swift SDK</a></h2>
+<p>First, create a new Swift package using the following command:</p>
+<pre><code class="language-console">$ mkdir Example
+$ cd Example
+$ swift package init --type executable
+</code></pre>
+<p>Then, you can build the package using the Swift SDK:</p>
+<pre><code class="language-console">$ swift build --swift-sdk wasm32-unknown-wasi
+# or
+$ swift build --swift-sdk &lt;Swift SDK id&gt;
+</code></pre>
+<h2><a class="header" href="#faq" id="faq">FAQ</a></h2>
+<h3><a class="header" href="#what-is-the-difference-between-the-swift-toolchain-and-the-swift-sdk" id="what-is-the-difference-between-the-swift-toolchain-and-the-swift-sdk">What is the difference between the Swift Toolchain and the Swift SDK?</a></h3>
+<p>The Swift toolchain is a complete package that includes the Swift compiler, standard library, and other tools.</p>
+<p>The Swift SDK includes a subset of the Swift toolchain that includes only the necessary components for cross-compilation and some supplementary resources.</p>
+<h3><a class="header" href="#what-is-included-in-the-swift-sdk-for-webassembly" id="what-is-included-in-the-swift-sdk-for-webassembly">What is included in the Swift SDK for WebAssembly?</a></h3>
+<p>The Swift SDK for WebAssembly includes only the pre-built Swift standard libraries for WebAssembly. It does not include the Swift compiler or other tools that are part of the Swift toolchain.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../getting-started/setup-snapshot.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../getting-started/setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../getting-started/swift-package.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../getting-started/hello-world.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -197,13 +249,13 @@ So you need to use WASI supported runtime and when you run the binary on browser
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../getting-started/setup-snapshot.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../getting-started/setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../getting-started/swift-package.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../getting-started/hello-world.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

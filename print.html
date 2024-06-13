@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/concurrency.html"><strong aria-hidden="true">2.7.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.8.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="getting-started/troubleshooting.html"><strong aria-hidden="true">2.10.</strong> Troubleshooting</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup-snapshot.html"><strong aria-hidden="true">2.1.1.</strong> Development Snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello, World</a></li><li class="chapter-item expanded "><a href="getting-started/swift-package.html"><strong aria-hidden="true">2.3.</strong> Using Swift Package Manager</a></li><li class="chapter-item expanded "><a href="getting-started/porting.html"><strong aria-hidden="true">2.4.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.5.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.6.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/concurrency.html"><strong aria-hidden="true">2.7.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.8.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="getting-started/troubleshooting.html"><strong aria-hidden="true">2.10.</strong> Troubleshooting</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -184,20 +184,18 @@
 <li>How to compile a simple Swift code and Swift Package into WebAssembly</li>
 <li>How to interoperate with JavaScript</li>
 </ul>
-<h1><a class="header" href="#installation" id="installation">Installation</a></h1>
+<h1><a class="header" href="#installation---latest-release-swiftwasm-510" id="installation---latest-release-swiftwasm-510">Installation - Latest Release (SwiftWasm 5.10)</a></h1>
 <p>To install Swift for WebAssembly toolchain, download one of the packages below and follow the instructions for your operating system.</p>
-<h2><a class="header" href="#latest-release" id="latest-release">Latest Release</a></h2>
-<p><strong>SwiftWasm 5.9</strong></p>
-<p>Tag: <a href="https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.9.1-RELEASE">swift-wasm-5.9.1-RELEASE</a></p>
+<p>Tag: <a href="https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.10.0-RELEASE">swift-wasm-5.10.0-RELEASE</a></p>
 <table><thead><tr><th align="center">Download</th><th align="center">Docker Tag</th></tr></thead><tbody>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9.1-RELEASE/swift-wasm-5.9.1-RELEASE-macos_arm64.pkg">macOS arm64</a></td><td align="center">Unavailable</td></tr>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9.1-RELEASE/swift-wasm-5.9.1-RELEASE-macos_x86_64.pkg">macOS x86</a></td><td align="center">Unavailable</td></tr>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9.1-RELEASE/swift-wasm-5.9.1-RELEASE-ubuntu18.04_x86_64.tar.gz">Ubuntu 18.04 x86_64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.9-bionic, bionic</a></td></tr>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9.1-RELEASE/swift-wasm-5.9.1-RELEASE-ubuntu20.04_x86_64.tar.gz">Ubuntu 20.04 x86_64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.9-focal, focal</a></td></tr>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9.1-RELEASE/swift-wasm-5.9.1-RELEASE-ubuntu20.04_aarch64.tar.gz">Ubuntu 20.04 aarch64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.9-focal, focal</a></td></tr>
-<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9.1-RELEASE/swift-wasm-5.9.1-RELEASE-ubuntu22.04_x86_64.tar.gz">Ubuntu 22.04 x86_64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.9, 5.9-jammy, jammy, latest</a></td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-macos_arm64.pkg">macOS arm64</a></td><td align="center">Unavailable</td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-macos_x86_64.pkg">macOS x86</a></td><td align="center">Unavailable</td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-ubuntu18.04_x86_64.tar.gz">Ubuntu 18.04 x86_64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.10-bionic, bionic</a></td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-ubuntu20.04_x86_64.tar.gz">Ubuntu 20.04 x86_64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.10-focal, focal</a></td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-ubuntu20.04_aarch64.tar.gz">Ubuntu 20.04 aarch64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.10-focal, focal</a></td></tr>
+<tr><td align="center"><a href="https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-ubuntu22.04_x86_64.tar.gz">Ubuntu 22.04 x86_64</a></td><td align="center"><a href="https://github.com/orgs/swiftwasm/packages/container/package/swift">5.10, 5.10-jammy, jammy, latest</a></td></tr>
 </tbody></table>
-<p>You can download the latest development snapshot from <a href="https://github.com/swiftwasm/swift/releases">the Releases page</a></p>
+<p>You can find older releases from the <a href="https://github.com/swiftwasm/swift/releases?q=prerelease%3Afalse">GitHub Releases page</a></p>
 <h2><a class="header" href="#toolchain-installation" id="toolchain-installation">Toolchain Installation</a></h2>
 <h3><a class="header" href="#macos" id="macos">macOS</a></h3>
 <ol>
@@ -212,7 +210,7 @@
 </ol>
 <pre><code class="language-bash">$ swift --version
 # Or TOOLCHAINS=swiftwasm swift --version
-SwiftWasm Swift version 5.9.1 (swiftlang-5.9.1)
+SwiftWasm Swift version 5.10-dev
 Target: x86_64-apple-darwin21.6.0
 </code></pre>
 <p>If you want to uninstall the toolchain, you can remove the toolchain directory from <code>/Library/Developer/Toolchains/</code> and make sure to remove the toolchain from your <code>PATH</code>.</p>
@@ -223,10 +221,10 @@ Target: x86_64-apple-darwin21.6.0
 </ol>
 <h2><a class="header" href="#experimental-swift-sdk" id="experimental-swift-sdk">Experimental: Swift SDK</a></h2>
 <p>SwiftWasm provides <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md">Swift SDK</a>s for WebAssembly. You can use the Swift SDK to cross-compile Swift packages for WebAssembly without installing the whole toolchain.</p>
-<p>To use the Swift SDK, you need to install the official Swift toolchain 5.9 or later. Then, you can install the Swift SDK using the following command while replacing <code>&lt;your platform&gt;</code>:</p>
-<pre><code class="language-bash">$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.9.2-RELEASE/swift-wasm-5.9.2-RELEASE-&lt;your platform&gt;.artifactbundle.zip
+<p>To use the Swift SDK, you need to install the official Swift toolchain 5.10 or later. Then, you can install the Swift SDK using the following command while replacing <code>&lt;your platform&gt;</code>:</p>
+<pre><code class="language-bash">$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-&lt;your platform&gt;.artifactbundle.zip
 </code></pre>
-<p>You can find the latest Swift SDK release from <a href="https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.9.2-RELEASE">the GitHub Releases page</a>.</p>
+<p>You can find the latest Swift SDK release from <a href="https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.10.0-RELEASE">the GitHub Releases page</a>.</p>
 <p>After installing the Swift SDK, you can see the installed SDKs using the following command:</p>
 <pre><code class="language-bash">$ swift experimental-sdk list
 &lt;SDK name&gt;
@@ -255,6 +253,72 @@ Target: x86_64-apple-darwin21.6.0
 </ol>
 <pre><code class="language-bash">docker run --rm -it ghcr.io/swiftwasm/swift:latest /bin/bash
 </code></pre>
+<h1><a class="header" href="#installation---development-snapshot" id="installation---development-snapshot">Installation - Development Snapshot</a></h1>
+<h2><a class="header" href="#webassembly-sdk---cross-compile-to-webassembly" id="webassembly-sdk---cross-compile-to-webassembly">WebAssembly SDK - Cross compile to WebAssembly</a></h2>
+<p>The upstream Open Source Swift toolchain does support WebAssembly as a target platform since <strong>Swift 6.0</strong>.
+For those versions, you just need to install <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md">Swift SDK for cross-compilation</a>.</p>
+<h2><a class="header" href="#instructions" id="instructions">Instructions</a></h2>
+<ol>
+<li>
+<p><strong>Find a Development Snapshot</strong></p>
+<p>Visit the <a href="https://github.com/swiftwasm/swift/releases">SwiftWasm GitHub Releases page</a>.</p>
+</li>
+<li>
+<p><strong>Match the Swift Toolchain Version</strong></p>
+<p>Refer to the release note's table to find the corresponding upstream Swift toolchain version.</p>
+<blockquote>
+<p>For example, <a href="https://github.com/swiftwasm/swift/releases/tag/swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a"><code>swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a</code></a> corresponds to <code>swift-DEVELOPMENT-SNAPSHOT-2024-06-11-a</code></p>
+</blockquote>
+</li>
+<li>
+<p><strong>Download the Swift Toolchain</strong></p>
+<p>Download the appropriate Swift toolchain version from <a href="https://www.swift.org/install">swift.org/install</a>.</p>
+</li>
+<li>
+<p><strong>Get the Swift SDK artifactbundle URL</strong></p>
+<p>Find the URL ending with <code>.artifactbundle.zip</code> from the release page you found in step 1.</p>
+</li>
+<li>
+<p><strong>Install the Swift SDK for WebAssembly</strong></p>
+<p>Use the following command to install the Swift SDK:</p>
+<pre><code class="language-console">$ swift sdk install &lt;URL-or-filename-of-swift-sdk-artifactbundle&gt;
+</code></pre>
+<blockquote>
+<p>For example, if you selected <code>swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a</code>, you need to run the following command:</p>
+<pre><code class="language-console">$ swift sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2024-06-12-a-wasm32-unknown-wasi.artifactbundle.zip
+</code></pre>
+</blockquote>
+</li>
+<li>
+<p>You can see the installed SDKs using the following command:</p>
+<pre><code class="language-console">$ swift sdk list
+&lt;Swift SDK id&gt;
+...
+</code></pre>
+<blockquote>
+<p>Once you don't need the SDK, you can remove it using the following command:</p>
+<pre><code class="language-console"> $ swift sdk remove &lt;Swift SDK id&gt;
+</code></pre>
+</blockquote>
+</li>
+</ol>
+<h2><a class="header" href="#how-to-use-the-swift-sdk" id="how-to-use-the-swift-sdk">How to use the Swift SDK</a></h2>
+<p>First, create a new Swift package using the following command:</p>
+<pre><code class="language-console">$ mkdir Example
+$ cd Example
+$ swift package init --type executable
+</code></pre>
+<p>Then, you can build the package using the Swift SDK:</p>
+<pre><code class="language-console">$ swift build --swift-sdk wasm32-unknown-wasi
+# or
+$ swift build --swift-sdk &lt;Swift SDK id&gt;
+</code></pre>
+<h2><a class="header" href="#faq" id="faq">FAQ</a></h2>
+<h3><a class="header" href="#what-is-the-difference-between-the-swift-toolchain-and-the-swift-sdk" id="what-is-the-difference-between-the-swift-toolchain-and-the-swift-sdk">What is the difference between the Swift Toolchain and the Swift SDK?</a></h3>
+<p>The Swift toolchain is a complete package that includes the Swift compiler, standard library, and other tools.</p>
+<p>The Swift SDK includes a subset of the Swift toolchain that includes only the necessary components for cross-compilation and some supplementary resources.</p>
+<h3><a class="header" href="#what-is-included-in-the-swift-sdk-for-webassembly" id="what-is-included-in-the-swift-sdk-for-webassembly">What is included in the Swift SDK for WebAssembly?</a></h3>
+<p>The Swift SDK for WebAssembly includes only the pre-built Swift standard libraries for WebAssembly. It does not include the Swift compiler or other tools that are part of the Swift toolchain.</p>
 <h1><a class="header" href="#hello-world" id="hello-world">Hello, World!</a></h1>
 <p>This section will show you how to compile a simple Swift code into WebAssembly and run the produced binary on WASI supported WebAssembly runtime.</p>
 <h2><a class="header" href="#1-create-a-swift-file" id="1-create-a-swift-file">1. Create a Swift file</a></h2>
@@ -284,7 +348,7 @@ Creating Sources/main.swift
 <pre><code class="language-sh">$ swift build --triple wasm32-unknown-wasi
 </code></pre>
 <p>If <a href="getting-started/./setup.html#experimental-swift-sdk">you installed Swift SDK instead of the whole toolchain</a>, you need to use the following command:</p>
-<pre><code class="language-sh">$ swift build --experimental-swift-sdk &lt;SDK name&gt;
+<pre><code class="language-sh">$ swift build --swift-sdk &lt;SDK name&gt;
 </code></pre>
 <h2><a class="header" href="#3-run-the-produced-binary" id="3-run-the-produced-binary">3. Run the produced binary</a></h2>
 <p>Just as in the <a href="getting-started/./hello-world.html">previous section</a>, you can run the produced binary with WebAssembly runtimes like <code>wasmtime</code>.</p>
@@ -369,7 +433,7 @@ already automated with <code>carton</code>.</p>
 <ul>
 <li><a href="https://swift.org/download/">Swift 5.9.2 or later</a></li>
 </ul>
-<h3><a class="header" href="#installation-1" id="installation-1">Installation</a></h3>
+<h3><a class="header" href="#installation" id="installation">Installation</a></h3>
 <ol>
 <li>Create a directory for your project and make it current:</li>
 </ol>
