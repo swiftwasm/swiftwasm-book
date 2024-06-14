@@ -182,7 +182,15 @@ For those versions, you just need to install <a href="https://github.com/apple/s
 </li>
 <li>
 <p><strong>Get the Swift SDK artifactbundle URL</strong></p>
-<p>Find the URL ending with <code>.artifactbundle.zip</code> from the release page you found in step 1.</p>
+<p>Find the URL ending with <code>.artifactbundle.zip</code> from the release page you found in step 1.
+Currently we provide Swift SDKs for the following WebAssembly targets:</p>
+<ul>
+<li><code>wasm32-unknown-wasi</code> (Recommended): for <a href="https://github.com/WebAssembly/WASI/blob/main/legacy/preview1/docs.md">WASI Preview 1</a></li>
+<li><code>wasm32-unknown-wasip1-threads</code>: for WASI Preview 1 with <a href="https://github.com/WebAssembly/wasi-threads">wasi-threads</a> extension</li>
+</ul>
+<blockquote>
+<p>Choose <code>wasm32-unknown-wasi</code> if you are not sure which target to use.</p>
+</blockquote>
 </li>
 <li>
 <p><strong>Install the Swift SDK for WebAssembly</strong></p>
