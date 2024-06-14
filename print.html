@@ -706,6 +706,21 @@ If you are still having trouble, please file an issue or contact us at <a href="
 </li>
 </ol>
 <p>See also: <a href="https://bugs.llvm.org/show_bug.cgi?id=37181">LLVM Bugzilla – wasm32: Allow placing the stack before global data</a></p>
+<h2><a class="header" href="#fatal-error-stdlibh-file-not-found" id="fatal-error-stdlibh-file-not-found"><code>fatal error: 'stdlib.h' file not found</code></a></h2>
+<p>If you encounter this error, please make sure that:</p>
+<ul>
+<li>You are using SwiftWasm toolchain (if you installed it as a toolchain, not as a Swift SDK)
+<ul>
+<li>Check <code>which swift</code> and make sure it points to the SwiftWasm toolchain.</li>
+</ul>
+</li>
+<li>You are using the correct target triple:
+<ul>
+<li><code>--triple wasm32-unknown-wasi --static-swift-stdlib</code> if you installed as a <em>toolchain</em></li>
+<li><code>--swift-sdk wasm32-unknown-wasi</code> if you installed as a <em>Swift SDK</em></li>
+</ul>
+</li>
+</ul>
 <h1><a class="header" href="#examples" id="examples">Examples</a></h1>
 <p>This section shows you example usage of our toolchain.</p>
 <h1><a class="header" href="#importing-a-function-from-host-environments" id="importing-a-function-from-host-environments">Importing a function from host environments</a></h1>
