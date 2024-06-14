@@ -35,3 +35,13 @@ You have two options to solve this issue:
 
 
 See also: [LLVM Bugzilla – wasm32: Allow placing the stack before global data](https://bugs.llvm.org/show_bug.cgi?id=37181)
+
+## `fatal error: 'stdlib.h' file not found`
+
+If you encounter this error, please make sure that:
+
+- You are using SwiftWasm toolchain (if you installed it as a toolchain, not as a Swift SDK)
+   - Check `which swift` and make sure it points to the SwiftWasm toolchain.
+- You are using the correct target triple:
+   - `--triple wasm32-unknown-wasi --static-swift-stdlib` if you installed as a *toolchain*
+   - `--swift-sdk wasm32-unknown-wasi` if you installed as a *Swift SDK*
