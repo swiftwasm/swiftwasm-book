@@ -24,6 +24,10 @@ For those versions, you just need to install [Swift SDK for cross-compilation](h
 4. **Get the Swift SDK artifactbundle URL**
 
    Find the URL ending with `.artifactbundle.zip` from the release page you found in step 1.
+   Currently we provide Swift SDKs for the following WebAssembly targets:
+   - `wasm32-unknown-wasi` (Recommended): for [WASI Preview 1](https://github.com/WebAssembly/WASI/blob/main/legacy/preview1/docs.md)
+   - `wasm32-unknown-wasip1-threads`: for WASI Preview 1 with [wasi-threads](https://github.com/WebAssembly/wasi-threads) extension
+   > Choose `wasm32-unknown-wasi` if you are not sure which target to use.
 
 5. **Install the Swift SDK for WebAssembly**
 
