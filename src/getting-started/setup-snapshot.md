@@ -1,6 +1,6 @@
 # Installation - Development Snapshot
 
-## WebAssembly SDK - Cross compile to WebAssembly
+## Swift SDK for WebAssembly - Cross compile to WebAssembly
 
 The upstream Open Source Swift toolchain does support WebAssembly as a target platform since **Swift 6.0**.
 For those versions, you just need to install [Swift SDK for cross-compilation](https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md).

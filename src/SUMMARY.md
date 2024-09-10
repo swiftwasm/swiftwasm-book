@@ -11,6 +11,7 @@
     - [JavaScript interoperation](getting-started/javascript-interop.md)
     - [Concurrency](getting-started/concurrency.md)
     - [Testing your app](getting-started/testing.md)
+    - [Visual Studio Code](./getting-started/vscode.md)
     - [Debugging](getting-started/debugging.md)
     - [Troubleshooting](getting-started/troubleshooting.md)
 - [Examples](examples/index.md)
