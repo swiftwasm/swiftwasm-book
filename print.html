@@ -646,8 +646,9 @@ warn you that this won't work. <code>swift test</code> doesn't know what WebAsse
 use to run your tests. Because of this building tests and running them are two separate steps when
 using <code>SwiftPM</code>. After your tests are built, you can use a WASI-compatible host such as
 <a href="https://wasmtime.dev/">wasmtime</a> to run the test bundle:</p>
-<pre><code class="language-sh">$ wasmtime .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+<pre><code class="language-sh">$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
 </code></pre>
+<p>(<code>--dir .</code> is used to allow XCTest to find <code>Bundle.main</code> resources placed alongside the executable file.)</p>
 <p>As you can see, the produced test binary starts with the name of your package followed by
 <code>PackageTests.wasm</code>. It is located in the <code>.build/debug</code> subdirectory, or in the <code>.build/release</code>
 subdirectory when you build in release mode.</p>
