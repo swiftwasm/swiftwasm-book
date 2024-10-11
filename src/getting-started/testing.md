@@ -71,8 +71,10 @@ using `SwiftPM`. After your tests are built, you can use a WASI-compatible host 
 [wasmtime](https://wasmtime.dev/) to run the test bundle:
 
 ```sh
-$ wasmtime .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
 ```
+
+(`--dir .` is used to allow XCTest to find `Bundle.main` resources placed alongside the executable file.)
 
 As you can see, the produced test binary starts with the name of your package followed by
 `PackageTests.wasm`. It is located in the `.build/debug` subdirectory, or in the `.build/release`
