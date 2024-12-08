@@ -32,3 +32,8 @@ We recommend splitting your packages into separate executable targets, most of w
 assume the availability of JavaScript to make debugging easier.
 
 ![demo](https://raw.githubusercontent.com/kateinoigakukun/wasminspect/master/assets/demo.gif)
+
+## [wasm-memprof](https://github.com/kateinoigakukun/wasm-memprof)
+
+If you are debugging memory leaks, [wasm-memprof](https://github.com/kateinoigakukun/wasm-memprof) can help you.
+It is a tool to profile memory usage of WebAssembly applications with minimal setup. Check the repository for more details.
