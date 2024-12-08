@@ -36,4 +36,19 @@ assume the availability of JavaScript to make debugging easier.
 ## [wasm-memprof](https://github.com/kateinoigakukun/wasm-memprof)
 
 If you are debugging memory leaks, [wasm-memprof](https://github.com/kateinoigakukun/wasm-memprof) can help you.
-It is a tool to profile memory usage of WebAssembly applications with minimal setup. Check the repository for more details.
+It is a tool to profile memory usage of WebAssembly applications with a few lines of setup code:
+
+```javascript
+import { WMProf } from "wasm-memprof";
+import { SwiftDemangler } from "wasm-memprof/plugins/swift-demangler.js";
+
+const swiftDemangler = SwiftDemangler.create();
+const WebAssembly = WMProf.wrap(globalThis.WebAssembly, {
+  demangler: swiftDemangler.demangle.bind(swiftDemangler),
+});
+```
+
+Check the repository for more details.
+
+<img width="1000" alt="swift-wmprof" src="https://github.com/user-attachments/assets/c1da4582-e721-45b9-9bca-ce320711f72d">
+
