@@ -80,6 +80,30 @@ As you can see, the produced test binary starts with the name of your package fo
 `PackageTests.wasm`. It is located in the `.build/debug` subdirectory, or in the `.build/release`
 subdirectory when you build in release mode.
 
+## Code coverage with `SwiftPM`
+
+> **Note**: Code coverage support is available only in nightly toolchains for now.
+
+You can also generate code coverage reports for your test suite. To do this, you need to build your
+test suite with the `--enable-code-coverage` and linker options `-Xlinker -lwasi-emulated-getpid`:
+
+```sh
+$ swift build --build-tests --swift-sdk wasm32-unknown-wasi --enable-code-coverage -Xlinker -lwasi-emulated-getpid
+```
+
+After building your test suite, you can run it with `wasmtime` as described above. The raw coverage
+data will be stored in `default.profraw` file in the current directory. You can use the `llvm-profdata`
+and `llvm-cov` tools to generate a human-readable report:
+
+```sh
+$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+$ llvm-profdata merge default.profraw -o default.profdata
+$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata
+# or generate an HTML report
+$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata --format=html -o coverage
+$ open coverage/index.html
+```
+
 ## Building and running the test suite with `carton`
 
 If you use [`carton`](https://carton.dev) to develop and build your app, as described in [our guide

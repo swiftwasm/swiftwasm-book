@@ -46,7 +46,7 @@ If you encounter this error, please make sure that:
    - `--triple wasm32-unknown-wasi --static-swift-stdlib` if you installed as a *toolchain*
    - `--swift-sdk wasm32-unknown-wasi` if you installed as a *Swift SDK*
 
-## `error: missing external dependency '.../usr/lib/swift/wasi/static-executable-args.lnk'
+## `error: missing external dependency '.../usr/lib/swift/wasi/static-executable-args.lnk'`
 
 You may encounter this error while building with Swift SDK for WebAssembly and `swiftc` driver command. Unfortunately, Swift SDK does not support building with `swiftc` command yet, so you need to use `swift build` Swift Package Manager command instead.
 
