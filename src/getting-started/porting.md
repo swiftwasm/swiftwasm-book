@@ -76,3 +76,20 @@ and they had to be disabled. These types are therefore absent in SwiftWasm Found
 Related functions and properties on other types are also absent or disabled. We would like to make
 them available in the future as soon as possible, and [we invite you to 
 contribute](../contribution-guide/index.md) and help us in achieving this goal!
+
+
+## XCTest
+
+[The swift-corelibs-xctest project](https://github.com/swiftlang/swift-corelibs-xctest) is available
+in WebAssembly platforms, and you can use it to write tests for your SwiftWasm projects.
+
+The following XCTest features are unavailable in SwiftWasm:
+
+| API | Status |
+|----------------|--------|
+| `XCTestExpectation` | ❌ Unavailable |
+| `XCTNSPredicateExpectation` | ❌ Unavailable |
+| `XCTNSNotificationExpectation` | ❌ Unavailable |
+| `XCTWaiter` | ❌ Unavailable |
+| `XCTest.perform` | ❌ Unavailable |
+| `XCTest.run` | ❌ Unavailable |

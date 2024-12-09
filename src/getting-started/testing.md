@@ -47,15 +47,6 @@ for this test to pass. Your test functions should all start with `test`, please 
 documentation](https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods)
 for more details.
 
-## XCTest limitations in the SwiftWasm toolchain
-
-As was mentioned in [our section about Swift Foundation](/foundation.md), multi-threading and
-file system APIs are currently not available in SwiftWasm. This means that `XCTestExpectation`
-and test hooks related to `Bundle` (such as `testBundleWillStart(_:)` and `testBundleDidFinish(_:)`)
-are not available in test suites compiled with SwiftWasm. If you have an existing test suite you're
-porting to WebAssembly, you should use `#if os(WASI)` directives to exclude places where you use
-these APIs from compilation.
-
 ## Building and running the test suite with `SwiftPM`
 
 You can build your test suite by running this command in your terminal:
