@@ -652,6 +652,24 @@ using <code>SwiftPM</code>. After your tests are built, you can use a WASI-compa
 <p>As you can see, the produced test binary starts with the name of your package followed by
 <code>PackageTests.wasm</code>. It is located in the <code>.build/debug</code> subdirectory, or in the <code>.build/release</code>
 subdirectory when you build in release mode.</p>
+<h2><a class="header" href="#code-coverage-with-swiftpm" id="code-coverage-with-swiftpm">Code coverage with <code>SwiftPM</code></a></h2>
+<blockquote>
+<p><strong>Note</strong>: Code coverage support is available only in nightly toolchains for now.</p>
+</blockquote>
+<p>You can also generate code coverage reports for your test suite. To do this, you need to build your
+test suite with the <code>--enable-code-coverage</code> and linker options <code>-Xlinker -lwasi-emulated-getpid</code>:</p>
+<pre><code class="language-sh">$ swift build --build-tests --swift-sdk wasm32-unknown-wasi --enable-code-coverage -Xlinker -lwasi-emulated-getpid
+</code></pre>
+<p>After building your test suite, you can run it with <code>wasmtime</code> as described above. The raw coverage
+data will be stored in <code>default.profraw</code> file in the current directory. You can use the <code>llvm-profdata</code>
+and <code>llvm-cov</code> tools to generate a human-readable report:</p>
+<pre><code class="language-sh">$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+$ llvm-profdata merge default.profraw -o default.profdata
+$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata
+# or generate an HTML report
+$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata --format=html -o coverage
+$ open coverage/index.html
+</code></pre>
 <h2><a class="header" href="#building-and-running-the-test-suite-with-carton" id="building-and-running-the-test-suite-with-carton">Building and running the test suite with <code>carton</code></a></h2>
 <p>If you use <a href="https://carton.dev"><code>carton</code></a> to develop and build your app, as described in <a href="getting-started/./browser-app.html">our guide
 for browser apps</a>, just run <code>swift run carton test</code> in the
@@ -776,7 +794,7 @@ If you are still having trouble, please file an issue or contact us at <a href="
 </ul>
 </li>
 </ul>
-<h2><a class="header" href="#error-missing-external-dependency-usrlibswiftwasistatic-executable-argslnk" id="error-missing-external-dependency-usrlibswiftwasistatic-executable-argslnk">`error: missing external dependency '.../usr/lib/swift/wasi/static-executable-args.lnk'</a></h2>
+<h2><a class="header" href="#error-missing-external-dependency-usrlibswiftwasistatic-executable-argslnk" id="error-missing-external-dependency-usrlibswiftwasistatic-executable-argslnk"><code>error: missing external dependency '.../usr/lib/swift/wasi/static-executable-args.lnk'</code></a></h2>
 <p>You may encounter this error while building with Swift SDK for WebAssembly and <code>swiftc</code> driver command. Unfortunately, Swift SDK does not support building with <code>swiftc</code> command yet, so you need to use <code>swift build</code> Swift Package Manager command instead.</p>
 <p>e.g. <code>swift build --swift-sdk &lt;SDK name&gt;</code></p>
 <p>See also: <a href="getting-started/./swift-package.html">Compile a SwiftPM package to WebAssembly</a></p>
