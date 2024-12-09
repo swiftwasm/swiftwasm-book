@@ -3,6 +3,8 @@
 On macOS, iOS, and Linux, `libdispatch`-based executor is used by default, but `libdispatch` is not supported in single-threaded WebAssembly environment.
 However, there are still two global task executors available in SwiftWasm.
 
+If you need multi-threading support on Web, please see [Multithreading guide](./multithreading.md) for more details.
+
 ## Cooperative Task Executor
 
 `Cooperative Task Executor` is the default task executor in SwiftWasm. It is a simple single-threaded cooperative task executor implemented in [Swift Concurrency library](https://github.com/apple/swift/blob/0c67ce64874d83b2d4f8d73b899ee58f2a75527f/stdlib/public/Concurrency/CooperativeGlobalExecutor.inc).

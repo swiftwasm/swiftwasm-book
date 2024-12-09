@@ -10,6 +10,7 @@
     - [Creating a browser app](getting-started/browser-app.md)
     - [JavaScript interoperation](getting-started/javascript-interop.md)
     - [Concurrency](getting-started/concurrency.md)
+    - [Multithreading](getting-started/multithreading.md)
     - [Testing your app](getting-started/testing.md)
     - [Visual Studio Code](./getting-started/vscode.md)
     - [Debugging](getting-started/debugging.md)
