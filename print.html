@@ -428,6 +428,18 @@ and they had to be disabled. These types are therefore absent in SwiftWasm Found
 <p>Related functions and properties on other types are also absent or disabled. We would like to make
 them available in the future as soon as possible, and <a href="getting-started/../contribution-guide/index.html">we invite you to 
 contribute</a> and help us in achieving this goal!</p>
+<h2><a class="header" href="#xctest" id="xctest">XCTest</a></h2>
+<p><a href="https://github.com/swiftlang/swift-corelibs-xctest">The swift-corelibs-xctest project</a> is available
+in WebAssembly platforms, and you can use it to write tests for your SwiftWasm projects.</p>
+<p>The following XCTest features are unavailable in SwiftWasm:</p>
+<table><thead><tr><th>API</th><th>Status</th></tr></thead><tbody>
+<tr><td><code>XCTestExpectation</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>XCTNSPredicateExpectation</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>XCTNSNotificationExpectation</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>XCTWaiter</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>XCTest.perform</code></td><td>❌ Unavailable</td></tr>
+<tr><td><code>XCTest.run</code></td><td>❌ Unavailable</td></tr>
+</tbody></table>
 <h1><a class="header" href="#creating-a-browser-app" id="creating-a-browser-app">Creating a Browser App</a></h1>
 <p>Currently, <a href="https://tokamak.dev">the Tokamak UI framework</a> is one of the easiest ways to build a
 browser app with SwiftWasm. It tries to be compatible with <a href="https://developer.apple.com/xcode/swiftui/">the SwiftUI
@@ -630,13 +642,6 @@ final class ExampleTests: XCTestCase {
 for this test to pass. Your test functions should all start with <code>test</code>, please see <a href="https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods">XCTest 
 documentation</a>
 for more details.</p>
-<h2><a class="header" href="#xctest-limitations-in-the-swiftwasm-toolchain" id="xctest-limitations-in-the-swiftwasm-toolchain">XCTest limitations in the SwiftWasm toolchain</a></h2>
-<p>As was mentioned in <a href="getting-started//foundation.html">our section about Swift Foundation</a>, multi-threading and
-file system APIs are currently not available in SwiftWasm. This means that <code>XCTestExpectation</code>
-and test hooks related to <code>Bundle</code> (such as <code>testBundleWillStart(_:)</code> and <code>testBundleDidFinish(_:)</code>)
-are not available in test suites compiled with SwiftWasm. If you have an existing test suite you're
-porting to WebAssembly, you should use <code>#if os(WASI)</code> directives to exclude places where you use
-these APIs from compilation.</p>
 <h2><a class="header" href="#building-and-running-the-test-suite-with-swiftpm" id="building-and-running-the-test-suite-with-swiftpm">Building and running the test suite with <code>SwiftPM</code></a></h2>
 <p>You can build your test suite by running this command in your terminal:</p>
 <pre><code class="language-sh">$ swift build --build-tests --triple wasm32-unknown-wasi

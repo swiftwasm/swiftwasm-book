@@ -198,13 +198,6 @@ final class ExampleTests: XCTestCase {
 for this test to pass. Your test functions should all start with <code>test</code>, please see <a href="https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods">XCTest 
 documentation</a>
 for more details.</p>
-<h2><a class="header" href="#xctest-limitations-in-the-swiftwasm-toolchain" id="xctest-limitations-in-the-swiftwasm-toolchain">XCTest limitations in the SwiftWasm toolchain</a></h2>
-<p>As was mentioned in <a href="/foundation.html">our section about Swift Foundation</a>, multi-threading and
-file system APIs are currently not available in SwiftWasm. This means that <code>XCTestExpectation</code>
-and test hooks related to <code>Bundle</code> (such as <code>testBundleWillStart(_:)</code> and <code>testBundleDidFinish(_:)</code>)
-are not available in test suites compiled with SwiftWasm. If you have an existing test suite you're
-porting to WebAssembly, you should use <code>#if os(WASI)</code> directives to exclude places where you use
-these APIs from compilation.</p>
 <h2><a class="header" href="#building-and-running-the-test-suite-with-swiftpm" id="building-and-running-the-test-suite-with-swiftpm">Building and running the test suite with <code>SwiftPM</code></a></h2>
 <p>You can build your test suite by running this command in your terminal:</p>
 <pre><code class="language-sh">$ swift build --build-tests --triple wasm32-unknown-wasi
