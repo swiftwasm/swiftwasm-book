@@ -9,7 +9,9 @@ If you are using `swift build`, it is enabled by default.
 ## Chrome DevTools
 
 When you are debugging a web browser application, Chrome DevTools is a good tool to use. It allows you to
-put breakpoints, step through at Swift source code level.
+put breakpoints and step through at Swift source code level.
+
+### Official DWARF Extension
 
 Please follow the steps below to configure Chrome DevTools for SwiftWasm:
 
@@ -22,7 +24,28 @@ See [the DevTools team's official introduction](https://developer.chrome.com/blo
 
 Note that the function names in the stack trace are mangled. You can demangle them using `swift demangle` command.
 
-Unfortunately, variable inspection is unavailable since Swift depends on its own mechanisms to do that instead of DWARF's structure type feature. (See [this thread](https://github.com/swiftwasm/swift/issues/593) for more details)
+Unfortunately, variable inspection is unavailable since Swift depends on its own mechanisms to do that instead of DWARF's structure type feature. If you need this feature, you can use the enhanced extension below.
+
+### Enhanced DWARF Extension for Swift
+
+For a better Swift debugging experience, there's also an enhanced version of the DWARF extension specifically for Swift. This extension enables:
+
+- Breakpoint setting and Swift code inspection
+- Human-readable call stack frames
+- Swift variable value inspection
+
+To install this enhanced extension:
+
+1. First, uninstall the official "C/C++ DevTools Support (DWARF)" extension if you have it installed
+2. Download the extension ZIP file from [GitHub Releases](https://github.com/GoodNotes/devtools-frontend/releases/tag/swift-0.2.3.0)
+3. Go to `chrome://extensions/` and enable "Developer mode"
+4. Drag and drop the downloaded ZIP file into the page
+
+When you close and reopen the DevTools window, DevTools will suggest reloading itself to apply settings.
+
+Note: There is a known issue where some JavaScriptKit types like `JSObject` and `JSValue` are not shown in pretty format in the variables view.
+
+![](./chrome-devtools-swift.png)
 
 ## [wasminspect](https://github.com/kateinoigakukun/wasminspect)
 
