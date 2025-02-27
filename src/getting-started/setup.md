@@ -1,97 +1,90 @@
-# Installation - Latest Release (SwiftWasm 5.10)
+# Installation - Latest Release (Swift 6.0.3)
 
-To install Swift for WebAssembly toolchain, download one of the packages below and follow the instructions for your operating system.
+SwiftWasm provides [Swift SDK](https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md)s for WebAssembly.
 
-Tag: [swift-wasm-5.10.0-RELEASE](https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.10.0-RELEASE)
+Before installing the Swift SDK, you need to ensure the following:
 
-| Download | Docker Tag |
-|:------------------:|:----------:|
-| [macOS arm64](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-macos_arm64.pkg) | Unavailable |
-| [macOS x86](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-macos_x86_64.pkg) | Unavailable |
-| [Ubuntu 18.04 x86_64](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-ubuntu18.04_x86_64.tar.gz) | [5.10-bionic, bionic](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
-| [Ubuntu 20.04 x86_64](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-ubuntu20.04_x86_64.tar.gz) | [5.10-focal, focal](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
-| [Ubuntu 20.04 aarch64](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-ubuntu20.04_aarch64.tar.gz) | [5.10-focal, focal](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
-| [Ubuntu 22.04 x86_64](https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-ubuntu22.04_x86_64.tar.gz) | [5.10, 5.10-jammy, jammy, latest](https://github.com/orgs/swiftwasm/packages/container/package/swift) |
+- You need to [install an Open Source toolchain from swift.org](https://www.swift.org/install/). (Not the Xcode toolchain)
+- You cannot use toolchains bundled with Xcode to use the Swift SDK.
+- If you are using macOS, please follow the [official guide](https://www.swift.org/install/macos/package_installer/) to install the toolchain.
 
-
-You can find older releases from the [GitHub Releases page](https://github.com/swiftwasm/swift/releases?q=prerelease%3Afalse)
-
-## Toolchain Installation
-
-### macOS
-
-1. [Download the latest package release](#latest-release) according to your CPU architecture (arm64 for [Apple Silicon Macs](https://support.apple.com/en-us/HT211814), x86 for Intel Macs).
-2. Run the package installer, which will install an Xcode toolchain into `/Library/Developer/Toolchains/`.
-3. To use the Swift toolchain with command-line tools, use `env TOOLCHAINS=swiftwasm swift` or add the Swift toolchain to your path as follows:
+Once you have installed the Open Source toolchain, you can install the Swift SDK for WebAssembly:
 
 ```bash
-export PATH=/Library/Developer/Toolchains/<toolchain name>.xctoolchain/usr/bin:"${PATH}"
+$ swift sdk install "https://github.com/swiftwasm/swift/releases/download/swift-wasm-6.0.3-RELEASE/swift-wasm-6.0.3-RELEASE-wasm32-unknown-wasi.artifactbundle.zip" --checksum "31d3585b06dd92de390bacc18527801480163188cd7473f492956b5e213a8618"
 ```
 
-4. Run `swift --version`. If you installed the toolchain successfully, you can get the following message.
+After installing the Swift SDK, you can see the installed SDKs:
 
 ```bash
-$ swift --version
-# Or TOOLCHAINS=swiftwasm swift --version
-SwiftWasm Swift version 5.10-dev
-Target: x86_64-apple-darwin21.6.0
-```
-
-If you want to uninstall the toolchain, you can remove the toolchain directory from `/Library/Developer/Toolchains/` and make sure to remove the toolchain from your `PATH`.
-
-## Linux
-
-1. [Download the latest package release](#latest-release) according to your Ubuntu version and CPU architecture.
-2. Follow the official Swift installation guide for Linux from [swift.org](https://www.swift.org/install/linux/#installation-via-tarball) while skipping GPG key verification, which is not provided for SwiftWasm releases.
-
-## Experimental: Swift SDK
-
-SwiftWasm provides [Swift SDK](https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md)s for WebAssembly. You can use the Swift SDK to cross-compile Swift packages for WebAssembly without installing the whole toolchain.
-
-To use the Swift SDK, you need to install the official Swift toolchain 5.10 or later. Then, you can install the Swift SDK using the following command while replacing `<your platform>`:
-
-```bash
-$ swift experimental-sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-5.10.0-RELEASE/swift-wasm-5.10.0-RELEASE-<your platform>.artifactbundle.zip
-```
-
-You can find the latest Swift SDK release from [the GitHub Releases page](https://github.com/swiftwasm/swift/releases/tag/swift-wasm-5.10.0-RELEASE).
-
-After installing the Swift SDK, you can see the installed SDKs using the following command:
-
-```bash
-$ swift experimental-sdk list
+$ swift sdk list
 <SDK name>
 ...
 ```
 
-You can use the installed SDKs to cross-compile Swift packages for WebAssembly using the following command:
+You can also find other SDKs from [the GitHub Releases page](https://github.com/swiftwasm/swift/releases).
 
-```bash
-$ swift build --experimental-swift-sdk <SDK name>
+Use the following shell snippet to query compatible Swift SDK for your current toolchain version:
+
+```console
+(
+  V="$(swiftc --version | head -n1)"; \
+  TAG="$(curl -sL "https://raw.githubusercontent.com/swiftwasm/swift-sdk-index/refs/heads/main/v1/tag-by-version.json" | jq -r --arg v "$V" '.[$v] | .[-1]')"; \
+  curl -sL "https://raw.githubusercontent.com/swiftwasm/swift-sdk-index/refs/heads/main/v1/builds/$TAG.json" | \
+  jq -r '.["swift-sdks"]["wasm32-unknown-wasi"] | "swift sdk install \"\(.url)\" --checksum \"\(.checksum)\""'
+)
 ```
 
-## Docker
+## Hello, World
 
-SwiftWasm offical Docker images are hosted on [GitHub Container Registry](https://github.com/orgs/swiftwasm/packages/container/package/swift).
-
-SwiftWasm Dockerfiles are located on [swiftwasm-docker](https://github.com/swiftwasm/swiftwasm-docker) repository.
-
-### Supported Platforms
-
-- Ubuntu 18.04 (x86_64)
-- Ubuntu 20.04 (x86_64, aarch64)
-- Ubuntu 22.04 (x86_64)
-
-### Using Docker Images
-
-1. Pull the Docker image from [GitHub Container Registry](https://github.com/orgs/swiftwasm/packages/container/package/swift):
+First, create a new directory for your project and navigate into it:
 
 ```bash
-docker pull ghcr.io/swiftwasm/swift:latest
+$ mkdir hello && cd hello
 ```
 
-2. Create a container using tag `latest` and attach it to the container:
+Create a new Swift package:
 
 ```bash
-docker run --rm -it ghcr.io/swiftwasm/swift:latest /bin/bash
+$ swift package init --type executable
 ```
+
+You can use the installed SDKs to cross-compile Swift packages for WebAssembly:
+
+```bash
+$ swift build --swift-sdk wasm32-unknown-wasi
+...
+$ file .build/wasm32-unknown-wasi/debug/hello.wasm
+.build/wasm32-unknown-wasi/debug/hello.wasm: WebAssembly (wasm) binary module version 0x1 (MVP)
+```
+
+You can run the built WebAssembly module using [`wasmtime`](https://wasmtime.dev/):
+
+```bash
+$ wasmtime .build/wasm32-unknown-wasi/debug/hello.wasm
+Hello, world!
+```
+
+## FAQ
+
+### How to check if I am using Open Source toolchain or Xcode toolchain?
+
+```bash
+$ swift --version | head -n1
+```
+
+| Toolchain | Output |
+|-----------|--------|
+| Xcode | `Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)` |
+| Open Source (macOS) | `Apple Swift version 6.0.3 (swift-6.0.3-RELEASE)` |
+| Open Source (Others) | `Swift version 6.0.3 (swift-6.0.3-RELEASE)` |
+
+### What is the difference between the Swift Toolchain and the Swift SDK?
+
+The Swift toolchain is a complete package that includes the Swift compiler, standard library, and other tools.
+
+The Swift SDK includes a subset of the Swift toolchain that includes only the necessary components for cross-compilation and some supplementary resources.
+
+### What is included in the Swift SDK for WebAssembly?
+
+The Swift SDK for WebAssembly includes only the pre-built Swift standard libraries for WebAssembly. It does not include the Swift compiler or other tools that are part of the Swift toolchain.
