@@ -167,23 +167,21 @@
 <li>You cannot use toolchains bundled with Xcode to use the Swift SDK.</li>
 <li>If you are using macOS, please follow the <a href="https://www.swift.org/install/macos/package_installer/">official guide</a> to install the toolchain.</li>
 </ul>
-<p>Once you have installed the Open Source toolchain, you can install the Swift SDK for WebAssembly:</p>
-<pre><code class="language-bash">$ swift sdk install &quot;https://github.com/swiftwasm/swift/releases/download/swift-wasm-6.0.3-RELEASE/swift-wasm-6.0.3-RELEASE-wasm32-unknown-wasi.artifactbundle.zip&quot; --checksum &quot;31d3585b06dd92de390bacc18527801480163188cd7473f492956b5e213a8618&quot;
+<p>Please ensure you have installed the Swift 6.0.3 Open Source toolchain.</p>
+<pre><code class="language-sh">swift --version
 </code></pre>
-<p>After installing the Swift SDK, you can see the installed SDKs:</p>
-<pre><code class="language-bash">$ swift sdk list
-&lt;SDK name&gt;
-...
+<table><thead><tr><th>Toolchain</th><th>Output</th></tr></thead><tbody>
+<tr><td>❌ Xcode</td><td><code>Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)</code></td></tr>
+<tr><td>✅ Open Source (macOS)</td><td><code>Apple Swift version 6.0.3 (swift-6.0.3-RELEASE)</code></td></tr>
+<tr><td>✅ Open Source (Others)</td><td><code>Swift version 6.0.3 (swift-6.0.3-RELEASE)</code></td></tr>
+</tbody></table>
+<p>Once you have installed the Open Source toolchain, you can install the Swift SDK for WebAssembly:</p>
+<pre><code class="language-bash">swift sdk install &quot;https://github.com/swiftwasm/swift/releases/download/swift-wasm-6.0.3-RELEASE/swift-wasm-6.0.3-RELEASE-wasm32-unknown-wasi.artifactbundle.zip&quot; --checksum &quot;31d3585b06dd92de390bacc18527801480163188cd7473f492956b5e213a8618&quot;
+</code></pre>
+<p>After installing the Swift SDK, you can see <code>6.0.3-RELEASE-wasm32-unknown-wasi</code> in the Swift SDK list:</p>
+<pre><code class="language-bash">swift sdk list
 </code></pre>
 <p>You can also find other SDKs from <a href="https://github.com/swiftwasm/swift/releases">the GitHub Releases page</a>.</p>
-<p>Use the following shell snippet to query compatible Swift SDK for your current toolchain version:</p>
-<pre><code class="language-console">(
-  V=&quot;$(swiftc --version | head -n1)&quot;; \
-  TAG=&quot;$(curl -sL &quot;https://raw.githubusercontent.com/swiftwasm/swift-sdk-index/refs/heads/main/v1/tag-by-version.json&quot; | jq -r --arg v &quot;$V&quot; '.[$v] | .[-1]')&quot;; \
-  curl -sL &quot;https://raw.githubusercontent.com/swiftwasm/swift-sdk-index/refs/heads/main/v1/builds/$TAG.json&quot; | \
-  jq -r '.[&quot;swift-sdks&quot;][&quot;wasm32-unknown-wasi&quot;] | &quot;swift sdk install \&quot;\(.url)\&quot; --checksum \&quot;\(.checksum)\&quot;&quot;'
-)
-</code></pre>
 <h2><a class="header" href="#hello-world" id="hello-world">Hello, World</a></h2>
 <p>First, create a new directory for your project and navigate into it:</p>
 <pre><code class="language-bash">$ mkdir hello &amp;&amp; cd hello
@@ -210,6 +208,21 @@ Hello, world!
 <tr><td>Open Source (macOS)</td><td><code>Apple Swift version 6.0.3 (swift-6.0.3-RELEASE)</code></td></tr>
 <tr><td>Open Source (Others)</td><td><code>Swift version 6.0.3 (swift-6.0.3-RELEASE)</code></td></tr>
 </tbody></table>
+<h3><a class="header" href="#unknown0-error-module-compiled-with-swift-603-cannot-be-imported-by-the-swift-xyz" id="unknown0-error-module-compiled-with-swift-603-cannot-be-imported-by-the-swift-xyz"><code>&lt;unknown&gt;:0: error: module compiled with Swift 6.0.3 cannot be imported by the Swift x.y.z</code></a></h3>
+<p>This error occurs when the Swift toolchain version you are using is different from the version of the Swift SDK you have installed.</p>
+<p>To resolve this issue, you can either:</p>
+<ol>
+<li>Switch the Swift toolchain to the same version as the Swift SDK you have installed. Check the <a href="https://www.swift.org/install/macos/package_installer/">official guide</a> for how to switch the toolchain.</li>
+<li>Install the Swift SDK for the same version as the Swift toolchain you are using.
+Use the following shell snippet to query compatible Swift SDK for your current toolchain version:</li>
+</ol>
+<pre><code class="language-console">(
+  V=&quot;$(swiftc --version | head -n1)&quot;; \
+  TAG=&quot;$(curl -sL &quot;https://raw.githubusercontent.com/swiftwasm/swift-sdk-index/refs/heads/main/v1/tag-by-version.json&quot; | jq -r --arg v &quot;$V&quot; '.[$v] | .[-1]')&quot;; \
+  curl -sL &quot;https://raw.githubusercontent.com/swiftwasm/swift-sdk-index/refs/heads/main/v1/builds/$TAG.json&quot; | \
+  jq -r '.[&quot;swift-sdks&quot;][&quot;wasm32-unknown-wasi&quot;] | &quot;swift sdk install \&quot;\(.url)\&quot; --checksum \&quot;\(.checksum)\&quot;&quot;'
+)
+</code></pre>
 <h3><a class="header" href="#what-is-the-difference-between-the-swift-toolchain-and-the-swift-sdk" id="what-is-the-difference-between-the-swift-toolchain-and-the-swift-sdk">What is the difference between the Swift Toolchain and the Swift SDK?</a></h3>
 <p>The Swift toolchain is a complete package that includes the Swift compiler, standard library, and other tools.</p>
 <p>The Swift SDK includes a subset of the Swift toolchain that includes only the necessary components for cross-compilation and some supplementary resources.</p>
