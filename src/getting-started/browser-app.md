@@ -13,7 +13,10 @@ already automated with `carton`.
 
 ### System Requirements
 
-- [Swift 5.9.2 or later](https://swift.org/download/)
+- [Swift 5.9.2](https://swift.org/download/)
+
+>Important:
+>Tokamak UI currently is not compatible with swift 6.0+. 
 
 ### Installation
 
@@ -51,7 +54,7 @@ let package = Package(
 )
 ```
 
-4. Add your first view to `Sources/main.swift`:
+4. Add your first view to `Sources/MyApp/main.swift`:
 
 ```swift
 import TokamakDOM
