@@ -1,4 +1,4 @@
-# Porting code from other platforms to WebAssembly
+# Porting code to WebAssembly with WASI
 
 In the form that's currently standardized and supported by browsers and other hosts, WebAssembly
 is a 32-bit architecture. You have to take this into account when porting code from other

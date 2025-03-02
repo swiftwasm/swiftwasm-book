@@ -1,5 +1,29 @@
 # Importing a function from host environments
 
+## Swift 6.0 or later
+
+If you are using Swift 6.0 or later, you can use experimental `@_extern(wasm)` attribute
+
+Swift 6.0 introduces a new attribute `@_extern(wasm)` to import a function from the host environment.
+To use this experimental feature, you need to enable it in your SwiftPM manifest file:
+
+```swift
+.executableTarget(
+    name: "Example",
+    swiftSettings: [
+        .enableExperimentalFeature("Extern")
+    ]),
+```
+
+Then, you can import a function from the host environment as follows without using C headers:
+
+```swift
+@_extern(wasm, module: "env", name: "add")
+func add(_ a: Int, _ b: Int) -> Int
+
+print(add(2, 2))
+```
+
 ## Swift 5.10 or earlier
 
 You can import a function from your host environment using the integration of Swift Package Manager
@@ -85,26 +109,3 @@ A more streamlined way to import host functions will be implemented in the futur
 SwiftWasm toolchain.
 
 
-## Swift 6.0 or later
-
-If you are using Swift 6.0 or later, you can use experimental `@_extern(wasm)` attribute
-
-Swift 6.0 introduces a new attribute `@_extern(wasm)` to import a function from the host environment.
-To use this experimental feature, you need to enable it in your SwiftPM manifest file:
-
-```swift
-.executableTarget(
-    name: "Example",
-    swiftSettings: [
-        .enableExperimentalFeature("Extern")
-    ]),
-```
-
-Then, you can import a function from the host environment as follows without using C headers:
-
-```swift
-@_extern(wasm, module: "env", name: "add")
-func add(_ a: Int, _ b: Int) -> Int
-
-print(add(2, 2))
-```

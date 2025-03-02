@@ -3,7 +3,7 @@
 - [Introduction](README.md)
 - [Getting Started](getting-started/index.md)
     - [Installation](getting-started/setup.md)
-    - [Porting code from other platforms](getting-started/porting.md)
+    - [Porting code](getting-started/porting.md)
     - [Creating a browser app](getting-started/browser-app.md)
     - [JavaScript interoperation](getting-started/javascript-interop.md)
     - [Concurrency](getting-started/concurrency.md)

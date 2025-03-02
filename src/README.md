@@ -13,6 +13,14 @@ WebAssembly is described on its [home page](https://webassembly.org/) as:
 
 We use LLVM as a compiler backend to produce WebAssembly binaries. Our resulting binaries also depend on [WASI](https://wasi.dev), which is a modular system interface for WebAssembly. WASI is mainly required to compile Swift Standard Library.
 
+
+### Important note
+In 2024, Apple introduced [Swift Embedded](https://github.com/swiftlang/swift/blob/main/docs/EmbeddedSwift/UserManual.md). 
+While both projects benefit from each other, it is important to understand that they are different targets at the build phase, consequentially with different sets of abilities.
+Embedded Swift [very limited](https://github.com/swiftlang/swift/blob/main/docs/EmbeddedSwift/EmbeddedSwiftStatus.md#embedded-swift-language-features) but can produce small binaries. [Example](https://github.com/apple/swift-for-wasm-examples).
+
+
+
 ## Project Status
 
 [All compiler and standard library changes have been upstreamed to the official Swift repository, and the upstream CI is now testing WebAssembly targets.](https://forums.swift.org/t/stdlib-and-runtime-tests-for-wasm-wasi-now-available-on-swift-ci/70385)
