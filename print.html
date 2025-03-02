@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/porting.html"><strong aria-hidden="true">2.2.</strong> Porting code from other platforms</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.3.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.4.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/concurrency.html"><strong aria-hidden="true">2.5.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="getting-started/multithreading.html"><strong aria-hidden="true">2.6.</strong> Multithreading</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.7.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="getting-started/vscode.html"><strong aria-hidden="true">2.8.</strong> Visual Studio Code</a></li><li class="chapter-item expanded "><a href="getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="getting-started/troubleshooting.html"><strong aria-hidden="true">2.10.</strong> Troubleshooting</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/setup.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/porting.html"><strong aria-hidden="true">2.2.</strong> Porting code</a></li><li class="chapter-item expanded "><a href="getting-started/browser-app.html"><strong aria-hidden="true">2.3.</strong> Creating a browser app</a></li><li class="chapter-item expanded "><a href="getting-started/javascript-interop.html"><strong aria-hidden="true">2.4.</strong> JavaScript interoperation</a></li><li class="chapter-item expanded "><a href="getting-started/concurrency.html"><strong aria-hidden="true">2.5.</strong> Concurrency</a></li><li class="chapter-item expanded "><a href="getting-started/multithreading.html"><strong aria-hidden="true">2.6.</strong> Multithreading</a></li><li class="chapter-item expanded "><a href="getting-started/testing.html"><strong aria-hidden="true">2.7.</strong> Testing your app</a></li><li class="chapter-item expanded "><a href="getting-started/vscode.html"><strong aria-hidden="true">2.8.</strong> Visual Studio Code</a></li><li class="chapter-item expanded "><a href="getting-started/debugging.html"><strong aria-hidden="true">2.9.</strong> Debugging</a></li><li class="chapter-item expanded "><a href="getting-started/troubleshooting.html"><strong aria-hidden="true">2.10.</strong> Troubleshooting</a></li></ol></li><li class="chapter-item expanded "><a href="examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples/importing-function.html"><strong aria-hidden="true">3.1.</strong> Importing function</a></li><li class="chapter-item expanded "><a href="examples/exporting-function.html"><strong aria-hidden="true">3.2.</strong> Exporting function</a></li><li class="chapter-item expanded "><a href="examples/example-projects.html"><strong aria-hidden="true">3.3.</strong> Example projects</a></li></ol></li><li class="chapter-item expanded "><a href="contribution-guide/index.html"><strong aria-hidden="true">4.</strong> Contribution Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribution-guide/how-to-build-toolchain.html"><strong aria-hidden="true">4.1.</strong> How to build the toolchain</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -170,6 +170,10 @@
 <p>WebAssembly (abbreviated as Wasm) is a binary instruction format for a stack-based virtual machine. Wasm is designed as a portable compilation target for programming languages, enabling deployment on the web for client and server applications.</p>
 </blockquote>
 <p>We use LLVM as a compiler backend to produce WebAssembly binaries. Our resulting binaries also depend on <a href="https://wasi.dev">WASI</a>, which is a modular system interface for WebAssembly. WASI is mainly required to compile Swift Standard Library.</p>
+<h3><a class="header" href="#important-note" id="important-note">Important note</a></h3>
+<p>In 2024, Apple introduced <a href="https://github.com/swiftlang/swift/blob/main/docs/EmbeddedSwift/UserManual.md">Swift Embedded</a>. 
+While both projects benefit from each other, it is important to understand that they are different targets at the build phase, consequentially with different sets of abilities.
+Embedded Swift <a href="https://github.com/swiftlang/swift/blob/main/docs/EmbeddedSwift/EmbeddedSwiftStatus.md#embedded-swift-language-features">very limited</a> but can produce small binaries. <a href="https://github.com/apple/swift-for-wasm-examples">Example</a>.</p>
 <h2><a class="header" href="#project-status" id="project-status">Project Status</a></h2>
 <p><a href="https://forums.swift.org/t/stdlib-and-runtime-tests-for-wasm-wasi-now-available-on-swift-ci/70385">All compiler and standard library changes have been upstreamed to the official Swift repository, and the upstream CI is now testing WebAssembly targets.</a></p>
 <p>The remaining works are:</p>
@@ -253,7 +257,7 @@ Use the following shell snippet to query compatible Swift SDK for your current t
 <p>The Swift SDK includes a subset of the Swift toolchain that includes only the necessary components for cross-compilation and some supplementary resources.</p>
 <h3><a class="header" href="#what-is-included-in-the-swift-sdk-for-webassembly" id="what-is-included-in-the-swift-sdk-for-webassembly">What is included in the Swift SDK for WebAssembly?</a></h3>
 <p>The Swift SDK for WebAssembly includes only the pre-built Swift standard libraries for WebAssembly. It does not include the Swift compiler or other tools that are part of the Swift toolchain.</p>
-<h1><a class="header" href="#porting-code-from-other-platforms-to-webassembly" id="porting-code-from-other-platforms-to-webassembly">Porting code from other platforms to WebAssembly</a></h1>
+<h1><a class="header" href="#porting-code-to-webassembly-with-wasi" id="porting-code-to-webassembly-with-wasi">Porting code to WebAssembly with WASI</a></h1>
 <p>In the form that's currently standardized and supported by browsers and other hosts, WebAssembly
 is a 32-bit architecture. You have to take this into account when porting code from other
 platforms, since <code>Int</code> type is a signed 32-bit integer, and <code>UInt</code> is an unsigned 32-bit integer
@@ -341,8 +345,12 @@ While you can build Tokamak apps without <code>carton</code>, that would require
 already automated with <code>carton</code>.</p>
 <h3><a class="header" href="#system-requirements" id="system-requirements">System Requirements</a></h3>
 <ul>
-<li><a href="https://swift.org/download/">Swift 5.9.2 or later</a></li>
+<li><a href="https://swift.org/download/">Swift 5.9.2</a></li>
 </ul>
+<blockquote>
+<p>Important:
+Tokamak UI currently is not compatible with swift 6.0+. </p>
+</blockquote>
 <h3><a class="header" href="#installation" id="installation">Installation</a></h3>
 <ol>
 <li>Create a directory for your project and make it current:</li>
@@ -376,7 +384,7 @@ let package = Package(
 )
 </code></pre>
 <ol start="4">
-<li>Add your first view to <code>Sources/main.swift</code>:</li>
+<li>Add your first view to <code>Sources/MyApp/main.swift</code>:</li>
 </ol>
 <pre><code class="language-swift">import TokamakDOM
 
@@ -748,6 +756,22 @@ If you are still having trouble, please file an issue or contact us at <a href="
 <h1><a class="header" href="#examples" id="examples">Examples</a></h1>
 <p>This section shows you example usage of our toolchain.</p>
 <h1><a class="header" href="#importing-a-function-from-host-environments" id="importing-a-function-from-host-environments">Importing a function from host environments</a></h1>
+<h2><a class="header" href="#swift-60-or-later" id="swift-60-or-later">Swift 6.0 or later</a></h2>
+<p>If you are using Swift 6.0 or later, you can use experimental <code>@_extern(wasm)</code> attribute</p>
+<p>Swift 6.0 introduces a new attribute <code>@_extern(wasm)</code> to import a function from the host environment.
+To use this experimental feature, you need to enable it in your SwiftPM manifest file:</p>
+<pre><code class="language-swift">.executableTarget(
+    name: &quot;Example&quot;,
+    swiftSettings: [
+        .enableExperimentalFeature(&quot;Extern&quot;)
+    ]),
+</code></pre>
+<p>Then, you can import a function from the host environment as follows without using C headers:</p>
+<pre><code class="language-swift">@_extern(wasm, module: &quot;env&quot;, name: &quot;add&quot;)
+func add(_ a: Int, _ b: Int) -&gt; Int
+
+print(add(2, 2))
+</code></pre>
 <h2><a class="header" href="#swift-510-or-earlier" id="swift-510-or-earlier">Swift 5.10 or earlier</a></h2>
 <p>You can import a function from your host environment using the integration of Swift Package Manager
 with C targets. Firstly, you should declare a signature for your function in a C header with an
@@ -816,23 +840,23 @@ repository</a> from one of our contributors that shows
 an integration with an imported host function.</p>
 <p>A more streamlined way to import host functions will be implemented in the future version of the
 SwiftWasm toolchain.</p>
-<h2><a class="header" href="#swift-60-or-later" id="swift-60-or-later">Swift 6.0 or later</a></h2>
-<p>If you are using Swift 6.0 or later, you can use experimental <code>@_extern(wasm)</code> attribute</p>
-<p>Swift 6.0 introduces a new attribute <code>@_extern(wasm)</code> to import a function from the host environment.
-To use this experimental feature, you need to enable it in your SwiftPM manifest file:</p>
-<pre><code class="language-swift">.executableTarget(
-    name: &quot;Example&quot;,
-    swiftSettings: [
-        .enableExperimentalFeature(&quot;Extern&quot;)
-    ]),
-</code></pre>
-<p>Then, you can import a function from the host environment as follows without using C headers:</p>
-<pre><code class="language-swift">@_extern(wasm, module: &quot;env&quot;, name: &quot;add&quot;)
-func add(_ a: Int, _ b: Int) -&gt; Int
-
-print(add(2, 2))
-</code></pre>
 <h1><a class="header" href="#exporting-function-for-host-environment" id="exporting-function-for-host-environment">Exporting function for host environment</a></h1>
+<h2><a class="header" href="#swift-60-or-later-1" id="swift-60-or-later-1">Swift 6.0 or later</a></h2>
+<p>If you use Swift 6.0 or later, you can use <code>@_expose(wasm, &quot;add&quot;)</code> and omit the <code>--export</code> linker flag.</p>
+<pre><code class="language-swift">// File name: lib.swift
+@_expose(wasm, &quot;add&quot;)
+@_cdecl(&quot;add&quot;) // This is still required to call the function with C ABI
+func add(_ lhs: Int, _ rhs: Int) -&gt; Int {
+    return lhs + rhs
+}
+</code></pre>
+<p>Then you can compile the Swift code with the following command without <code>--export</code> linker flag.</p>
+<pre><code class="language-bash">$ swiftc \
+    -target wasm32-unknown-wasi \
+    -parse-as-library \
+    lib.swift -o lib.wasm \
+    -Xclang-linker -mexec-model=reactor
+</code></pre>
 <h2><a class="header" href="#swift-510-or-earlier-1" id="swift-510-or-earlier-1">Swift 5.10 or earlier</a></h2>
 <p>You can expose a Swift function for host environment using special attribute and linker option.</p>
 <pre><code class="language-swift">// File name: lib.swift
@@ -884,22 +908,6 @@ const addFn = instance.exports.add;
 console.log(&quot;2 + 3 = &quot; + addFn(2, 3))
 </code></pre>
 <p>If you use SwiftPM package, you can omit linker flag using clang's <code>__atribute__</code>. Please see <a href="https://github.com/swiftwasm/JavaScriptKit/pull/91/files">swiftwasm/JavaScriptKit#91</a> for more detail info</p>
-<h2><a class="header" href="#swift-60-or-later-1" id="swift-60-or-later-1">Swift 6.0 or later</a></h2>
-<p>If you use Swift 6.0 or later, you can use <code>@_expose(wasm, &quot;add&quot;)</code> and omit the <code>--export</code> linker flag.</p>
-<pre><code class="language-swift">// File name: lib.swift
-@_expose(wasm, &quot;add&quot;)
-@_cdecl(&quot;add&quot;) // This is still required to call the function with C ABI
-func add(_ lhs: Int, _ rhs: Int) -&gt; Int {
-    return lhs + rhs
-}
-</code></pre>
-<p>Then you can compile the Swift code with the following command without <code>--export</code> linker flag.</p>
-<pre><code class="language-bash">$ swiftc \
-    -target wasm32-unknown-wasi \
-    -parse-as-library \
-    lib.swift -o lib.wasm \
-    -Xclang-linker -mexec-model=reactor
-</code></pre>
 <h2><a class="header" href="#example-projects" id="example-projects">Example Projects</a></h2>
 <p>You can learn more practical usage of our toolchain in <a href="https://github.com/swiftwasm/awesome-swiftwasm">swiftwasm/awesome-swiftwasm</a></p>
 <h1><a class="header" href="#contribution-guide" id="contribution-guide">Contribution Guide</a></h1>
