@@ -661,11 +661,7 @@ If you are using <code>swift build</code>, it is enabled by default.</p>
 <p>When you are debugging a web browser application, Chrome DevTools is a good tool to use. It allows you to
 put breakpoints and step through at Swift source code level.</p>
 <h3><a class="header" href="#official-dwarf-extension" id="official-dwarf-extension">Official DWARF Extension</a></h3>
-<p>Please follow the steps below to configure Chrome DevTools for SwiftWasm:</p>
-<ol>
-<li>Install <a href="https://goo.gle/wasm-debugging-extension"><code>C/C++ DevTools Support (DWARF)</code></a> extension in your Chrome</li>
-<li>Enable <code>WebAssembly Debugging: Enable DWARF support</code> in <code>Experiments</code> pane of DevTools settings</li>
-</ol>
+<p>Install <a href="https://goo.gle/wasm-debugging-extension"><code>C/C++ DevTools Support (DWARF)</code></a> extension in your Chrome</p>
 <p>See <a href="https://developer.chrome.com/blog/wasm-debugging-2020">the DevTools team's official introduction</a> for more details about the extension.</p>
 <p><img src="getting-started/./chrome-devtools.png" alt="" /></p>
 <p>Note that the function names in the stack trace are mangled. You can demangle them using <code>swift demangle</code> command.</p>
