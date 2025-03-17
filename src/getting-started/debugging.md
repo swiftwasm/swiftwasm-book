@@ -13,10 +13,7 @@ put breakpoints and step through at Swift source code level.
 
 ### Official DWARF Extension
 
-Please follow the steps below to configure Chrome DevTools for SwiftWasm:
-
-1. Install [`C/C++ DevTools Support (DWARF)`](https://goo.gle/wasm-debugging-extension) extension in your Chrome
-2. Enable `WebAssembly Debugging: Enable DWARF support` in `Experiments` pane of DevTools settings
+Install [`C/C++ DevTools Support (DWARF)`](https://goo.gle/wasm-debugging-extension) extension in your Chrome
 
 See [the DevTools team's official introduction](https://developer.chrome.com/blog/wasm-debugging-2020) for more details about the extension.
 
