@@ -8,7 +8,7 @@ This guide will help you configure Visual Studio Code (VSCode) to use the Swift 
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Swift for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=sswg.swift-lang)
-- [Swift Development Snapshot](https://swift.org/install) (`swift-DEVELOPMENT-SNAPSHOT-2024-09-04-a` or later)
+- [Swift OSS Toolchain](https://swift.org/install) (6.1 or later)
 - [Swift SDK for WebAssembly](./setup-snapshot.md)
 
 

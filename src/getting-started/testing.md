@@ -73,7 +73,7 @@ subdirectory when you build in release mode.
 
 ## Code coverage with `SwiftPM`
 
-> **Note**: Code coverage support is available only in nightly toolchains for now.
+> **Note**: Code coverage support is available only in 6.1 and later.
 
 You can also generate code coverage reports for your test suite. To do this, you need to build your
 test suite with the `--enable-code-coverage` and linker options `-Xlinker -lwasi-emulated-getpid`:
@@ -94,6 +94,8 @@ $ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr
 $ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata --format=html -o coverage
 $ open coverage/index.html
 ```
+
+![](./coverage-support.png)
 
 ## Building and running the test suite with `carton`
 
