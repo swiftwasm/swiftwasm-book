@@ -159,7 +159,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#installation---latest-release-swift-603" id="installation---latest-release-swift-603">Installation - Latest Release (Swift 6.0.3)</a></h1>
+                        <h1><a class="header" href="#installation---latest-release-swift-61" id="installation---latest-release-swift-61">Installation - Latest Release (Swift 6.1)</a></h1>
 <p>SwiftWasm provides <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md">Swift SDK</a>s for WebAssembly.</p>
 <p>Before installing the Swift SDK, you need to ensure the following:</p>
 <ul>
@@ -167,18 +167,18 @@
 <li>You cannot use toolchains bundled with Xcode to use the Swift SDK.</li>
 <li>If you are using macOS, please follow the <a href="https://www.swift.org/install/macos/package_installer/">official guide</a> to install the toolchain.</li>
 </ul>
-<p>Please ensure you have installed the Swift 6.0.3 Open Source toolchain.</p>
+<p>Please ensure you have installed the Swift 6.1 Open Source toolchain.</p>
 <pre><code class="language-sh">swift --version
 </code></pre>
 <table><thead><tr><th>Toolchain</th><th>Output</th></tr></thead><tbody>
-<tr><td>❌ Xcode</td><td><code>Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)</code></td></tr>
-<tr><td>✅ Open Source (macOS)</td><td><code>Apple Swift version 6.0.3 (swift-6.0.3-RELEASE)</code></td></tr>
-<tr><td>✅ Open Source (Others)</td><td><code>Swift version 6.0.3 (swift-6.0.3-RELEASE)</code></td></tr>
+<tr><td>❌ Xcode</td><td><code>Apple Swift version 6.1 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)</code></td></tr>
+<tr><td>✅ Open Source (macOS)</td><td><code>Apple Swift version 6.1 (swift-6.1-RELEASE)</code></td></tr>
+<tr><td>✅ Open Source (Others)</td><td><code>Swift version 6.1 (swift-6.1-RELEASE)</code></td></tr>
 </tbody></table>
 <p>Once you have installed the Open Source toolchain, you can install the Swift SDK for WebAssembly:</p>
-<pre><code class="language-bash">swift sdk install &quot;https://github.com/swiftwasm/swift/releases/download/swift-wasm-6.0.3-RELEASE/swift-wasm-6.0.3-RELEASE-wasm32-unknown-wasi.artifactbundle.zip&quot; --checksum &quot;31d3585b06dd92de390bacc18527801480163188cd7473f492956b5e213a8618&quot;
+<pre><code class="language-bash">swift sdk install &quot;https://github.com/swiftwasm/swift/releases/download/swift-wasm-6.1-RELEASE/swift-wasm-6.1-RELEASE-wasm32-unknown-wasi.artifactbundle.zip&quot; --checksum &quot;7550b4c77a55f4b637c376f5d192f297fe185607003a6212ad608276928db992&quot;
 </code></pre>
-<p>After installing the Swift SDK, you can see <code>6.0.3-RELEASE-wasm32-unknown-wasi</code> in the Swift SDK list:</p>
+<p>After installing the Swift SDK, you can see <code>6.1-RELEASE-wasm32-unknown-wasi</code> in the Swift SDK list:</p>
 <pre><code class="language-bash">swift sdk list
 </code></pre>
 <p>You can also find other SDKs from <a href="https://github.com/swiftwasm/swift/releases">the GitHub Releases page</a>.</p>
@@ -204,11 +204,11 @@ Hello, world!
 <pre><code class="language-bash">$ swift --version | head -n1
 </code></pre>
 <table><thead><tr><th>Toolchain</th><th>Output</th></tr></thead><tbody>
-<tr><td>Xcode</td><td><code>Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)</code></td></tr>
-<tr><td>Open Source (macOS)</td><td><code>Apple Swift version 6.0.3 (swift-6.0.3-RELEASE)</code></td></tr>
-<tr><td>Open Source (Others)</td><td><code>Swift version 6.0.3 (swift-6.0.3-RELEASE)</code></td></tr>
+<tr><td>Xcode</td><td><code>Apple Swift version 6.1 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)</code></td></tr>
+<tr><td>Open Source (macOS)</td><td><code>Apple Swift version 6.1 (swift-6.1-RELEASE)</code></td></tr>
+<tr><td>Open Source (Others)</td><td><code>Swift version 6.1 (swift-6.1-RELEASE)</code></td></tr>
 </tbody></table>
-<h3><a class="header" href="#unknown0-error-module-compiled-with-swift-603-cannot-be-imported-by-the-swift-xyz" id="unknown0-error-module-compiled-with-swift-603-cannot-be-imported-by-the-swift-xyz"><code>&lt;unknown&gt;:0: error: module compiled with Swift 6.0.3 cannot be imported by the Swift x.y.z</code></a></h3>
+<h3><a class="header" href="#unknown0-error-module-compiled-with-swift-61-cannot-be-imported-by-the-swift-xyz" id="unknown0-error-module-compiled-with-swift-61-cannot-be-imported-by-the-swift-xyz"><code>&lt;unknown&gt;:0: error: module compiled with Swift 6.1 cannot be imported by the Swift x.y.z</code></a></h3>
 <p>This error occurs when the Swift toolchain version you are using is different from the version of the Swift SDK you have installed.</p>
 <p>To resolve this issue, you can either:</p>
 <ol>
