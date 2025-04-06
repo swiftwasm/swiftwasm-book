@@ -215,7 +215,7 @@ using <code>SwiftPM</code>. After your tests are built, you can use a WASI-compa
 subdirectory when you build in release mode.</p>
 <h2><a class="header" href="#code-coverage-with-swiftpm" id="code-coverage-with-swiftpm">Code coverage with <code>SwiftPM</code></a></h2>
 <blockquote>
-<p><strong>Note</strong>: Code coverage support is available only in nightly toolchains for now.</p>
+<p><strong>Note</strong>: Code coverage support is available only in 6.1 and later.</p>
 </blockquote>
 <p>You can also generate code coverage reports for your test suite. To do this, you need to build your
 test suite with the <code>--enable-code-coverage</code> and linker options <code>-Xlinker -lwasi-emulated-getpid</code>:</p>
@@ -231,6 +231,7 @@ $ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr
 $ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata --format=html -o coverage
 $ open coverage/index.html
 </code></pre>
+<p><img src="./coverage-support.png" alt="" /></p>
 <h2><a class="header" href="#building-and-running-the-test-suite-with-carton" id="building-and-running-the-test-suite-with-carton">Building and running the test suite with <code>carton</code></a></h2>
 <p>If you use <a href="https://carton.dev"><code>carton</code></a> to develop and build your app, as described in <a href="./browser-app.html">our guide
 for browser apps</a>, just run <code>swift run carton test</code> in the
