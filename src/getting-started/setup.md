@@ -1,4 +1,4 @@
-# Installation - Latest Release (Swift 6.0.3)
+# Installation - Latest Release (Swift 6.1)
 
 SwiftWasm provides [Swift SDK](https://github.com/apple/swift-evolution/blob/main/proposals/0387-cross-compilation-destinations.md)s for WebAssembly.
 
@@ -8,7 +8,7 @@ Before installing the Swift SDK, you need to ensure the following:
 - You cannot use toolchains bundled with Xcode to use the Swift SDK.
 - If you are using macOS, please follow the [official guide](https://www.swift.org/install/macos/package_installer/) to install the toolchain.
 
-Please ensure you have installed the Swift 6.0.3 Open Source toolchain.
+Please ensure you have installed the Swift 6.1 Open Source toolchain.
 
 ```sh
 swift --version
@@ -16,17 +16,17 @@ swift --version
 
 | Toolchain | Output |
 |-----------|--------|
-| ❌ Xcode | `Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)` |
-| ✅ Open Source (macOS) | `Apple Swift version 6.0.3 (swift-6.0.3-RELEASE)` |
-| ✅ Open Source (Others) | `Swift version 6.0.3 (swift-6.0.3-RELEASE)` |
+| ❌ Xcode | `Apple Swift version 6.1 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)` |
+| ✅ Open Source (macOS) | `Apple Swift version 6.1 (swift-6.1-RELEASE)` |
+| ✅ Open Source (Others) | `Swift version 6.1 (swift-6.1-RELEASE)` |
 
 Once you have installed the Open Source toolchain, you can install the Swift SDK for WebAssembly:
 
 ```bash
-swift sdk install "https://github.com/swiftwasm/swift/releases/download/swift-wasm-6.0.3-RELEASE/swift-wasm-6.0.3-RELEASE-wasm32-unknown-wasi.artifactbundle.zip" --checksum "31d3585b06dd92de390bacc18527801480163188cd7473f492956b5e213a8618"
+swift sdk install "https://github.com/swiftwasm/swift/releases/download/swift-wasm-6.1-RELEASE/swift-wasm-6.1-RELEASE-wasm32-unknown-wasi.artifactbundle.zip" --checksum "7550b4c77a55f4b637c376f5d192f297fe185607003a6212ad608276928db992"
 ```
 
-After installing the Swift SDK, you can see `6.0.3-RELEASE-wasm32-unknown-wasi` in the Swift SDK list:
+After installing the Swift SDK, you can see `6.1-RELEASE-wasm32-unknown-wasi` in the Swift SDK list:
 
 ```bash
 swift sdk list
@@ -74,12 +74,12 @@ $ swift --version | head -n1
 
 | Toolchain | Output |
 |-----------|--------|
-| Xcode | `Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)` |
-| Open Source (macOS) | `Apple Swift version 6.0.3 (swift-6.0.3-RELEASE)` |
-| Open Source (Others) | `Swift version 6.0.3 (swift-6.0.3-RELEASE)` |
+| Xcode | `Apple Swift version 6.1 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)` |
+| Open Source (macOS) | `Apple Swift version 6.1 (swift-6.1-RELEASE)` |
+| Open Source (Others) | `Swift version 6.1 (swift-6.1-RELEASE)` |
 
 
-### `<unknown>:0: error: module compiled with Swift 6.0.3 cannot be imported by the Swift x.y.z`
+### `<unknown>:0: error: module compiled with Swift 6.1 cannot be imported by the Swift x.y.z`
 
 This error occurs when the Swift toolchain version you are using is different from the version of the Swift SDK you have installed.
 
