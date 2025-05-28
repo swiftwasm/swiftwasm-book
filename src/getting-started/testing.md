@@ -62,13 +62,13 @@ using `SwiftPM`. After your tests are built, you can use a WASI-compatible host 
 [wasmtime](https://wasmtime.dev/) to run the test bundle:
 
 ```sh
-$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.xctest
 ```
 
 (`--dir .` is used to allow XCTest to find `Bundle.main` resources placed alongside the executable file.)
 
 As you can see, the produced test binary starts with the name of your package followed by
-`PackageTests.wasm`. It is located in the `.build/debug` subdirectory, or in the `.build/release`
+`PackageTests.xctest`. It is located in the `.build/debug` subdirectory, or in the `.build/release`
 subdirectory when you build in release mode.
 
 ## Code coverage with `SwiftPM`
@@ -87,11 +87,11 @@ data will be stored in `default.profraw` file in the current directory. You can 
 and `llvm-cov` tools to generate a human-readable report:
 
 ```sh
-$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/
 $ llvm-profdata merge default.profraw -o default.profdata
-$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata
+$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.xctest -instr-profile=default.profdata
 # or generate an HTML report
-$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata --format=html -o coverage
+$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.xctest -instr-profile=default.profdata --format=html -o coverage
 $ open coverage/index.html
 ```
 
