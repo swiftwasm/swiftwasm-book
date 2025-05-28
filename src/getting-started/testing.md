@@ -87,7 +87,7 @@ data will be stored in `default.profraw` file in the current directory. You can 
 and `llvm-cov` tools to generate a human-readable report:
 
 ```sh
-$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/
+$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.xctest
 $ llvm-profdata merge default.profraw -o default.profdata
 $ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.xctest -instr-profile=default.profdata
 # or generate an HTML report
