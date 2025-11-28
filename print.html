@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-fa63e998.js";
+            window.path_to_searchindex_js = "searchindex-cf24db63.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-e5be467c.js"></script>
@@ -301,87 +301,9 @@ in WebAssembly platforms, and you can use it to write tests for your SwiftWasm p
 </div>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="creating-a-browser-app"><a class="header" href="#creating-a-browser-app">Creating a Browser App</a></h1>
-<p>Currently, <a href="https://tokamak.dev">the Tokamak UI framework</a> is one of the easiest ways to build a
-browser app with SwiftWasm. It tries to be compatible with <a href="https://developer.apple.com/xcode/swiftui/">the SwiftUI
-API</a> as much as possible, which potentially allows
-you to share most if not all code between SwiftWasm and other platforms.</p>
-<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
-<p>Tokamak relies on <a href="https://carton.dev">the <code>carton</code> development tool</a> for development and testing.
-While you can build Tokamak apps without <code>carton</code>, that would require a lot of manual steps that are
-already automated with <code>carton</code>.</p>
-<h3 id="system-requirements"><a class="header" href="#system-requirements">System Requirements</a></h3>
-<ul>
-<li><a href="https://swift.org/download/">Swift 5.9.2</a></li>
-</ul>
 <blockquote>
-<p>Important:
-Tokamak UI currently is not compatible with swift 6.0+.</p>
+<p>This page has now been replaced by the <a href="https://swiftpackageindex.com/swiftwasm/javascriptkit/tutorials/javascriptkit/hello-world">JavaScriptKit’s tutorial</a>.</p>
 </blockquote>
-<h3 id="installation-1"><a class="header" href="#installation-1">Installation</a></h3>
-<ol>
-<li>Create a directory for your project and make it current:</li>
-</ol>
-<pre><code>mkdir MyApp &amp;&amp; cd MyApp
-</code></pre>
-<ol start="2">
-<li>Initialize the project:</li>
-</ol>
-<pre><code>swift package init --type executable
-</code></pre>
-<ol start="3">
-<li>Add Tokamak and carton as dependencies to your <code>Package.swift</code>:</li>
-</ol>
-<pre><code class="language-swift">// swift-tools-version:5.8
-import PackageDescription
-let package = Package(
-    name: "MyApp",
-    platforms: [.macOS(.v11), .iOS(.v13)],
-    dependencies: [
-        .package(url: "https://github.com/TokamakUI/Tokamak", from: "0.11.0"),
-        .package(url: "https://github.com/swiftwasm/carton", from: "1.0.0"),
-    ],
-    targets: [
-        .executableTarget(
-            name: "MyApp",
-            dependencies: [
-                .product(name: "TokamakShim", package: "Tokamak")
-            ]),
-    ]
-)
-</code></pre>
-<ol start="4">
-<li>Add your first view to <code>Sources/MyApp/main.swift</code>:</li>
-</ol>
-<pre><code class="language-swift">import TokamakDOM
-
-@main
-struct TokamakApp: App {
-    var body: some Scene {
-        WindowGroup("Tokamak App") {
-            ContentView()
-        }
-    }
-}
-
-struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-    }
-}
-</code></pre>
-<ol start="5">
-<li>Build the project and start the development server, <code>swift run carton dev</code> can be kept running
-during development:</li>
-</ol>
-<pre><code>swift run carton dev
-</code></pre>
-<ol start="6">
-<li>Open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a> in your browser to see the app
-running. You can edit the app source code in your favorite editor and save it, <code>carton</code>
-will immediately rebuild the app and reload all browser tabs that have the app open.</li>
-</ol>
-<p>You can also clone <a href="https://github.com/TokamakUI/Tokamak">the Tokamak repository</a> and run <code>carton dev --product TokamakDemo</code> in its root directory. This will build the demo app that shows almost all of the currently
-implemented APIs.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="javascript-interoperation"><a class="header" href="#javascript-interoperation">JavaScript interoperation</a></h1>
 <p><a href="https://github.com/swiftwasm/JavaScriptKit">JavaScriptKit</a> is a Swift framework to interact with JavaScript through WebAssembly.</p>
