@@ -22,7 +22,7 @@ Please make sure that you followed it by reviewing the [Exporting function guide
 
 ### 3. Stack overflow is occurring.
 
-If you are using `--stack-first` linker option (carton uses it by default), you can face `RuntimeError: memory access out of bounds` error due to stack overflow.
+If you are using `--stack-first` linker option, you can face `RuntimeError: memory access out of bounds` error due to stack overflow.
 
 You have two options to solve this issue:
 1. Avoid recursive calls if possible.
