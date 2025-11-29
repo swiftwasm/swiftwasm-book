@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-cf24db63.js";
+            window.path_to_searchindex_js = "../searchindex-ebd65ccd.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e5be467c.js"></script>
@@ -175,24 +175,7 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="javascript-interoperation"><a class="header" href="#javascript-interoperation">JavaScript interoperation</a></h1>
-<p><a href="https://github.com/swiftwasm/JavaScriptKit">JavaScriptKit</a> is a Swift framework to interact with JavaScript through WebAssembly.</p>
-<p>You can use any JavaScript API from Swift with this library. Here’s a quick example of JavaScriptKit
-usage in a browser app:</p>
-<pre><code class="language-swift">import JavaScriptKit
-
-let document = JSObject.global.document
-
-var divElement = document.createElement("div")
-divElement.innerText = "Hello, world"
-_ = document.body.appendChild(divElement)
-</code></pre>
-<p>You can also use JavaScriptKit in SwiftWasm apps integrated with Node.js, as there no assumptions
-that any browser API is present in the library.</p>
-<p>JavaScriptKit consists of a runtime library package <a href="https://www.npmjs.com/package/javascript-kit-swift">hosted on
-npm</a>, and a SwiftPM package for the API on the
-Swift side. To integrate the JavaScript runtime automatically into your app, we recommend following
-the corresponding <a href="./browser-app.html">guide for browser apps in our book</a>.</p>
-<p>You can get more detailed JavaScriptKit documentation <a href="https://swiftwasm.github.io/JavaScriptKit/">here</a>.</p>
+<p>See the <a href="https://swiftpackageindex.com/swiftwasm/JavaScriptKit/documentation/javascriptkit">JavaScriptKit documentation</a> for details on how to interact with JavaScript from Swift.</p>
 
                     </main>
 

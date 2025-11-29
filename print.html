@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-cf24db63.js";
+            window.path_to_searchindex_js = "searchindex-ebd65ccd.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-e5be467c.js"></script>
@@ -306,24 +306,7 @@ in WebAssembly platforms, and you can use it to write tests for your SwiftWasm p
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="javascript-interoperation"><a class="header" href="#javascript-interoperation">JavaScript interoperation</a></h1>
-<p><a href="https://github.com/swiftwasm/JavaScriptKit">JavaScriptKit</a> is a Swift framework to interact with JavaScript through WebAssembly.</p>
-<p>You can use any JavaScript API from Swift with this library. Here’s a quick example of JavaScriptKit
-usage in a browser app:</p>
-<pre><code class="language-swift">import JavaScriptKit
-
-let document = JSObject.global.document
-
-var divElement = document.createElement("div")
-divElement.innerText = "Hello, world"
-_ = document.body.appendChild(divElement)
-</code></pre>
-<p>You can also use JavaScriptKit in SwiftWasm apps integrated with Node.js, as there no assumptions
-that any browser API is present in the library.</p>
-<p>JavaScriptKit consists of a runtime library package <a href="https://www.npmjs.com/package/javascript-kit-swift">hosted on
-npm</a>, and a SwiftPM package for the API on the
-Swift side. To integrate the JavaScript runtime automatically into your app, we recommend following
-the corresponding <a href="#creating-a-browser-app">guide for browser apps in our book</a>.</p>
-<p>You can get more detailed JavaScriptKit documentation <a href="https://swiftwasm.github.io/JavaScriptKit/">here</a>.</p>
+<p>See the <a href="https://swiftpackageindex.com/swiftwasm/JavaScriptKit/documentation/javascriptkit">JavaScriptKit documentation</a> for details on how to interact with JavaScript from Swift.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="running-async-functions-in-webassembly"><a class="header" href="#running-async-functions-in-webassembly">Running <code>async</code> functions in WebAssembly</a></h1>
 <p>On macOS, iOS, and Linux, <code>libdispatch</code>-based executor is used by default, but <code>libdispatch</code> is not supported in single-threaded WebAssembly environment.
@@ -428,82 +411,54 @@ $ wasmtime --wasi threads .build/debug/Example.wasm
 <p>Check the repository for more details: <a href="https://github.com/swiftwasm/WebWorkerKit">swiftwasm/WebWorkerKit: A way of running Swift Distributed Actors in their own worker “thread”</a></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="testing-your-app"><a class="header" href="#testing-your-app">Testing your app</a></h1>
-<p>You can write a test suite for your SwiftWasm app or library, or run an existing test suite
-written for <code>XCTest</code> if you port existing code to SwiftWasm. Your project has to have a
-<code>Package.swift</code> package manifest for this to work. We assume that you use SwiftPM to build your
-project and that you have a working package manifest. Please follow <a href="getting-started/swift-package.html">our SwiftPM guide</a> for new projects.</p>
-<h2 id="a-simple-test-case"><a class="header" href="#a-simple-test-case">A simple test case</a></h2>
-<p>Let’s assume you have an <code>Example</code> target in your project that you’d like to test. Your
-<code>Package.swift</code> should also have a test suite target with a dependency on the library target. It
-would probably look like this:</p>
-<pre><code class="language-swift">// swift-tools-version: 5.9
-
-import PackageDescription
-
-let package = Package(
-    name: "Example",
-    products: [
-        .library(name: "Example", targets: ["Example"]),
-    ],
-    targets: [
-        .target(name: "Example"),
-        .testTarget(name: "ExampleTests", dependencies: ["Example"]),
-    ]
-)
+<p>SwiftWasm supports both <code>swift-testing</code> and <code>XCTest</code> for writing test suites. Your project needs to have a
+<code>Package.swift</code> package manifest with test targets configured. Please follow <a href="getting-started/swift-package.html">our SwiftPM guide</a> for new projects.</p>
+<h2 id="testing-in-javascript-environments"><a class="header" href="#testing-in-javascript-environments">Testing in JavaScript environments</a></h2>
+<p>If you’re building a SwiftWasm app that runs in JavaScript environments (browsers or Node.js), you can use JavaScriptKit’s testing utilities to run your tests directly in those environments. For detailed information on how to set up and run tests in JavaScript environments, please refer to the <a href="https://swiftpackageindex.com/swiftwasm/javascriptkit/documentation/javascriptkit/testing">JavaScriptKit Testing documentation</a>.</p>
+<h2 id="standalone-testing-with-wasi"><a class="header" href="#standalone-testing-with-wasi">Standalone testing with WASI</a></h2>
+<p>If you prefer to run tests in a standalone environment without JavaScript, you can use WASI-compatible runtimes as described below.</p>
+<p>Make sure your <code>Package.swift</code> has test targets configured. For example:</p>
+<p>Note that <code>swift test</code> doesn’t work for WebAssembly targets. Building tests and running them are two separate steps. After building your tests, you can use a WASI-compatible host such as <a href="https://wasmtime.dev/">wasmtime</a> or <a href="https://github.com/swiftwasm/WasmKit">WasmKit</a> to run the test bundle.</p>
+<pre><code class="language-swift">targets: [
+    .target(name: "Example"),
+    .testTarget(name: "ExampleTests", dependencies: ["Example"]),
+]
 </code></pre>
-<p>Now you should make sure there’s <code>Tests/ExampleTests</code> subdirectory in your project.
-If you don’t have any files in it yet, create <code>ExampleTests.swift</code> in it:</p>
-<pre><code class="language-swift">import Example
-import XCTest
-
-final class ExampleTests: XCTestCase {
-  func testTrivial() {
-    XCTAssertEqual(text, "Hello, world")
-  }
-}
+<h3 id="running-swift-testing-suites"><a class="header" href="#running-swift-testing-suites">Running swift-testing suites</a></h3>
+<p>For running <code>swift-testing</code> test suites, please refer to the <a href="https://github.com/swiftlang/swift-testing/blob/main/Documentation/WASI.md">swift-testing WASI documentation</a>.</p>
+<h3 id="running-xctest-suites"><a class="header" href="#running-xctest-suites">Running XCTest suites</a></h3>
+<p>You can build your XCTest suite by running this command in your terminal:</p>
+<pre><code class="language-sh">$ swift build --build-tests --swift-sdk $SWIFT_SDK_ID
 </code></pre>
-<p>This code assumes that your <code>Example</code> defines some <code>text</code> with <code>"Hello, world"</code> value
-for this test to pass. Your test functions should all start with <code>test</code>, please see <a href="https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods">XCTest
-documentation</a>
-for more details.</p>
-<h2 id="building-and-running-the-test-suite-with-swiftpm"><a class="header" href="#building-and-running-the-test-suite-with-swiftpm">Building and running the test suite with <code>SwiftPM</code></a></h2>
-<p>You can build your test suite by running this command in your terminal:</p>
-<pre><code class="language-sh">$ swift build --build-tests --triple wasm32-unknown-wasi
+<p>After building, run the test bundle with a WASI runtime. For example, with wasmtime:</p>
+<pre><code class="language-sh">$ wasmtime --dir . .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm
 </code></pre>
-<p>If you’re used to running <code>swift test</code> to run test suites for other Swift platforms, we have to
-warn you that this won’t work. <code>swift test</code> doesn’t know what WebAssembly environment you’d like to
-use to run your tests. Because of this building tests and running them are two separate steps when
-using <code>SwiftPM</code>. After your tests are built, you can use a WASI-compatible host such as
-<a href="https://wasmtime.dev/">wasmtime</a> to run the test bundle:</p>
-<pre><code class="language-sh">$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+<p>Or with WasmKit:</p>
+<pre><code class="language-sh">$ wasmkit run --dir . .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm
 </code></pre>
 <p>(<code>--dir .</code> is used to allow XCTest to find <code>Bundle.main</code> resources placed alongside the executable file.)</p>
 <p>As you can see, the produced test binary starts with the name of your package followed by
-<code>PackageTests.wasm</code>. It is located in the <code>.build/debug</code> subdirectory, or in the <code>.build/release</code>
+<code>PackageTests.wasm</code>. It is located in the <code>.build/wasm32-unknown-wasip1/debug</code> subdirectory, or in the <code>.build/wasm32-unknown-wasip1/release</code>
 subdirectory when you build in release mode.</p>
-<h2 id="code-coverage-with-swiftpm"><a class="header" href="#code-coverage-with-swiftpm">Code coverage with <code>SwiftPM</code></a></h2>
+<h3 id="code-coverage"><a class="header" href="#code-coverage">Code coverage</a></h3>
 <blockquote>
 <p><strong>Note</strong>: Code coverage support is available only in 6.1 and later.</p>
 </blockquote>
 <p>You can also generate code coverage reports for your test suite. To do this, you need to build your
 test suite with the <code>--enable-code-coverage</code> and linker options <code>-Xlinker -lwasi-emulated-getpid</code>:</p>
-<pre><code class="language-sh">$ swift build --build-tests --swift-sdk wasm32-unknown-wasi --enable-code-coverage -Xlinker -lwasi-emulated-getpid
+<pre><code class="language-sh">$ swift build --build-tests --swift-sdk $SWIFT_SDK_ID --enable-code-coverage -Xlinker -lwasi-emulated-getpid
 </code></pre>
-<p>After building your test suite, you can run it with <code>wasmtime</code> as described above. The raw coverage
+<p>After building your test suite, you can run it with a WASI runtime (e.g., <code>wasmtime</code> or <code>WasmKit</code>) as described above. The raw coverage
 data will be stored in <code>default.profraw</code> file in the current directory. You can use the <code>llvm-profdata</code>
 and <code>llvm-cov</code> tools to generate a human-readable report:</p>
-<pre><code class="language-sh">$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+<pre><code class="language-sh">$ wasmtime --dir . .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm
 $ llvm-profdata merge default.profraw -o default.profdata
-$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata
+$ llvm-cov show .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm -instr-profile=default.profdata
 # or generate an HTML report
-$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata --format=html -o coverage
+$ llvm-cov show .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm -instr-profile=default.profdata --format=html -o coverage
 $ open coverage/index.html
 </code></pre>
 <p><img src="getting-started/coverage-support.png" alt=""></p>
-<h2 id="building-and-running-the-test-suite-with-carton"><a class="header" href="#building-and-running-the-test-suite-with-carton">Building and running the test suite with <code>carton</code></a></h2>
-<p>If you use <a href="https://carton.dev"><code>carton</code></a> to develop and build your app, as described in <a href="#creating-a-browser-app">our guide
-for browser apps</a>, just run <code>swift run carton test</code> in the
-root directory of your package. This will automatically build the test suite and run it with a WASI runtime for you.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="configuring-visual-studio-code-with-webassembly-sdk"><a class="header" href="#configuring-visual-studio-code-with-webassembly-sdk">Configuring Visual Studio Code with WebAssembly SDK</a></h1>
 <p>This guide will help you configure Visual Studio Code (VSCode) to use the Swift SDK for WebAssembly.</p>
