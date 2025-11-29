@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-ebd65ccd.js";
+            window.path_to_searchindex_js = "../searchindex-c07d7dbb.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e5be467c.js"></script>
@@ -177,53 +177,16 @@
                         <h1 id="debugging"><a class="header" href="#debugging">Debugging</a></h1>
 <p>Debugging is one of the most important parts of application development. This section describes debugging tools compatible with SwiftWasm.</p>
 <p>These tools are DWARF-based, so you need to build your application with DWARF sections enabled.
-If you are using <code>carton bundle</code>, you can use the <code>--debug-info</code> flag to enable debugging with optimized application.
 If you are using <code>swift build</code>, it is enabled by default.</p>
-<h2 id="chrome-devtools"><a class="header" href="#chrome-devtools">Chrome DevTools</a></h2>
-<p>When you are debugging a web browser application, Chrome DevTools is a good tool to use. It allows you to
-put breakpoints and step through at Swift source code level.</p>
-<h3 id="official-dwarf-extension"><a class="header" href="#official-dwarf-extension">Official DWARF Extension</a></h3>
-<p>Install <a href="https://goo.gle/wasm-debugging-extension"><code>C/C++ DevTools Support (DWARF)</code></a> extension in your Chrome</p>
-<p>See <a href="https://developer.chrome.com/blog/wasm-debugging-2020">the DevTools team’s official introduction</a> for more details about the extension.</p>
-<p><img src="./chrome-devtools.png" alt=""></p>
-<p>Note that the function names in the stack trace are mangled. You can demangle them using <code>swift demangle</code> command.</p>
-<p>Unfortunately, variable inspection is unavailable since Swift depends on its own mechanisms to do that instead of DWARF’s structure type feature. If you need this feature, you can use the enhanced extension below.</p>
-<h3 id="enhanced-dwarf-extension-for-swift"><a class="header" href="#enhanced-dwarf-extension-for-swift">Enhanced DWARF Extension for Swift</a></h3>
-<p>For a better Swift debugging experience, there’s also an enhanced version of the DWARF extension specifically for Swift. This extension enables:</p>
-<ul>
-<li>Breakpoint setting and Swift code inspection</li>
-<li>Human-readable call stack frames</li>
-<li>Swift variable value inspection</li>
-</ul>
-<p>To install this enhanced extension:</p>
-<ol>
-<li>First, uninstall the official “C/C++ DevTools Support (DWARF)” extension if you have it installed</li>
-<li>Download the extension ZIP file from <a href="https://github.com/GoodNotes/devtools-frontend/releases/tag/swift-0.2.3.0">GitHub Releases</a></li>
-<li>Go to <code>chrome://extensions/</code> and enable “Developer mode”</li>
-<li>Drag and drop the downloaded ZIP file into the page</li>
-</ol>
-<p>When you close and reopen the DevTools window, DevTools will suggest reloading itself to apply settings.</p>
-<p>Note: There is a known issue where some JavaScriptKit types like <code>JSObject</code> and <code>JSValue</code> are not shown in pretty format in the variables view.</p>
-<p><img src="./chrome-devtools-swift.png" alt=""></p>
-<h2 id="wasminspect"><a class="header" href="#wasminspect"><a href="https://github.com/kateinoigakukun/wasminspect">wasminspect</a></a></h2>
+<h2 id="debugging-in-javascript-environments"><a class="header" href="#debugging-in-javascript-environments">Debugging in JavaScript environments</a></h2>
+<p>If you’re debugging a SwiftWasm app that runs in JavaScript environments (browsers or Node.js), please refer to the <a href="https://swiftpackageindex.com/swiftwasm/javascriptkit/documentation/javascriptkit/debugging">JavaScriptKit Debugging documentation</a> for detailed information on how to set up and use debugging tools in JavaScript environments.</p>
+<h2 id="standalone-debugging-tools"><a class="header" href="#standalone-debugging-tools">Standalone debugging tools</a></h2>
+<h3 id="wasminspect"><a class="header" href="#wasminspect"><a href="https://github.com/kateinoigakukun/wasminspect">wasminspect</a></a></h3>
 <p><a href="https://github.com/kateinoigakukun/wasminspect">wasminspect</a>
 can help in the investigation if the debugged binary does not rely on integration with JavaScript.
 We recommend splitting your packages into separate executable targets, most of which shouldn’t
 assume the availability of JavaScript to make debugging easier.</p>
 <p><img src="https://raw.githubusercontent.com/kateinoigakukun/wasminspect/master/assets/demo.gif" alt="demo"></p>
-<h2 id="wasm-memprof"><a class="header" href="#wasm-memprof"><a href="https://github.com/kateinoigakukun/wasm-memprof">wasm-memprof</a></a></h2>
-<p>If you are debugging memory leaks, <a href="https://github.com/kateinoigakukun/wasm-memprof">wasm-memprof</a> can help you.
-It is a tool to profile memory usage of WebAssembly applications with a few lines of setup code:</p>
-<pre><code class="language-javascript">import { WMProf } from "wasm-memprof";
-import { SwiftDemangler } from "wasm-memprof/plugins/swift-demangler.js";
-
-const swiftDemangler = SwiftDemangler.create();
-const WebAssembly = WMProf.wrap(globalThis.WebAssembly, {
-  demangler: swiftDemangler.demangle.bind(swiftDemangler),
-});
-</code></pre>
-<p>Check the repository for more details.</p>
-<img width="1000" alt="swift-wmprof" src="https://github.com/user-attachments/assets/c1da4582-e721-45b9-9bca-ce320711f72d">
 
                     </main>
 
