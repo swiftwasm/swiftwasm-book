@@ -1,77 +1,58 @@
 # Testing your app
 
-You can write a test suite for your SwiftWasm app or library, or run an existing test suite
-written for `XCTest` if you port existing code to SwiftWasm. Your project has to have a
-`Package.swift` package manifest for this to work. We assume that you use SwiftPM to build your
-project and that you have a working package manifest. Please follow [our SwiftPM guide](./swift-package.md) for new projects.
+SwiftWasm supports both `swift-testing` and `XCTest` for writing test suites. Your project needs to have a
+`Package.swift` package manifest with test targets configured. Please follow [our SwiftPM guide](./swift-package.md) for new projects.
 
-## A simple test case
+## Testing in JavaScript environments
 
-Let's assume you have an `Example` target in your project that you'd like to test. Your
-`Package.swift` should also have a test suite target with a dependency on the library target. It
-would probably look like this:
+If you're building a SwiftWasm app that runs in JavaScript environments (browsers or Node.js), you can use JavaScriptKit's testing utilities to run your tests directly in those environments. For detailed information on how to set up and run tests in JavaScript environments, please refer to the [JavaScriptKit Testing documentation](https://swiftpackageindex.com/swiftwasm/javascriptkit/documentation/javascriptkit/testing).
 
-```swift
-// swift-tools-version: 5.9
+## Standalone testing with WASI
 
-import PackageDescription
+If you prefer to run tests in a standalone environment without JavaScript, you can use WASI-compatible runtimes as described below.
 
-let package = Package(
-    name: "Example",
-    products: [
-        .library(name: "Example", targets: ["Example"]),
-    ],
-    targets: [
-        .target(name: "Example"),
-        .testTarget(name: "ExampleTests", dependencies: ["Example"]),
-    ]
-)
-```
+Make sure your `Package.swift` has test targets configured. For example:
 
-Now you should make sure there's `Tests/ExampleTests` subdirectory in your project.
-If you don't have any files in it yet, create `ExampleTests.swift` in it:
+Note that `swift test` doesn't work for WebAssembly targets. Building tests and running them are two separate steps. After building your tests, you can use a WASI-compatible host such as [wasmtime](https://wasmtime.dev/) or [WasmKit](https://github.com/swiftwasm/WasmKit) to run the test bundle.
 
 ```swift
-import Example
-import XCTest
-
-final class ExampleTests: XCTestCase {
-  func testTrivial() {
-    XCTAssertEqual(text, "Hello, world")
-  }
-}
+targets: [
+    .target(name: "Example"),
+    .testTarget(name: "ExampleTests", dependencies: ["Example"]),
+]
 ```
 
-This code assumes that your `Example` defines some `text` with `"Hello, world"` value
-for this test to pass. Your test functions should all start with `test`, please see [XCTest 
-documentation](https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods)
-for more details.
+### Running swift-testing suites
 
-## Building and running the test suite with `SwiftPM`
+For running `swift-testing` test suites, please refer to the [swift-testing WASI documentation](https://github.com/swiftlang/swift-testing/blob/main/Documentation/WASI.md).
 
-You can build your test suite by running this command in your terminal:
+### Running XCTest suites
+
+You can build your XCTest suite by running this command in your terminal:
 
 ```sh
-$ swift build --build-tests --triple wasm32-unknown-wasi
+$ swift build --build-tests --swift-sdk $SWIFT_SDK_ID
 ```
 
-If you're used to running `swift test` to run test suites for other Swift platforms, we have to
-warn you that this won't work. `swift test` doesn't know what WebAssembly environment you'd like to 
-use to run your tests. Because of this building tests and running them are two separate steps when
-using `SwiftPM`. After your tests are built, you can use a WASI-compatible host such as
-[wasmtime](https://wasmtime.dev/) to run the test bundle:
+After building, run the test bundle with a WASI runtime. For example, with wasmtime:
 
 ```sh
-$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+$ wasmtime --dir . .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm
+```
+
+Or with WasmKit:
+
+```sh
+$ wasmkit run --dir . .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm
 ```
 
 (`--dir .` is used to allow XCTest to find `Bundle.main` resources placed alongside the executable file.)
 
 As you can see, the produced test binary starts with the name of your package followed by
-`PackageTests.wasm`. It is located in the `.build/debug` subdirectory, or in the `.build/release`
+`PackageTests.wasm`. It is located in the `.build/wasm32-unknown-wasip1/debug` subdirectory, or in the `.build/wasm32-unknown-wasip1/release`
 subdirectory when you build in release mode.
 
-## Code coverage with `SwiftPM`
+### Code coverage
 
 > **Note**: Code coverage support is available only in 6.1 and later.
 
@@ -79,26 +60,20 @@ You can also generate code coverage reports for your test suite. To do this, you
 test suite with the `--enable-code-coverage` and linker options `-Xlinker -lwasi-emulated-getpid`:
 
 ```sh
-$ swift build --build-tests --swift-sdk wasm32-unknown-wasi --enable-code-coverage -Xlinker -lwasi-emulated-getpid
+$ swift build --build-tests --swift-sdk $SWIFT_SDK_ID --enable-code-coverage -Xlinker -lwasi-emulated-getpid
 ```
 
-After building your test suite, you can run it with `wasmtime` as described above. The raw coverage
+After building your test suite, you can run it with a WASI runtime (e.g., `wasmtime` or `WasmKit`) as described above. The raw coverage
 data will be stored in `default.profraw` file in the current directory. You can use the `llvm-profdata`
 and `llvm-cov` tools to generate a human-readable report:
 
 ```sh
-$ wasmtime --dir . .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm
+$ wasmtime --dir . .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm
 $ llvm-profdata merge default.profraw -o default.profdata
-$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata
+$ llvm-cov show .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm -instr-profile=default.profdata
 # or generate an HTML report
-$ llvm-cov show .build/wasm32-unknown-wasi/debug/ExamplePackageTests.wasm -instr-profile=default.profdata --format=html -o coverage
+$ llvm-cov show .build/wasm32-unknown-wasip1/debug/ExamplePackageTests.wasm -instr-profile=default.profdata --format=html -o coverage
 $ open coverage/index.html
 ```
 
 ![](./coverage-support.png)
-
-## Building and running the test suite with `carton`
-
-If you use [`carton`](https://carton.dev) to develop and build your app, as described in [our guide
-for browser apps](./browser-app.md), just run `swift run carton test` in the
-root directory of your package. This will automatically build the test suite and run it with a WASI runtime for you.
