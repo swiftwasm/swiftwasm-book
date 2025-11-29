@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c07d7dbb.js";
+            window.path_to_searchindex_js = "searchindex-1e3845e7.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-e5be467c.js"></script>
@@ -528,7 +528,7 @@ If you are still having trouble, please file an issue or contact us at <a href="
 <p>If your application is used as a library, you need to follow <a href="https://github.com/WebAssembly/WASI/blob/bac366c8aeb69cacfea6c4c04a503191bf1cede1/legacy/application-abi.md"><em>WASI reactor ABI</em></a>.</p>
 <p>Please make sure that you followed it by reviewing the <a href="#exporting-function-for-host-environment">Exporting function guide</a></p>
 <h3 id="3-stack-overflow-is-occurring"><a class="header" href="#3-stack-overflow-is-occurring">3. Stack overflow is occurring.</a></h3>
-<p>If you are using <code>--stack-first</code> linker option (carton uses it by default), you can face <code>RuntimeError: memory access out of bounds</code> error due to stack overflow.</p>
+<p>If you are using <code>--stack-first</code> linker option, you can face <code>RuntimeError: memory access out of bounds</code> error due to stack overflow.</p>
 <p>You have two options to solve this issue:</p>
 <ol>
 <li>
