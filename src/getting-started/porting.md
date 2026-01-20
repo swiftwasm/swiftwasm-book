@@ -69,7 +69,7 @@ and they had to be disabled. These types are therefore absent in SwiftWasm Found
 | `RunLoop` | ❌ Unavailable |
 | `Stream` | ✅ Partially available after 6.0 |
 | `SocketPort` | ❌ Unavailable |
-| `Thread` | ❌ Unavailable |
+| `Thread` | ✅ Available after 6.4 |
 | `Timer` | ❌ Unavailable |
 | `UserDefaults` | ✅ Available after 6.0 |
 
