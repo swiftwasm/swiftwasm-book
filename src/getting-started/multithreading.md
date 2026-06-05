@@ -15,10 +15,10 @@ but it was [withdrawn in August 2023](https://github.com/WebAssembly/wasi-thread
 
 The `wasi-threads` feature is only available in the `wasm32-unknown-wasip1-threads` target triple, which is explicitly distinct from the `wasm32-unknown-wasi` target triple.
 
-The `wasm32-unknown-wasip1-threads` target triple is only available in the nightly Swift SDK for WebAssembly.
+The `wasm32-unknown-wasip1-threads` target triple is only available in the Swift SDK at [swiftwasm/swift](https://github.com/swiftwasm/swift).
 
 You can run WebAssembly programs built with the `wasm32-unknown-wasip1-threads` target by using the `wasmtime` runtime with the `--wasi threads` flag.
-Check [a recent nightly Swift SDK release](https://github.com/swiftwasm/swift/releases) and how to install it [here](./setup-snapshot.md).
+Check [Swift SDK releases](https://github.com/swiftwasm/swift/releases) and how to install it [here](https://www.swift.org/documentation/articles/wasm-getting-started.html).
 
 ```console
 # Assume you are using swift-DEVELOPMENT-SNAPSHOT-2024-12-04-a toolchain
