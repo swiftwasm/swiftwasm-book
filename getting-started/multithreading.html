@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-c92dff34.js";
+            window.path_to_searchindex_js = "../searchindex-3289c5b4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e5be467c.js"></script>
@@ -185,9 +185,9 @@ WebAssembly modules on them.</p>
 The proposal was implemented in several WASI host runtimes, including Wasmtime and wasm-micro-runtime,
 but it was <a href="https://github.com/WebAssembly/wasi-threads/issues/48#issuecomment-1696407630">withdrawn in August 2023</a> in favor of <a href="https://github.com/WebAssembly/shared-everything-threads">shared-everything-threads</a> proposal. However, the shared-everything-threads proposal is still in the early stages of development and is not yet available in any WASI host runtime. So, for now, we are employing the <code>wasi-threads</code> ABI in SwiftWasm to provide thread support immediately.</p>
 <p>The <code>wasi-threads</code> feature is only available in the <code>wasm32-unknown-wasip1-threads</code> target triple, which is explicitly distinct from the <code>wasm32-unknown-wasi</code> target triple.</p>
-<p>The <code>wasm32-unknown-wasip1-threads</code> target triple is only available in the nightly Swift SDK for WebAssembly.</p>
+<p>The <code>wasm32-unknown-wasip1-threads</code> target triple is only available in the Swift SDK at <a href="https://github.com/swiftwasm/swift">swiftwasm/swift</a>.</p>
 <p>You can run WebAssembly programs built with the <code>wasm32-unknown-wasip1-threads</code> target by using the <code>wasmtime</code> runtime with the <code>--wasi threads</code> flag.
-Check <a href="https://github.com/swiftwasm/swift/releases">a recent nightly Swift SDK release</a> and how to install it <a href="./setup-snapshot.html">here</a>.</p>
+Check <a href="https://github.com/swiftwasm/swift/releases">Swift SDK releases</a> and how to install it <a href="https://www.swift.org/documentation/articles/wasm-getting-started.html">here</a>.</p>
 <pre><code class="language-console"># Assume you are using swift-DEVELOPMENT-SNAPSHOT-2024-12-04-a toolchain
 $ swift sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2024-12-05-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2024-12-05-a-wasm32-unknown-wasip1-threads.artifactbundle.zip --checksum 1796ae86f3c90b45d06ee29bb124577aa4135585bbd922430b6d1786f855697d
 $ swift build --swift-sdk wasm32-unknown-wasip1-threads
